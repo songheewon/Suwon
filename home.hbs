@@ -1,0 +1,145 @@
+{{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} 
+{{#get "products" filter="featured:true" include="tags,authors" limit="7" order="published_at desc"}}
+{{#if products}}
+<div class="c-home-hero c-home-hero__desktop">
+  <div class="c-home-hero__inner">
+    <div class="c-home-hero__swiper">
+      <div class="swiper-wrapper">
+
+          {{#foreach products}}
+          <div class="swiper-slide">
+            {{#if feature_image}}
+            <div class="c-home-hero__media">
+              <div class="c-home-hero__image--wrap">
+                <img class="c-home-hero__image" src="{{img_url feature_image}}" alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}">
+              </div>
+            </div>
+            {{/if}}
+            <div class="o-container">
+              <div class="c-home-hero__item">
+                <div class="c-home-hero__content">
+                  <h2 class="c-home-hero__title">
+                    <a class="c-home-hero__link" href="{{url}}">{{title}}</a>
+                  </h2>
+                  <p class="c-home-hero__excerpt">{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt}}{{/if}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/foreach}}
+
+      </div>
+    </div>
+
+    <div class="c-home-hero__swiper-pagination--outer">
+      <div class="o-container">
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+{{/get}}
+
+  {{#get "products" filter="featured:true" include="tags,authors" limit="7" order="published_at desc"}}
+  {{#if products}}
+  <div class="c-home-hero c-home-hero__mobile">
+    <div class="c-home-hero__inner">
+      <div class="c-home-hero__swiper">
+        <div class="swiper-wrapper">
+
+          {{#foreach products}}
+          <div class="swiper-slide">
+            <div class="o-container">
+              <div class="c-home-hero__item">
+                <div class="c-home-hero__content">
+                  <h2 class="c-home-hero__title">
+                    <a class="c-home-hero__link" href="{{url}}">{{title}}</a>
+                  </h2>
+                  <p class="c-home-hero__excerpt">{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt}}{{/if}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/foreach}}
+
+        </div>
+      </div>
+
+      <div class="c-home-hero__swiper-pagination--outer">
+        <div class="o-container">
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  {{/get}}
+
+  <div class="c-home-navigation">
+    <div class="o-container">
+      {{ navigation type="globalFirst" format="package" }}
+    </div>
+  </div>
+
+  <div class="c-home-section c-home-section__class">
+    <div class="o-container">
+      <div class="c-shop-page">
+        <div class="c-shop-page__header">
+          <div class="o-container">
+            <div class="c-shop-page__title">{{@site.shop_section_title}}</div>
+          </div>
+          <div class="c-shop-navigation">
+            <div class="o-container">
+              {{> templates/shop/home-navigation }}
+            </div>
+          </div>
+        </div>
+        <div class="c-shop-page__main">
+          <div class="c-shop-section">
+            <div class="o-container">
+              {{#get "products" limit="36" include="tags,authors" filter=filter order="published_at desc"}}
+              {{#if products}}
+              <div class="c-product-grid">
+                {{#foreach products}}
+                {{> product-card which="shop" }}
+                {{/foreach}}
+              </div>
+              {{else}}
+              {{> templates/messages/products-empty }}
+              {{/if}}
+              {{/get}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =====================
+    // Home Hero Swiper
+    // =====================
+
+    const heroDesktopSwiper = new Swiper('.c-home-hero__desktop .c-home-hero__swiper', {
+      loop: true,
+      pagination: {
+        el: '.c-home-hero__desktop .swiper-pagination',
+        clickable: true
+      },
+      autoplay: {
+        delay: 3000,
+      },
+    });
+
+    const heroMobileSwiper = new Swiper('.c-home-hero__mobile .c-home-hero__swiper', {
+      loop: true,
+      pagination: {
+        el: '.c-home-hero__mobile .swiper-pagination',
+        clickable: true
+      },
+      autoplay: {
+        delay: 3000,
+      },
+    });
+  </script>

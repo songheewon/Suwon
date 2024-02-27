@@ -1,0 +1,14 @@
+{{#match format "package"}}
+<ul class="c-nav o-plain-list">
+{{/match}}
+
+{{!-- Navigation list --}}
+{{#foreach navigation}}
+  <li class="c-nav__item c-nav__item--{{slug}}">
+    <a href="{{ url absolute="true" }}" class="c-nav__link {{#if current}} c-nav__link--current {{/if}}"{{#match slug "faq"}} target="_blank"{{/match}}>{{ label }}</a>
+  </li>
+{{/foreach}}
+
+{{#match format "package"}}
+</ul>
+{{/match}}

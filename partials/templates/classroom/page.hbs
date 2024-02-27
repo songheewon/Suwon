@@ -1,0 +1,34 @@
+{{#if @member}}
+<div class="c-classroom-page">
+  <div class="c-classroom-page__header">
+    <div class="o-container">
+      <div class="c-classroom-page__title">내 강의실</div>
+    </div>
+    <div class="c-classroom-navigation">
+      <div class="o-container">
+        {{> templates/classroom/navigation }}
+      </div>
+    </div>
+  </div>
+  <div class="c-classroom-page__main">
+    <div class="c-classroom-section">
+      <div class="o-container">
+      {{#get "products" paid=true limit="18" include="tags,authors" filter=filter order="published_at desc"}}
+      {{#if products}}
+        <div class="c-product-grid">
+        {{#foreach products visibility="all"}}
+          {{> product-card which="classroom" }}
+        {{/foreach}}
+        </div>
+      {{else}}
+        {{> templates/messages/classroom-empty }}
+      {{/if}}
+      {{/get}}
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+  {{!-- for non-members --}}
+  {{> templates/messages/non-members }}
+{{/if}}

@@ -1,0 +1,23 @@
+<div class="c-home-navigation">
+  <div class="o-container">
+    {{ navigation type="globalFirst" format="package" }}
+  </div>
+</div>
+
+<div class="c-home-section c-home-section__class">
+  <div class="o-container">
+
+    <div class="c-home-section__title">
+      <span class="c-home-section__title--point">WHEN YOU</span> CLASS
+    </div>
+    {{#get "products" include="tags,authors" filter=(concat "primary_tag:" slug) limit="18" order="published_at desc"}}
+      <div class="c-product-grid">
+      {{#foreach products}}
+        {{> product-card }}
+      {{/foreach}}
+      </div>
+
+    {{/get}}
+
+  </div>
+</div>

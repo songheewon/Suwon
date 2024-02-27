@@ -1,0 +1,47 @@
+/*------------------------------------*\
+  Elements > Typography
+\*------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $type-700;
+}
+
+h1 {
+  font-size: $heading-1-font-size;
+  line-height: $heading-1-line-height;
+}
+
+h2 {
+  font-size: $heading-2-font-size;
+  line-height: $heading-2-line-height;
+}
+
+h3 {
+  font-size: $heading-3-font-size;
+  line-height: $heading-3-line-height;
+}
+
+h4 {
+  font-size: $heading-4-font-size;
+  line-height: $heading-4-line-height;
+}
+
+h5 {
+  font-size: $type--h-xs;
+  line-height: $type--h-xs-lh;
+}
+
+h6 {
+  font-size: $type--h-xxs;
+  line-height: $type--h-xxs-lh;
+}
+
+b,
+strong {
+  font-weight: $type-600;
+}

@@ -1,0 +1,84 @@
+{{#if payment_status.is_paid}}
+
+                    <div class="bluedot-product-info-for-paid{{#if payment.purchase.file}}{{#unless (eq payment.purchase.file.vimeo_state "done")}} have-file{{else}} have-not-file{{/unless}}{{else}} have-not-file{{/if}}{{#if payment.purchase.message}} have-message{{else}} have-not-message{{/if}}">
+                        {{!-- 파일 업로드 된 것이 있다면 .. --}}
+
+                        {{#if payment.purchase.file}}
+
+                            {{#if payment.purchase.file.is_mp4}}
+
+                                {{#if (eq payment.purchase.file.vimeo_state "ready")}}
+                                <div class="bluedot-product-video-message">
+                                    동영상을 업로드 중입니다.<br />
+                                    완료되는대로 재생하실 수 있도록 하겠습니다.
+                                </div>
+                                {{/if}}
+
+                                {{#if (eq payment.purchase.file.vimeo_state "uploading")}}
+                                <div class="bluedot-product-video-message">
+                                    동영상을 업로드 중입니다.<br />
+                                    완료되는대로 재생하실 수 있도록 하겠습니다.
+                                </div>
+                                {{/if}}
+
+                                {{#if (eq payment.purchase.file.vimeo_state "renew")}}
+                                <div class="bluedot-product-video-message">
+                                    동영상을 새롭게 업로드 중입니다.<br />
+                                    완료되는대로 재생하실 수 있도록 하겠습니다.
+                                </div>
+                                {{/if}}
+
+                                {{#if (eq payment.purchase.file.vimeo_state "done")}}
+                                    {{#if payment.purchase.file.vimeo_files}}
+                                        {{#if payment.purchase.file.vimeo_files.hls}}
+
+                                        {{else}}
+                                            <div class="bluedot-product-video-message">
+                                                동영상을 컨버팅 중입니다.<br />
+                                                완료되는대로 재생하실 수 있도록 하겠습니다.
+                                            </div>
+                                        {{/if}}
+                                    {{else}}
+                                    <div class="bluedot-product-video-message">
+                                        동영상을 컨버팅 중입니다.<br />
+                                        완료되는대로 재생하실 수 있도록 하겠습니다.
+                                    </div>
+                                    {{/if}}
+                                {{/if}}
+                            {{else}}
+
+
+                                {{#if payment.purchase.file.name}}
+                                <div class="c-product-file">
+                                  <div class="c-product-file__media">
+                                    <div class="c-product-file__image">{{payment.purchase.file.ext}}</div>
+                                  </div>
+                                  <div class="c-product-file__info">
+                                    <div class="c-product-file__title" title="{{payment.purchase.file.name}}">{{payment.purchase.file.name}}</div>
+                                    <div class="c-product-file__action">
+                                    {{#if payment.purchase.file.is_pdf}}
+                                      {{#if payment.purchase.file.downloadable}}
+                                      <a class="download c-product-file__link" target="_blank" href="{{payment.purchase.file.url}}">다운로드</a>
+                                      {{/if}}
+                                    {{else}}
+                                      {{#if payment.purchase.file.downloadable}}
+                                      <a class="download c-product-file__link"  href="{{payment.purchase.file.url}}" onclick="downloadURI('{{payment.purchase.file.url}}', '{{payment.purchase.file.name}}'); return false;">다운로드</a>
+                                      {{else}}
+                                      <a href="{{payment.purchase.file.url}}" >보기</a>
+                                      {{/if}}
+                                    {{/if}}
+                                    </div>
+                                  </div>
+                                </div>
+                                {{/if}}
+
+
+                            {{/if}}
+                        {{/if}}
+                        {{#if payment.purchase.message}}
+                            <div class="bluedot-product-buyer-message bluedot-markdown">
+                                {{markdown payment.purchase.message}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/if}}

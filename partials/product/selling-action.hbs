@@ -1,0 +1,25 @@
+{{#if payment.is_selling}}
+  <a class="c-product-selling__action--link" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
+    {{#if (eq payment.type "webinar")}}
+      {{#if payment.price_final}}
+    결제하기
+      {{else}}
+    등록하기
+      {{/if}}
+    {{else}}
+    결제하기
+    {{/if}}
+  </a>
+{{else}}
+  <div class="c-product-selling__action--link c-product-selling__action--disabled">
+  {{#if (eq payment.type "webinar")}}
+    판매종료
+  {{else}}
+    {{#if payment.is_soldout}}
+    품절
+    {{else}}
+    판매종료
+    {{/if}}
+  {{/if}}
+  </div>
+{{/if}}

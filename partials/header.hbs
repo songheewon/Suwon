@@ -1,0 +1,114 @@
+<header class="e-header c-header__container">
+  <div class="o-container">
+
+    <div class="c-header">
+      <div class="c-header__identity">
+        <div class="c-header__logo">
+          <a href="{{ @site.url }}" class="c-logo__link">
+            {{#if @site.logo}}
+            <img class="c-logo__img" src="{{ @site.logo }}" alt="{{ @site.brand_site_title }}">
+            {{else}}
+            {{ @site.brand_site_title }}
+            {{/if}}
+          </a>
+        </div>
+      </div>
+
+      <div class="c-header__map">
+        <div class="c-header__navigation">
+          {{#unless @member}}
+          {{navigation format="package"}}
+          {{/unless}}
+        </div>
+        <div class="c-header__actions">
+          <ul class="c-nav o-plain-list">
+            {{#if @member}}
+            <li class="c-nav__item c-nav__item--classroom">
+              <a href="{{ @site.url }}/classroom/" class="c-nav__link">내 강의실</a>
+            </li>
+            <li class="c-nav__item  c-nav__item--my">
+              <a href="#" data-portal="account" class="c-nav__link">My</a>
+            </li>
+            {{else}}
+            <li class="c-nav__item c-nav__item--sign">
+              <a href="{{ @site.url }}/signin/" class="c-nav__link">로그인</a>
+            </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="c-header-m">
+
+      <div class="c-header-m__main">
+
+        {{!-- Identity --}}
+        <div class="c-header__identity u-link__wrap">
+          <a href="{{ @site.url }}" class="u-link"></a>
+          {{#if @site.logo}}
+          <img class="c-header__identity--img" src="{{ @site.logo }}" alt="{{ @site.brand_site_title }}">
+          {{else}}
+          <h1 class="c-header__identity--text">{{ @site.brand_site_title }}</h1>
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="c-header-m__behaviors">
+        <div class="c-header-m__hamburger js-nav-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="c-header-drawer">
+    <div class="c-header-drawer__inner">
+      <div class="c-header-drawer__header">
+        {{!-- Identity --}}
+        <div class="c-header__identity u-link__wrap">
+          <a href="{{ @site.url }}" class="u-link"></a>
+          {{#if @site.logo}}
+          <img class="c-header__identity--img" src="{{ @site.logo }}" alt="{{ @site.brand_site_title }}">
+          {{else}}
+          <h1 class="c-header__identity--text">{{ @site.brand_site_title }}</h1>
+          {{/if}}
+        </div>
+
+        <div class="c-header-drawer__toggle js-nav-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="c-header-drawer__main">
+        <div class="c-header-drawer__main--header">
+
+        </div>
+
+
+        <ul class="c-header__mobile-nav o-plain-list">
+          {{#unless @member}}
+          {{navigation format="package"}}
+          {{/unless}}
+            {{#if @member}}
+            <li class="c-nav__item c-nav__item--classroom">
+              <a href="{{ @site.url }}/classroom/" class="c-nav__link">내 강의실</a>
+            </li>
+            <li class="c-nav__item  c-nav__item--my">
+              <a href="#" data-portal="account" class="c-nav__link">My</a>
+            </li>
+            {{else}}
+            <li class="c-nav__item c-nav__item--sign">
+              <a href="{{ @site.url }}/signin/" class="c-nav__link">로그인</a>
+            </li>
+            {{/if}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

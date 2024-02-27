@@ -1,0 +1,423 @@
+{{!< default}}
+
+{{!-- <div class='o-grid'>
+  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
+      {{bluedot_product}}
+  </div>
+</div> --}}
+
+
+{{#product}}
+
+{{#contentFor 'body_custom_class'}} shop-template{{#if payment_status.is_paid}} paid-product{{/if}}{{/contentFor}}
+
+
+<archive class="c-product">
+  {{> product/header }}
+
+  <div class="c-product__main">
+    <div class="o-container">
+      {{#if payment_status.is_paid}}
+        {{#if payment.is_online_class}}
+          {{#if payment.purchase.chapters}}
+      <div class="c-product-vod">
+        <div class="c-product-vod__header">
+          <div class="c-product-vod__section-label">강의 목록</div>
+        </div>
+        <div class="c-product-vod__main">
+
+          <div class="bluedot-product-chapters">
+            <div class="bluedot-product-chapter-sidebar">
+              <div class="bluedot-product-chapter-sidebar-content">
+                  {{#foreach payment.purchase.chapters as |chapter|}}
+                  <div class="bluedot-product-chapter-header" data-index="{{@number}}">
+                    <div class="c-product-vod__chapter--header">
+                      <div class="c-product-vod__chapter--icon c-product-vod__chapter--icon-open">
+                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976315 1.31658 -0.0976315 1.70711 0.292893L9 7.58579L16.2929 0.292893C16.6834 -0.0976322 17.3166 -0.0976322 17.7071 0.292893C18.0976 0.683417 18.0976 1.31658 17.7071 1.70711L9.70711 9.70711C9.31658 10.0976 8.68342 10.0976 8.29289 9.70711L0.292893 1.70711C-0.0976315 1.31658 -0.0976315 0.683417 0.292893 0.292893Z" fill="#111111"/>
+                        </svg>
+                      </div>
+                      <div class="c-product-vod__chapter--icon c-product-vod__chapter--icon-close">
+                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.7071 9.70711C17.3166 10.0976 16.6834 10.0976 16.2929 9.70711L9 2.41421L1.70711 9.70711C1.31658 10.0976 0.683418 10.0976 0.292893 9.70711C-0.0976313 9.31658 -0.0976314 8.68342 0.292893 8.29289L8.29289 0.292893C8.68342 -0.097631 9.31658 -0.097631 9.70711 0.292893L17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711Z" fill="#111111"/>
+                        </svg>
+                      </div>
+                      <h3 class="c-product-vod__chapter--title">{{chapter.title}}</h3>
+                    </div>
+
+                      <span>총 {{chapter.lessons.length}}개 강의</span>
+                  </div>
+
+                  <div class="bluedot-product-chapter-list chapter-index-{{@number}}">
+                      <ul>
+                      {{#foreach lessons as |lesson|}}
+                          <li class="lesson-index-{{lesson.index}} no-have-cover">
+                              <a href="#" class="lesson-link" data-video-uuid="{{lesson.media_uuid}}" data-video="{{lesson.url}}" data-video-view-current="{{lesson.media_info.view_current}}" data-video-view-percent="{{lesson.media_info.view_percent}}">
+                                  <span class="no">{{lesson.index}}</span>
+                                  <span class="title"><span>{{lesson.title}}</span></span>
+
+                                  {{#if lesson.media_info}}
+                                  <span class="progress"><span class="now" style="width:{{lesson.media_info.view_percent}}%"></span></span>
+                                  {{/if}}
+                              </a>
+                          </li>
+                      {{/foreach}}
+                      </ul>
+                  </div>
+                  {{/foreach}}
+              </div>
+            </div>
+          </div>
+
+        </div>{{!-- c-product-vod__main --}}
+      </div> {{!-- c-product__vod --}}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      <div class="c-product__main--inner">
+        <div class="c-product__content">
+          {{#if payment.have_require_message}}
+          <div class="c-product__content--require">{{markdown payment.require_message}}</div>
+          {{/if}}
+          <div class="c-content">{{content}}</div>
+        </div>
+
+
+
+        <div class="c-product-selling">
+          <div class="c-product-selling__inner">
+
+            <div class="c-product-selling__meta">{{payment.type_text}}</div>
+            <h4 class="c-product-selling__title">{{title}}</h4>
+
+            {{!-- 웨비나 정보 --}}
+            {{> product/webinar }}
+
+            {{!-- 구매자에게 보여지는 정보 --}}
+            {{> product/paid-info }}
+
+
+
+            {{!-- Selling price info --}}
+            <div class="c-product-selling__info">
+            {{#if payment_status.is_paid}}
+
+            {{else}}
+
+              {{#if payment.have_price_sale}}
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">
+                {{#if payment.have_price_original}}
+                  무료회원 할인가
+                {{else}}
+                  무료회원 판매가
+                {{/if}}
+                </div>
+                <div class="c-product-selling__info--price">
+                {{#if @member.paid}}
+
+                {{else}}
+
+                {{/if}}
+
+                {{#match payment.price NaN}}
+                -
+                {{else match payment.price null}}
+                -
+                {{else match payment.price "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">유료구독회원 할인가</div>
+                <div class="c-product-selling__info--price">
+                  {{!-- {{price payment.price_sale currency="KRW"}} --}}
+                {{#match payment.price_sale NaN}}
+                -
+                {{else match payment.price_sale null}}
+                -
+                {{else match payment.price_sale "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price_sale currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+
+              <div class="c-product-selling__info--divider"><hr></div>
+
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">결제금액</div>
+                <div class="c-product-selling__info--price">
+                {{#if @member.paid}}
+                  {{!-- {{price payment.price_sale currency="KRW"}} --}}
+                  {{#match payment.price_sale NaN}}
+                  -
+                  {{else match payment.price_sale null}}
+                  -
+                  {{else match payment.price_sale "=" 0}}
+                  무료
+                  {{else}}
+                  {{price payment.price_sale currencyFormat="none" currency="KRW"}}원
+                  {{/match}}
+                {{else}}
+                  {{!-- {{price payment.price currency="KRW"}} --}}
+                  {{#match payment.price NaN}}
+                  -
+                  {{else match payment.price null}}
+                  -
+                  {{else match payment.price "=" 0}}
+                  무료
+                  {{else}}
+                  {{price payment.price currencyFormat="none" currency="KRW"}}원
+                  {{/match}}
+                {{/if}}
+                </div>
+              </div>
+              {{else}}
+                {{#unless payment.is_stop_selling}}
+                {{#if payment.have_price_original}}
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">판매가</div>
+                <div class="c-product-selling__info--price">
+                  {{!-- <i>{{price payment.price_original currency="KRW"}}</i> --}}
+                {{#match payment.price_original NaN}}
+                -
+                {{else match payment.price_original null}}
+                -
+                {{else match payment.price_original "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price_original currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">무료회원 할인가</div>
+                <div class="c-product-selling__info--price">
+                  <span class="bluedot-product-price-percent">{{payment.price_original_sale_percent}}<span class="symbol">%</span></span>
+                  {{!-- {{price payment.price currency="KRW"}} --}}
+                {{#match payment.price NaN}}
+                -
+                {{else match payment.price null}}
+                -
+                {{else match payment.price "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+
+              <div class="c-product-selling__info--divider"><hr></div>
+
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">결제금액</div>
+                <div class="c-product-selling__info--price">
+                  {{!-- {{price payment.price currency="KRW"}} --}}
+                {{#match payment.price NaN}}
+                -
+                {{else match payment.price null}}
+                -
+                {{else match payment.price "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+                {{else}}
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">판매가</div>
+                <div class="c-product-selling__info--price">
+                  {{!-- {{price payment.price currency="KRW"}} --}}
+                {{#match payment.price NaN}}
+                -
+                {{else match payment.price null}}
+                -
+                {{else match payment.price "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+
+              <div class="c-product-selling__info--divider"><hr></div>
+
+              <div class="c-product-selling__info--item">
+                <div class="c-product-selling__info--label">결제금액</div>
+                <div class="c-product-selling__info--price">
+                  {{!-- {{price payment.price currency="KRW"}} --}}
+                {{#match payment.price NaN}}
+                -
+                {{else match payment.price null}}
+                -
+                {{else match payment.price "=" 0}}
+                무료
+                {{else}}
+                {{price payment.price currencyFormat="none" currency="KRW"}}원
+                {{/match}}
+                </div>
+              </div>
+                {{/if}}
+                {{/unless}}
+              {{/if}}
+            </div>
+            {{/if}}
+
+            {{#unless payment_status.is_paid}}
+            {{!-- Selling action --}}
+            <div class="c-product-selling__action">
+              {{> product/selling-action }}
+            </div>
+            {{/unless}}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</archive>
+
+{{#unless payment_status.is_paid}}
+<div class="c-product-selling__mobile-action">
+  <div class="o-container">
+    <div class="c-product-selling__mobile-action--inner">
+      {{> product/selling-action }}
+  </div>
+</div>
+{{/unless}}
+
+{{!-- script and styles for vod content --}}
+{{#if payment_status.is_paid}}
+  {{#if payment.is_online_class}}
+    {{#contentFor 'styles'}}
+<link rel="stylesheet" href="{{asset "public/video.css" hasMinFile="true"}}"/>
+    {{/contentFor}}
+
+    {{#contentFor 'scripts'}}
+<script type="text/javascript" src="{{asset "public/video.js" hasMinFile="true"}}"></script>
+<script type="text/javascript">
+function updateMediaView(uuid, current, duration) {
+  $.ajax({
+    url: '/members/api/media/view',
+    method: 'PUT',
+    data: JSON.stringify({
+      uuid: uuid,
+      current: current,
+      duration: duration
+    }),
+    contentType:"application/json; charset=utf-8"
+  })
+}
+
+function chnagePlayProgress(uuid, current, percent) {
+  var $playarea = $("[data-video-uuid=" + uuid+"]");
+  var $playarea_progress = $playarea.find('.progress');
+
+  $playarea.data('video-view-current', current);
+  $playarea.data('video-view-percent', percent);
+  $playarea_progress.find('.now').css('width', percent + '%');
+}
+
+window.onload = function() {
+  var $script_for = $(".bluedot-product-chapters");
+  var player_loading = false;
+  var media_last = null;
+  var media_uuid = null;
+  var player = videojs('video-for-chapter');
+  $chapter_list = $script_for.find(".bluedot-product-chapter-list");
+
+  function selectVideo($lesson, autoPlay) {
+    media_last = null;
+    autoPlay = typeof(autoPlay) === 'undefined' ? false : autoPlay;
+
+    $chapter_list.find('a.active').removeClass('active');
+    $lesson.addClass('active');
+
+    media_uuid = $lesson.data('video-uuid');
+
+    var video_view_current = $lesson.data('video-view-current');
+    var video = $lesson.data('video');
+
+    if(video) {
+      player_loading = true;
+      player.src({src: video});
+
+      if(video_view_current) {
+        player.currentTime(video_view_current);
+      }
+
+      if(autoPlay) {
+        player.ready(function() {
+            player.play();
+        });
+      }
+    }
+  }
+
+  $chapter_list.find(".lesson-link").on('click', function() {
+    var $lesson = $(this);
+    selectVideo($lesson, true);
+    return false;
+  })
+
+  if(player) {
+    if(player.el_) {
+      $(player.el_).on('contextmenu', function() {
+        return false;
+      });
+    }
+
+    player.on('playing', function() {
+      player_loading = false;
+    })
+
+    player.on('timeupdate', function() {
+      if(!player_loading && media_uuid) {
+        if(this.ended()) {
+          updateMediaView(media_uuid, this.duration(), this.duration());
+          chnagePlayProgress(media_uuid, this.duration(), 100);
+        } else {
+          var now = parseInt(this.currentTime());
+          var percent = Math.round((now / this.duration()) * 100);
+          chnagePlayProgress(media_uuid, now, percent);
+
+          if(media_last != now && now % 2 === 0) { // 2초에 한번씩
+            updateMediaView(media_uuid, now, this.duration());
+            media_last = now;
+          }
+        }
+      }
+    })
+  }
+
+  // 첫번째 동영상 자동 선택
+  var $first_lesson = $script_for.find('.chapter-index-1 .lesson-index-1 .lesson-link');
+  selectVideo($first_lesson, false);
+
+
+
+
+  $(".bluedot-product-chapter-header").on('click',function(){
+    $(this).toggleClass('close');
+    var index = $(this).data('index');
+
+    var target = $('.chapter-index-' + index);
+    if (target) {
+      target.slideToggle(100);
+    }
+  });
+}
+</script>
+    {{/contentFor}}
+  {{/if}}
+{{/if}}
+
+{{/product}}

@@ -1,0 +1,14 @@
+// *----------------------------------*\
+//  Settings > Global
+// *----------------------------------*/
+
+$global-transition: 500ms;
+$global-letter-spacing: .5px;
+
+
+
+$container-pad: 16;
+$container-max-width: 1140;
+
+$container-padding: #{$container-pad}px;
+$container-width: #{$container-max-width + ($container-pad * 2)}px;
