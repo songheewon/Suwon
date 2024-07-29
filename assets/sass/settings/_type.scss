@@ -1,0 +1,107 @@
+// *----------------------------------*\
+//  Settings > Type
+// *----------------------------------*/
+
+:root {
+  --line-height-base:  1.4;
+  --type-sans-serif:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+// Type Scale
+// Inspired by: https://mozilla.design/firefox/typography/
+// lh == Line Height
+
+// Heading
+
+$heading-1-font-size: 36px;
+$heading-1-line-height: 48px;
+
+$heading-2-font-size: 24px;
+$heading-2-line-height: 34px;
+
+$heading-3-font-size: 20px;
+$heading-3-line-height: 28px;
+$heading-3-content-line-height: 36px;
+
+$heading-4-font-size: 18px;
+$heading-4-line-height: 26px;
+
+$body-1-font-size: 16px;
+$body-1-line-height: 24px;
+$body-1-content-line-height: 32px;
+$body-1-font: #{$body-1-font-size}/#{$body-1-line-height};
+
+$body-2-font-size: 14px;
+$body-2-line-height: 24px;
+$body-2-content-line-height: 28px;
+
+$body-2-font: #{$body-2-font-size}/#{$body-2-line-height};
+
+$caption-font-size: 12px;
+$caption-line-height: 20px;
+$caption-font: #{$caption-font-size}/#{$caption-line-height};
+
+$caption-m-font-size: 10px;
+$caption-m-line-height: 16px;
+$caption-m-font: #{$caption-m-font-size}/#{$caption-m-line-height};
+
+
+
+
+
+
+
+
+
+
+
+$type--h-xxl:  64px;
+$type--h-xl:   56px;
+$type--h-lg:   48px;
+$type--h-md:   40px;
+$type--h-sm:   32px;
+$type--h-xs:   28px;
+$type--h-xxs:  24px;
+$type--h-xxxs: 18px;
+$type--h-xxxxs: 18px;
+
+$type--h-xxl-lh:  72px;
+$type--h-xl-lh:   64px;
+$type--h-lg-lh:   56px;
+$type--h-md-lh:   48px;
+$type--h-sm-lh:   40px;
+$type--h-xs-lh:   32px;
+$type--h-xxs-lh:  26px;
+$type--h-xxxs-lh: 20px;
+$type--h-xxxxs-lh: 20px;
+
+$type--h-18: 18px;
+$type--h-15: 15px;
+$type--h-14: 14px;
+$type--h-10: 10px;
+
+// Body Text
+
+$type-xl: 18px;
+$type-lg: 16px;
+$type-md: 14px;
+$type-sm: 13px;
+$type-xs: 12px;
+
+$type-xl-lh: 28px;
+$type-lg-lh: 26px;
+$type-md-lh: 22px;
+$type-sm-lh: 20px;
+$type-xs-lh: 14px;
+
+$type-10: 10px;
+$type-14: 14px;
+
+// Type Weights
+$type-300: 300;
+$type-400: 400;
+$type-500: 500;
+$type-600: 600;
+$type-700: 700;
+$type-800: 800;
+$type-900: 900;

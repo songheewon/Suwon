@@ -1,0 +1,36 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{t 'Page Not Found' }}{{/contentFor}}
+
+<div class="c-page c-page--error">
+  <div class="c-page__header">
+    <div class="o-container">
+      <div class="c-page__title">404</div>
+      <p class="c-page__excerpt">{{t 'Page Not Found' }}</p>
+    </div>
+  </div>
+</div>
+
+
+{{#get "products" filter="featured:true" include="tags,authors" limit="18" order="published_at desc"}}
+<div class="c-recommend-products__header">
+  <div class="o-container">
+    <div class="c-recommend-products__message">둘러보기</div>
+  </div>
+</div>
+<div class="c-recommend-products">
+  <div class="o-container">
+  {{#if products}}
+    <div class="c-product-grid">
+      {{#foreach products}}
+        {{> product-card }}
+      {{/foreach}}
+    </div>
+  {{/if}}
+  </div>
+</div>
+{{/get}}
+
+
+
+

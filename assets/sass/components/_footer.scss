@@ -1,0 +1,147 @@
+/*------------------------------------*\
+  Components > Footer
+\*------------------------------------*/
+
+.footer {
+  border-top: 1px solid var(--color-gray-200);
+  margin-top: 38px;
+
+  @include mq($from: desktop) {
+    margin-top: 62px;
+  }
+}
+
+.c-footer {
+  padding: 32px 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  @include mq($from: desktop) {
+    padding: 32px 0 48px 0;
+  }
+
+  &__header {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    @include mq($from: desktop) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 80px;
+    }
+  }
+
+  &__logo {
+    height: 24px;
+  }
+
+  &__navigation {
+    @include mq($from: desktop) {
+      flex-grow: 1;
+    }
+
+    .c-nav {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+
+      @include mq($from: desktop) {
+        column-gap: 40px;
+      }
+
+      &__item {
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+
+        font-size: $caption-font-size;
+        font-weight: $type-400;
+
+        @include mq($from: desktop) {
+          font-size: $body-2-font-size;
+          line-height: $body-2-line-height;
+        }
+      }
+
+      &__link {
+        color: var(--color-gray-900);
+      }
+    }
+  }
+
+  &__sns {
+    display: flex;
+    align-items: center;
+    height: 24px;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @include mq($until: mobile) {
+      display: none;
+    }
+
+    @include mq($from: desktop) {
+      position: relative;
+    }
+
+    &--list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      display: flex;
+      align-items: center;
+      column-gap: 18px;
+    }
+
+    &--item, &--link {
+      display: flex;
+      align-items: center;
+    }
+
+    &--link {
+      svg path {
+        fill: #727272;
+      }
+    }
+  }
+
+  &__info {
+    &--list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &--item {
+      color: var(--color-gray-600);
+      font-size: $caption-font-size;
+      line-height: $caption-line-height;
+    }
+
+    &--company {
+      color: var(--color-black);
+      font-size: $body-2-font-size;
+      line-height: $body-2-line-height;
+      font-weight: $type-700;
+
+      margin-bottom: 8px;
+    }
+  }
+
+}
+
+.shop-template:not(.paid-product) {
+  .footer {
+    @include mq($until: desktop) {
+      margin-top: 0;
+    }
+  }
+}

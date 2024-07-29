@@ -1,0 +1,55 @@
+.c-page {
+  margin-top: 38px;
+  margin-bottom: 38px;
+
+  @include mq($from: desktop) {
+    margin-top: 62px;
+    margin-bottom: 62px;
+  }
+
+  &__title {
+    font-size: $heading-2-font-size;
+    line-height: $heading-2-line-height;
+    font-weight: $type-700;
+    color: var(--color-gray-900);
+  }
+
+  &__excerpt {
+    font-size: $body-1-font-size;
+    line-height: $body-1-line-height;
+    color: var(--color-gray-600);
+  }
+}
+
+.c-page--error {
+  margin-bottom: 120px;
+
+  .c-page {
+    &__title {
+      font-size: $heading-1-font-size;
+      line-height: $heading-1-line-height;
+    }
+  }
+}
+
+.c-recommend-products {
+
+  &__header {
+    margin-bottom: 26px;
+  }
+
+  &__message {
+    font-size: $heading-3-font-size;
+    line-height: $heading-3-line-height;
+    color: var(--color-gray-900);
+    font-weight: $type-700;
+
+    padding-top: 26px;
+    border-top: 1px solid var(--color-gray-600);
+
+    @include mq($from: desktop) {
+      font-size: $heading-2-font-size;
+      line-height: $heading-2-line-height;
+    }
+  }
+}

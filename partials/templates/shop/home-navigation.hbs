@@ -1,0 +1,26 @@
+{{#match @custom.shop_navigation_format "=" "category"}}
+<ul class="c-nav o-plain-list">
+  <li class="c-nav__item c-nav__item--all">
+    {{#link href="/" class="c-nav__link" activeClass="c-nav__link--current"}}전체 보기{{/link}}
+  </li>
+  {{product_categories}}</ul>
+{{/match}}
+{{#match @custom.shop_navigation_format "=" "type"}}
+<ul class="c-nav o-plain-list">
+  <li class="c-nav__item c-nav__item--all">
+    {{#link href="/" class="c-nav__link" activeClass="c-nav__link--current"}}전체 보기{{/link}}
+  </li>
+  <li class="c-nav__item c-nav__item--online">
+    {{#link href="/shop/online-class/" class="c-nav__link" activeClass="c-nav__link--current"}}강의 VOD{{/link}}
+  </li>
+  <li class="c-nav__item c-nav__item--digital">
+    {{#link href="/shop/digital-book/" class="c-nav__link" activeClass="c-nav__link--current"}}디지털북{{/link}}
+  </li>
+  <li class="c-nav__item c-nav__item--etc">
+    {{#link href="/shop/etc/" class="c-nav__link" activeClass="c-nav__link--current"}}종이책{{/link}}
+  </li>
+  <li class="c-nav__item c-nav__item--webinar">
+    {{#link href="/shop/webinar/" class="c-nav__link" activeClass="c-nav__link--current"}}커뮤니티 학습{{/link}}
+  </li>
+</ul>
+{{/match}}
