@@ -13,7 +13,7 @@ $(document).ready(function() {
   $('.js-nav__link-membership[href="'+ pathname +'"]').addClass('c-nav__link--current');
 
   // =====================
-  // Navigation
+  // Mobile Drawer
   // =====================
 
   $('.js-nav-toggle').click(function(e) {
@@ -24,6 +24,7 @@ $(document).ready(function() {
 
     $('body').toggleClass('e-mode-mobile');
   });
+
   // =====================
   // Koenig Gallery
   // =====================
@@ -60,6 +61,11 @@ $(document).ready(function() {
   });
 
   // =====================
+  // Responsive Table
+  // =====================
+  $('.post-template .c-content > table').wrap('<div class="c-content__table--wrap">');
+
+  // =====================
   // Images zoom
   // =====================
 
@@ -84,6 +90,53 @@ $(document).ready(function() {
       $(this).removeAttr('aria-label');
       $(this).removeClass('tooltipped tooltipped-s');
     });
+  });
+
+  // =====================
+  // Search
+  // =====================
+
+  var search_field = $('.js-search-input'),
+      search_results = $('.js-search-results'),
+      toggle_search = $('.js-search-toggle'),
+      search_result_template = "\
+      <a href={{link}} class='c-search-result'>\
+        <div class='c-search-result__content'>\
+          <h3 class='c-search-result__title'>{{title}}</h3>\
+          <time class='c-search-result__date'>{{pubDate}}</time>\
+        </div>\
+        <div class='c-search-result__media'>\
+          <div class='c-search-result__image is-inview' style='background-image: url({{featureImage}})'></div>\
+        </div>\
+      </a>";
+
+  toggle_search.click(function(e) {
+    e.preventDefault();
+    $('.js-search').addClass('is-active');
+
+    // If off-canvas is active, just disable it
+    $('.js-off-canvas-container').removeClass('is-active');
+
+    setTimeout(function() {
+      search_field.focus();
+    }, 500);
+  });
+
+  $('.c-search, .js-search-close, .js-search-close .icon').on('click keyup', function(event) {
+    if (event.target == this || event.target.className == 'js-search-close' || event.target.className == 'icon' || event.keyCode == 27) {
+      $('.c-search').removeClass('is-active');
+    }
+  });
+
+  search_field.ghostHunter({
+    results: search_results,
+    onKeyUp         : true,
+    result_template : search_result_template,
+    zeroResultsInfo : false,
+    displaySearchInfo: false,
+    before: function() {
+      search_results.fadeIn();
+    }
   });
 
   // =====================
@@ -124,59 +177,96 @@ $(document).ready(function() {
       }
     });
   });
-
-  // =====================
-  // Mobile Search form
-  // =====================
-  var mSearchForm = document.getElementById("c-search");
-  if (mSearchForm) {
-    mSearchForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      var searchParam = $(this).find('.c-search__stx')[0].value;
-      window.location.href = '/search/' + encodeURIComponent(searchParam.trim());
-      return false;
-    });
-  }
-
-  // =====================
-  // Tab
-  // =====================
-  $('.c-home__post-tabs .c-home__post-tab--link').click(function(){
-    var tab_id = $(this).attr('data-tab');
-
-    $('.c-home__post-tabs .c-home__post-tab--link').removeClass('current');
-    $('.c-home__post-tab--content').removeClass('current');
-
-    $(this).addClass('current');
-    $("#"+tab_id).addClass('current');
-  })
-
-  // Internal tag arrange
-  const internalTagChips = $('.c-product-card__internal-tag .c-product-card__chips--link');
-  if (internalTagChips) {
-    internalTagChips.lettering().parents('.c-product-card__internal-tag').addClass('computed');
-  };
-
-  // Overwrite portal popup style
-  const portalBtn = document.querySelector('a[data-portal="account"]');
-  if (portalBtn) {
-    portalBtn.addEventListener('click', function (e){
-
-      const portalIframe = $('#ghost-portal-root iframe');
-      portalIframe.on('load', function() {
-        let head = portalIframe.contents().find("head");
-        // let css = '<style>/* 여기에 css 코드를 쓰세요 */</style>';
-        // $(head).append(css);
-
-        var cssLink = document.createElement("link");
-        cssLink.href = "/assets/css/portal-popup.css";
-        cssLink.rel = "stylesheet";
-        cssLink.type = "text/css";
-        $(head).append(cssLink);
-      });
-
-    });
-  }
 });
 
+/**
+ * Social
+ */
+
+function toggleShareDropdown() {
+  var shareIcons = document.getElementById('share-icons');
+  shareIcons.classList.toggle('show');
+}
+
+function shareOnFacebook() {
+  var sharedURL = location.href;
+  var facebookShareURL = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(sharedURL);
+  window.open(facebookShareURL, '_blank');
+}
+
+function shareOnTwitter() {
+  var sharedURL = location.href;
+  var twitterShareURL = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(sharedURL);
+  window.open(twitterShareURL, '_blank');
+}
+
+function shareOnPinterest() {
+  var sharedURL = location.href;
+  var pinterestShareURL = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(sharedURL);
+  window.open(pinterestShareURL, '_blank');
+}
+
+function shareOnLinkedIn() {
+  var sharedURL = location.href;
+  var linkedInShareURL = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(sharedURL);
+  window.open(linkedInShareURL, '_blank');
+}
+
+function shareOnFlipboard() {
+  var sharedURL = location.href;
+  var flipboardShareURL = 'https://share.flipboard.com/bookmarklet/popout?v=2&title=&url=' + encodeURIComponent(sharedURL);
+  window.open(flipboardShareURL, '_blank');
+}
+
+function shareOnTelegram() {
+  var sharedURL = location.href;
+  var telegramShareURL = 'https://telegram.me/share/url?url=' + encodeURIComponent(sharedURL);
+  window.open(telegramShareURL, '_blank');
+}
+
+function shareOnWhatsApp() {
+  var sharedURL = location.href;
+  var whatsAppShareURL = 'whatsapp://send?text=' + encodeURIComponent(sharedURL);
+  window.open(whatsAppShareURL, '_blank');
+}
+
+function shareOnReddit() {
+  var sharedURL = location.href;
+  var redditShareURL = 'https://www.reddit.com/submit?url=' + encodeURIComponent(sharedURL);
+  window.open(redditShareURL, '_blank');
+}
+
+function shareViaEmail() {
+  var sharedURL = location.href;
+  var emailSubject = 'Check out this link';
+  var emailBody = 'I found this interesting link and thought you might like it: ' + sharedURL;
+  var mailToLink = 'mailto:?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
+  window.location.href = mailToLink;
+}
+
+function shareNative() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // Mobile device, trigger native sharing
+    var sharedURL = location.href;
+    navigator.share({ url: sharedURL })
+      .then(() => console.log('Shared successfully.'))
+      .catch((error) => console.log('Error sharing:', error));
+  } else {
+    console.log('Native sharing not supported on this device.');
+  }
+}
+
+function copyCurrentPageURL() {
+  navigator.clipboard.writeText(window.location.href).then(
+    () => {
+      alert('URL이 복사되었습니다.');
+    }
+  );
+}
+
+var searchForm = document.getElementById('c-search-form');
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var searchParam = $(this).find('.c-search__stx')[0].value;
+    window.location.href = '/search/' + encodeURIComponent(searchParam.trim());
+  });

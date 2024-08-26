@@ -3,200 +3,292 @@
 \*------------------------------------*/
 
 .c-post-card {
-  position: relative;
+  display: flex;
+  column-gap: 20px;
+  overflow: hidden;
 
+  &__header {
+    width: 112px;
+    flex: 0 0 112px;
 
-  @include mq($from: tablet) {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: $space-40;
-    grid-auto-columns: 50vmax;
-    grid-template-areas: 'meta meta meta content content content content content content media media media';
-
-    &--no-image {
-      grid-template-areas: 'meta meta meta content content content content content content content content content';
-    }
-
-    &--wide {
-      grid-template-areas: 'meta meta content content content content content content content media media media';
-    }
-
-    &__meta {
-      grid-area: meta;
-    }
-
-    &__content {
-      grid-area: content;
-    }
-
-    &__media {
-      grid-area: media;
+    @include mq($from: landscape) {
+      width: 274px;
+      flex: 0 0 274px;
     }
   }
 
-  &__tag {
-    @include mq($from: tablet) {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-areas: 'meta meta meta content content content content content content media media media';
-      grid-template-rows: 1fr;
-      grid-column-gap: $space-40;
-      grid-auto-columns: 50vmax;
+  &__main {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
-      &--name {
-        grid-area: content;
-      }
+    @include mq($from: landscape) {
+      gap: 20px;
+    }
+  }
+}
+
+.c-post-card {
+  &__link {
+    &--cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+  }
+}
+
+.c-post-card {
+  &__tag {
+    &s {
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    &--link {
-      height: 32px;
+    &--chip {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 16px;
-      border-radius: 100rem;
-      font-size: 12px;
+      padding: 0 10px;
+      height: 20px;
+      min-width: 40px;
+      border-radius: 2px;
+      background: #E9E9EE;
+
+      color: #333335;
+
+      font-size: 11px;
+      font-weight: 500;
+
+      @include ellipsis(1);
+    }
+  }
+}
+
+.c-post-card {
+  &__author {
+    &--name {
+      color: #B3B3C3;
+      font-size: 11px;
       font-weight: 700;
-      line-height: 1.4;
-      color: rgba(0,0,0,0.4);
-      border: 1px solid rgba(0,0,0,0.4);
-      width: fit-content;
-      margin-bottom: 20px;
-    }
-  }
-
-  &__wrap {
-    position: relative;
-    padding-bottom: $space-32;
-
-    @include mq($from: desktop) {
-      padding-bottom: $space-40;
     }
 
-    &:not(:first-child) {
-      padding-top: $space-32;
-
-      @include mq($from: desktop) {
-        padding-top: $space-40;
+    &-image {
+      &--wrap {
+        border-radius: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background-color: #d5d5d5;
+        width: 36px;
+        height: 36px;
       }
 
-      &:before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 1px;
-        position: absolute;
-        top: 0;
-        background-color: var(--color-border);
-      }
-    }
-  }
-
-  &__meta {
-    @include mq($until: tablet) {
-      margin-bottom: $space-8;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  &__date {
-    color: var(--color-text-secondary);
-
-    @include mq($from: desktop) {
-      font-size: $type--h-xxxxs;
-      line-height: $type--h-xxxxs-lh;
-      font-weight: $type-500;
-      letter-spacing: - $global-letter-spacing;
-    }
-  }
-
-  &__visibility {
-    font-size: $type-xs;
-    line-height: $type-xs-lh;
-    text-transform: uppercase;
-    letter-spacing: $global-letter-spacing;
-    color: var(--color-text-secondary);
-
-    @include mq($from: tablet) {
-      margin-top: $space-8;
-    }
-
-    span {
-      display: none;
-      visibility: hidden;
-    }
-
-    &--paid .paid,
-    &--members .members,
-    &--public .public {
       display: block;
-      visibility: visible;
-    }
-
-    &--is-member.c-post-card__visibility--public,
-    &--is-member.c-post-card__visibility--members {
-      display: none;
-      visibility: hidden
-    }
-
-    &--is-paid-member {
-      display: none;
-      visibility: hidden
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
     }
   }
+}
 
-  &__title {
-    font-size: $type-lg;
-    line-height: $type-md-lh;
-    font-weight: 700;
+.c-post-card {
+  &__date {
+
   }
+}
 
-  &__url:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-
-  &__excerpt {
-    font-size: $type-md;
-    line-height: $type-md-lh;
-    margin-top: $space-8;
-    overflow-y: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-
-  &__image-wrap {
-    display: block;
+.c-post-card {
+  &__media {
     position: relative;
-    padding-top: 66.66%;
-    background-color: var(--background-secondary);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
 
-    @include mq($until: tablet) {
-      margin-top: $space-16;
-    }
+    border: 1px solid #D1D1DE;
+    background: #E8DCC6;
   }
 
   &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    &--wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
 
-  @include attention() {
-    .c-post-card__url {
-      border-bottom: 2px solid var(--color-text-primary);
+.c-post-card {
+  &__title {
+    flex-grow: 1;
+
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 22px;
+
+    @include ellipsis(2);
+
+    @include mq($from: landscape) {
+      font-size: 22px;
+      line-height: 30px;
+
+      flex-grow: 0;
     }
   }
+
+  &__reading-time {
+    display: none;
+
+    color: #68A1AA;
+    font-size: 14px;
+    font-weight: 500;
+
+    @include mq($from: landscape) {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+/* Small */
+.c-post-card--small {
+  .c-post-card {
+    &__header {
+      width: 112px;
+      flex: 0 0 112px;
+    }
+
+    &__title {
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    &__main {
+      gap: 6px;
+    }
+  }
+}
+
+/* Big */
+.c-post-card--big {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &.c-post-card {
+    flex-direction: column;
+    column-gap: 0;
+  }
+
+  .c-post-card {
+    &__header {
+      width: 100%;
+      flex: 0 0 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__main {
+      gap: 16px;
+
+      @include mq($from: landscape) {
+        gap: 28px;
+      }
+    }
+  }
+
+  .c-post-card__meta {
+    display: flex;
+    gap: 10px;
+
+    &--header {
+      display: flex;
+      align-items: center;
+    }
+
+    &--main {
+      &__bottom {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        color: #B3B3C3;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .c-post-card {
+    &__media {
+      display: none;
+
+      @include mq($from: landscape) {
+        display: block;
+      }
+
+      &--adjust {
+        display: block;
+
+        @include mq($from: landscape) {
+          display: none;
+        }
+      }
+    }
+
+    &__author {
+      &--name {
+        color: var(--color-text-primary);
+        font-size: 13px;
+        font-weight: 700;
+      }
+    }
+
+    &__title {
+      color: var(--color-text-primary);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 40px;
+      letter-spacing: -1px;
+
+      @include ellipsis(2);
+    }
+
+    &__excerpt {
+      color: var(--color-text-primary);
+
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 25px;
+      letter-spacing: -0.3px;
+
+      @include ellipsis(4);
+    }
+
+    &__reading-time {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+
 }

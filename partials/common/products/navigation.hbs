@@ -1,25 +1,13 @@
-{{#match @custom.shop_navigation_format "=" "category"}}
-<li class="c-nav__item c-nav__item--all">
-    {{#link href="/shop/" class="c-nav__link" activeClass="c-nav__link--current"}}전체 보기{{/link}}
-  </li>
-<ul class="c-nav o-plain-list">{{product_categories}}</ul>
-{{/match}}
-{{#match @custom.shop_navigation_format "=" "type"}}
-<ul class="c-nav o-plain-list">
-  <li class="c-nav__item c-nav__item--all">
-    {{#link href="/shop/" class="c-nav__link" activeClass="c-nav__link--current"}}전체 보기{{/link}}
-  </li>
-  <li class="c-nav__item c-nav__item--online">
-    {{#link href="/shop/online-class/" class="c-nav__link" activeClass="c-nav__link--current"}}강의 VOD{{/link}}
-  </li>
-  <li class="c-nav__item c-nav__item--digital">
-    {{#link href="/shop/digital-book/" class="c-nav__link" activeClass="c-nav__link--current"}}디지털북{{/link}}
-  </li>
-  <li class="c-nav__item c-nav__item--etc">
-    {{#link href="/shop/etc/" class="c-nav__link" activeClass="c-nav__link--current"}}종이책{{/link}}
-  </li>
-  <li class="c-nav__item c-nav__item--webinar">
-    {{#link href="/shop/webinar/" class="c-nav__link" activeClass="c-nav__link--current"}}커뮤니티 학습{{/link}}
-  </li>
-</ul>
-{{/match}}
+<div class="s-products-navigation__container">
+  <div class="s-products-navigation">
+    <div style="display:none !important;">{{product_categories}}</div>
+    <ul class="s-products-navigation__list">
+      <li class="s-products-navigation__item s-products-navigation__item--all">
+        <a href="{{@site.url}}" class="s-products-navigation__link{{#match which "home"}} s-products-navigation__link--current{{/match}} {{link_class for="/" activeClass="s-products-navigation__link--current"}}">{{t '전체보기'}}</a>
+      </li>
+      {{#foreach product_categories}}
+      <li class="s-products-navigation__item s-products-navigation__item--{{slug}}">{{#link href=(url) class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}{{label}}{{/link}}</li>
+      {{/foreach}}
+    </ul>
+  </div>
+</div>

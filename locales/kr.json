@@ -6,7 +6,7 @@
   "Loading": "로딩중...",
   "More Posts ↓": "더보기 ↓",
   "All Posts →": "전체보기 →",
-  "More Contents": "컨텐츠 더보기",
+  "More Contents": "더 보기",
 
   "Recent Posts": "최근글",
   "Featured Posts": "추천글",
@@ -69,5 +69,6 @@
   "Next bill date": "다음 결제일",
   "Edit billing info": "결제 정보 수정",
   "You have an active {siteTitle} account with access to all posts.": "모든 콘텐츠에 접근할 수 있습니다.",
-  "You are subscribed to free updates from {siteTitle}, but don't have a paid subscription to read all the posts.": "전체 공개된 콘텐츠에 접근할 수 있습니다. 모든 콘텐츠에 접근하려면 유료 구독 요금제에 가입하세요."
+  "You are subscribed to free updates from {siteTitle}, but don't have a paid subscription to read all the posts.": "전체 공개된 콘텐츠에 접근할 수 있습니다. 모든 콘텐츠에 접근하려면 유료 구독 요금제에 가입하세요.",
+  "Hello": "안녕"
 }

@@ -12,23 +12,23 @@ h6 {
 }
 
 h1 {
-  font-size: $heading-1-font-size;
-  line-height: $heading-1-line-height;
+  font-size: $type--h-xl;
+  line-height: $type--h-xl-lh;
 }
 
 h2 {
-  font-size: $heading-2-font-size;
-  line-height: $heading-2-line-height;
+  font-size: $type--h-lg;
+  line-height: $type--h-lg-lh;
 }
 
 h3 {
-  font-size: $heading-3-font-size;
-  line-height: $heading-3-line-height;
+  font-size: $type--h-md;
+  line-height: $type--h-md-lh;
 }
 
 h4 {
-  font-size: $heading-4-font-size;
-  line-height: $heading-4-line-height;
+  font-size: $type--h-sm;
+  line-height: $type--h-sm-lh;
 }
 
 h5 {

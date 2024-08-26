@@ -1,0 +1,36 @@
+<div class="c-post-card c-post-card--default{{#unless no-js}} js-post-card__wrap{{/unless}}">
+  <div class="c-post-card__header">
+    <div class="c-post-card__media">
+      {{#if feature_image}}
+      <div class="c-post-card__image--wrap">
+        <img
+          alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+          class="c-post-card__image lazyload"
+          src="{{img_url feature_image absolute="true" }}">
+      </div>
+      {{/if}}
+      <a href="{{url absolute="true"}}" class="c-post-card__link--cover"></a>
+    </div>
+  </div>
+  <div class="c-post-card__main">
+    {{#if tags}}
+    <div class="c-post-card__meta">
+      <div class="c-post-card__tags">
+      {{#foreach tags limit="3"}}
+        <a href="{{url absolute="true"}}" class="c-post-card__tag--chip">{{name}}</a>
+      {{/foreach}}
+      </div>
+    </div>
+    {{/if}}
+
+    <h2 class="c-post-card__title">
+      <a href="{{url absolute="true"}}" class="c-post-card__link">{{title}}</a>
+    </h2>
+    <a href="{{url absolute="true"}}" class="c-post-card__reading-time">
+      <span>글 모두 읽기(읽는 데 {{ reading_time minute=(t '1 min read') minutes=(t '% min read') }})</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="9" viewBox="0 0 17 9" fill="none">
+        <path d="M16.8874 4.21288L13.024 0.142291C12.8852 -0.0284243 12.6412 -0.0483644 12.4791 0.0978633C12.3171 0.244091 12.2982 0.501214 12.437 0.671929C12.4499 0.688021 12.4639 0.702714 12.4791 0.716357L15.6819 4.09499H0.386477C0.172985 4.09499 0 4.27725 0 4.50219C0 4.72712 0.172985 4.90938 0.386477 4.90938H15.6822L12.4795 8.28382C12.3175 8.43004 12.2985 8.68717 12.4373 8.85788C12.5761 9.0286 12.8201 9.04854 12.9822 8.90231C12.9971 8.88867 13.0114 8.87397 13.0243 8.85788L16.8878 4.7873C17.0375 4.62847 17.0375 4.37205 16.8878 4.21323L16.8874 4.21288Z" fill="#68A1AA"/>
+      </svg>
+    </a>
+  </div>
+</div>

@@ -1,5 +1,24 @@
-<div class='js-grid'>
-  {{#foreach posts}}
-    {{> post-card }}
-  {{/foreach}}
+<div class="c-archive-grid__post js-grid">
+{{#foreach posts}}
+
+  {{> post-card }}
+
+  {{#match ../position "=" "tag"}}
+    {{#match pagination.total "<" 5}}
+      {{#if @last}}
+  {{!-- [Home Category Section] Promotion --}}
+  <div class="c-home-category-promotion__wrap">
+    <div class="c-home-category-promotion c-home-category-promotion--skeleton">프로모션 영역</div>
+  </div>
+      {{/if}}
+    {{else}}
+      {{#match @number "=" 5}}
+  {{!-- [Home Category Section] Promotion --}}
+  <div class="c-home-category-promotion__wrap">
+    <div class="c-home-category-promotion c-home-category-promotion--skeleton">프로모션 영역</div>
+  </div>
+      {{/match}}
+    {{/match}}
+  {{/match}}
+{{/foreach}}
 </div>

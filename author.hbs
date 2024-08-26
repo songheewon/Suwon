@@ -1,9 +1,9 @@
 {{!< default}}
 
 {{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
-
-<div class='o-grid'>
-  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
+<div class="c-page__wrap">
+  <div class='o-grid'>
+    <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
     {{#author}}
       <div class='c-author'>
         {{#if profile_image}}
@@ -71,12 +71,13 @@
   </div>
 </div>
 
-<div class='o-grid'>
-  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
-    {{> loop }}
+  <div class="c-page__section">
+    <div class="o-grid">
+      {{> loop }}
+    </div>
   </div>
-</div>
 
-<div class='o-grid'>
-  {{ pagination }}
+  <div class='o-grid'>
+    {{ pagination }}
+  </div>
 </div>

@@ -70,7 +70,7 @@
           {{#if @site.footer_first_navigation}}
           <div class="s-common-default-footer__nav--outer">
             <div class="s-common-default-footer__nav--title">{{#if @site.footer_first_navigation_title}}{{@site.footer_first_navigation_title}}{{else}}Navigation 1{{/if}}</div>
-            <ul class="s-common-default-footer__nav">{{navigation type="footerFirst"}}</ul>
+            <ul class="s-common-default-footer__nav">{{navigation type="footerFirst" isDrawer="no"}}</ul>
           </div>
           {{/if}}
         {{/if}}
@@ -79,7 +79,7 @@
           {{#if @site.use_footer_second_navigation}}
           <div class="s-common-default-footer__nav--outer">
             <div class="s-common-default-footer__nav--title">{{#if @site.footer_second_navigation_title}}{{@site.footer_second_navigation_title}}{{else}}Navigation 2{{/if}}</div>
-            <ul class="s-common-default-footer__nav">{{navigation type="footerSecond"}}</ul>
+            <ul class="s-common-default-footer__nav">{{navigation type="footerSecond" isDrawer="no"}}</ul>
           </div>
           {{/if}}
         {{/if}}

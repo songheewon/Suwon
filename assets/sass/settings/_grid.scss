@@ -2,7 +2,10 @@
 //  Settings > Grid
 // *----------------------------------*/
 
-$grid-width: 1220px;
-$grid-outer-gutter: $space-16;
+$grid-width: 1200px;
+
+$grid-outer-gutter: $space-20;
+$grid-outer-large-gutter: $space-24;
+
 $grid-column-medium-gutter: $space-16;
 $grid-column-large-gutter: $space-24;

@@ -54,7 +54,7 @@
 
   // inlineCSS-RTL
   gulp.task('inlinecss-rtl', function(done) {
-    return gulp.src(['partials/inline-css-rtl.hbs'])
+    return gulp.src(['partials/inline-css-rtl.hbs'], {"allowEmpty": true})
     .pipe(replace('@@compiled_css_rtl', fs.readFileSync('assets/css/style-min-rtl.css')))
     .pipe(gulp.dest('partials/compiled'))
     done();
@@ -71,8 +71,20 @@
       './node_modules/evil-icons/assets/evil-icons.min.js',
       './node_modules/clipboard/dist/clipboard.js',
       './node_modules/prismjs/prism.js',
-      './assets/js/lettering/lettering.js',
-      './assets/js/app.js'])
+      './node_modules/lunr/lunr.js',
+      './node_modules/lunr-languages/lunr.stemmer.support.js',
+      './node_modules/lunr-languages/lunr.ru.js',
+      './node_modules/lunr-languages/lunr.fr.js',
+      './node_modules/lunr-languages/lunr.de.js',
+      './node_modules/lunr-languages/lunr.es.js',
+      './node_modules/lunr-languages/lunr.pt.js',
+      './node_modules/lunr-languages/lunr.it.js',
+      './node_modules/lunr-languages/lunr.fi.js',
+      './node_modules/lunr-languages/lunr.nl.js',
+      './node_modules/lunr-languages/lunr.da.js',
+      './node_modules/lunr-languages/lunr.multi.js',
+      './assets/js/ghosthunter.js',
+      './assets/js/app.js'], {"allowEmpty": true})
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))
       .pipe(concat('app.js'))
@@ -86,7 +98,7 @@
   // Watch
   gulp.task('watch', function() {
     gulp.watch('assets/sass/**/*.scss', gulp.series('build_css'));
-    gulp.watch('./assets/js/app.js', gulp.series('js'));
+    gulp.watch(['./assets/js/app.js', './assets/js/ghosthunter.js'], gulp.series('js'));
   });
 
   gulp.task(
@@ -106,7 +118,7 @@
       '!bower_components/**',
       '!.git/**',
       '!.DS_Store'
-    ], { dot: true })
+    ], { dot: true }, {"allowEmpty": true})
     .pipe(zip('suwon.zip'))
     .pipe(gulp.dest('../'))
     done();

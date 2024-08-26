@@ -27,6 +27,8 @@
 @import 'membership-plan';
 @import 'alerts';
 @import 'card-archive';
+@import 'card';
+@import 'search';
 
 @import 'home';
 @import 'home-right';
@@ -38,11 +40,12 @@
 @import 'shop';
 @import 'shop-featured';
 @import 'shop-category';
-@import 'product-card';
 @import 'product-featured';
 
-@import 'classroom';
-@import 'message';
+@import 'slide-card';
 
-@import 'product';
+// For Product Card style
+@import 'product-grid';
+@import 'product-card';
+
 @import 'page';

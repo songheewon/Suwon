@@ -4,12 +4,15 @@
 
 .o-grid {
   margin: 0 auto;
-  max-width: $grid-width;
+  max-width: calc(#{$grid-width} + (#{$grid-outer-gutter} * 2));
   padding: 0 $grid-outer-gutter;
 
   @include mq($from: tablet) {
     display: flex;
     flex-wrap: wrap;
+
+    padding: 0 $grid-outer-large-gutter;
+    max-width: calc(#{$grid-width} + (#{$grid-outer-large-gutter} * 2));
   }
 
   .o-grid {

@@ -2,146 +2,211 @@
   Components > Footer
 \*------------------------------------*/
 
-.footer {
-  border-top: 1px solid var(--color-gray-200);
-  margin-top: 38px;
+.c-footer {
+  padding: $space-32 0;
+  margin-top: $space-32;
+  text-align: center;
+}
 
-  @include mq($from: desktop) {
-    margin-top: 62px;
+.c-footer-copy {
+  color: var(--color-text-secondary);
+  font-size: $type-xs;
+  line-height: $type-xs-lh;
+
+  a {
+    color: var(--color-text-secondary);
+
+    @include attention() {
+      color: var(--color-brand);
+    }
   }
 }
 
-.c-footer {
-  padding: 32px 0 40px 0;
+.c-footer-nav {
   display: flex;
-  flex-direction: column;
-  row-gap: 24px;
+  flex-flow: wrap;
+  justify-content: center;
+  margin-bottom: $space-8;
 
-  @include mq($from: desktop) {
-    padding: 32px 0 48px 0;
+  li {
+    @include mq($until: desktop) {
+      margin-bottom: $space-4;
+    }
+
+    &:not(:last-child) {
+      margin-right: $space-16;
+    }
   }
 
-  &__header {
-    position: relative;
+  a {
+    font-size: $type-xs;
+    line-height: $type-xs-lh;
+    color: var(--color-text-secondary);
 
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-
-    @include mq($from: desktop) {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      column-gap: 80px;
+    &:after {
+      height: 0;
     }
+
+    @include attention() {
+      color: var(--color-brand);
+    }
+  }
+}
+
+// Footer for User - Extra Footer
+.footer-ex {
+
+  @include mq($from: desktop) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__wrap {
+    background-color: #F6F5F7;
+    padding: 40px 0 80px;
+  }
+
+  &__container {
+    padding: 0 40px;
+    max-width: 1080px;
+    margin: 0 auto;
   }
 
   &__logo {
-    height: 24px;
+    display: flex;
+    align-items: center;
+
+    &-img {
+      max-width: 180px;
+      max-height: 40px;
+      object-fit: contain;
+
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
   }
 
-  &__navigation {
+  &__site {
     @include mq($from: desktop) {
       flex-grow: 1;
+      max-width: 50%;
     }
 
-    .c-nav {
-      display: flex;
-      align-items: center;
-      column-gap: 16px;
+    &-info {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-top: 20px;
 
-      @include mq($from: desktop) {
-        column-gap: 40px;
-      }
-
-      &__item {
-        line-height: 1;
-        margin: 0;
-        padding: 0;
-
-        font-size: $caption-font-size;
-        font-weight: $type-400;
-
-        @include mq($from: desktop) {
-          font-size: $body-2-font-size;
-          line-height: $body-2-line-height;
-        }
-      }
-
-      &__link {
-        color: var(--color-gray-900);
+      &--item {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 2;
+        color: #0A142F;
+        opacity: .5;
       }
     }
   }
 
   &__sns {
+    margin-top: 36px;
     display: flex;
     align-items: center;
-    height: 24px;
+    column-gap: 28px;
+  }
 
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    @include mq($until: mobile) {
-      display: none;
-    }
+  // Navigation
+  &__nav {
+    margin-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 74px;
 
     @include mq($from: desktop) {
-      position: relative;
+      margin-top: 0;
+      gap: 120px;
     }
 
-    &--list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    &-menu {
 
-      display: flex;
-      align-items: center;
-      column-gap: 18px;
-    }
+      &--label {
+        font-size: 15px;
+        font-weight: 700;
+        color: #0A142F;
+      }
 
-    &--item, &--link {
-      display: flex;
-      align-items: center;
-    }
+      &--list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin-top: 26px;
 
-    &--link {
-      svg path {
-        fill: #727272;
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+
+        li, a {
+          font-size: 13px;
+          font-weight: 500;
+          color: #0A142F;
+          opacity: 0.7;
+          line-height: 1;
+        }
+
+        li {
+          margin-bottom: 0;
+        }
+
+        a {
+          display: inline-block;
+        }
       }
     }
+
   }
-
-  &__info {
-    &--list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    &--item {
-      color: var(--color-gray-600);
-      font-size: $caption-font-size;
-      line-height: $caption-line-height;
-    }
-
-    &--company {
-      color: var(--color-black);
-      font-size: $body-2-font-size;
-      line-height: $body-2-line-height;
-      font-weight: $type-700;
-
-      margin-bottom: 8px;
-    }
-  }
-
 }
 
-.shop-template:not(.paid-product) {
-  .footer {
-    @include mq($until: desktop) {
-      margin-top: 0;
+[data-user-color-scheme=dark] {
+  .footer-ex {
+    &__wrap {
+      background-color: #0A142F;
+    }
+
+    &__site {
+      &-info {
+        &--item {
+          color: #fff;
+          opacity: .5;
+        }
+      }
+    }
+
+    &__sns {
+      &--item {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+
+
+    &__nav {
+      &-menu {
+        &--label {
+          color: #fff;
+        }
+
+        &--list {
+          a {
+            color: #fff;
+            opacity: .5;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
     }
   }
 }

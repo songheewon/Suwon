@@ -1,1 +1,1 @@
-### Suwon Theme
+### Gangnam Bluedot Theme

@@ -2,35 +2,30 @@
 
 {{#contentFor 'title'}}{{t 'Page Not Found' }}{{/contentFor}}
 
-<div class="c-page c-page--error">
-  <div class="c-page__header">
-    <div class="o-container">
-      <div class="c-page__title">404</div>
-      <p class="c-page__excerpt">{{t 'Page Not Found' }}</p>
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l'>
+    <div class='c-archive c-archive--no-border'>
+      <h1 class='c-archive__title'>404</h1>
+      <p class='c-archive__description'>{{t 'Page Not Found' }}</p>
     </div>
   </div>
 </div>
 
+{{#get 'posts' limit='6'}}
+  {{#if posts}}
+    <div class='o-grid'>
+      <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l'>
+        <div class='c-title-bar'>
+          <h3 class='c-title-bar__title'>{{t 'Recent Posts' }}</h3>
+          <span class='c-title-bar__divider'></span>
+        </div>
+      </div>
+    </div>
 
-{{#get "products" filter="featured:true" include="tags,authors" limit="18" order="published_at desc"}}
-<div class="c-recommend-products__header">
-  <div class="o-container">
-    <div class="c-recommend-products__message">둘러보기</div>
-  </div>
-</div>
-<div class="c-recommend-products">
-  <div class="o-container">
-  {{#if products}}
-    <div class="c-product-grid">
-      {{#foreach products}}
-        {{> product-card }}
-      {{/foreach}}
+    <div class='o-grid'>
+      <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l'>
+        {{> loop }}
+      </div>
     </div>
   {{/if}}
-  </div>
-</div>
 {{/get}}
-
-
-
-

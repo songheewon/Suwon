@@ -1,13 +1,6 @@
+<link rel="stylesheet" href="{{asset "public/bluedot.css" hasMinFile="true"}}"/>
 <style>
-/* For Bluedot */
 :root {
-  /* --body-background: var(--background-primary); */
-  --body-background: {{ @custom.brand_background_color }};
-  --content-background: var(--background-primary);
-
-  --paywall-background:rgba(0,0,0,0.8);
-  --text:var(--color-text);
-  --sub-text:var(--color-gray);
   {{#if @site.accent_color}}
   --accent-color: {{ @site.accent_color }};
   {{/if}}
@@ -16,39 +9,36 @@
   --color-header-background: {{@site.header_background_color}};
   --color-home-hero-background: {{@site.header_background_color}};
   {{/if}}
-  --shop-accent-color: {{ @custom.shop_point_color }};
-  --shop-accent-background-color: {{ @custom.shop_point_background_color }};
 }
 
-
-/* Style */
 * {
-  font-family: 'Inter', 'Noto Sans KR', sans-serif;
-}
-
-
-body {
+  font-family: "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.have-paywall-message .post-content:after {
-  background: linear-gradient( 0deg, var(--body-background) 14%, hsla(0, 0%, 100%, 0) );
+.bg-accent {
+  background-color: var(--accent-color) !important;
 }
 
-.bluedot-footer ul.c-nav {
-  display: none;
+.bluedot-product-wrap .bluedot-product-header .bluedot-product-cover img {
+  object-fit: cover;
+  height: 100%;
 }
 
-{{#if @site.title_align}}
+.bluedot-product-video-wrap .video-js {
+  padding-top: 56.25%;
+}
+
+{{#if @site.brand_site_title_align}}
 .post-template .c-post-header__title {
-  {{#match @site.title_align '=' 'left'}}
+  {{#match @site.brand_site_title_align '=' 'left'}}
   text-align: left;
-  {{else match @site.title_align '=' 'right'}}
+  {{else match @site.brand_site_title_align '=' 'right'}}
   text-align: right;
-  {{else match @site.title_align '=' 'center'}}
+  {{else match @site.brand_site_title_align '=' 'center'}}
   text-align: center;
-  {{else match @site.title_align '=' 'side'}}
+  {{else match @site.brand_site_title_align '=' 'side'}}
   text-align: justify;
   {{/match}}
 }
@@ -68,11 +58,11 @@ body {
 }
 {{/if}}
 
-{{#if @site.title_font}}
+{{#if @site.brand_site_title_font}}
 .post-template .c-post-header__title {
-  {{#match @site.title_font '=' 'noto_sans_kr'}}
+  {{#match @site.brand_site_title_font '=' 'noto_sans_kr'}}
   font-family: "Noto Sans KR", sans-serif;
-  {{else match @site.title_font '=' 'nanum_gothic'}}
+  {{else match @site.brand_site_title_font '=' 'nanum_gothic'}}
   font-family: "Nanum Gothic", sans-serif;
   {{/match}}
 }

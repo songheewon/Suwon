@@ -3,29 +3,14 @@ routes:
   /signup/: members/signup
   /signin/: members/signin
   /account/: members/account
-  /blog/:
-    controller: channel
-    template: blog
-    filter: tag:-home
 
-  /shop/all/: routes/shop/index
+  # Route for Shop
   /shop/online-class/: routes/shop/online-class
   /shop/webinar/: routes/shop/webinar
   /shop/digital-book/: routes/shop/digital-book
   /shop/etc/: routes/shop/etc
 
-  /classroom/: routes/classroom/index
-  /classroom/online-class/: routes/classroom/online-class
-  /classroom/webinar/: routes/classroom/webinar
-  /classroom/digital-book/: routes/classroom/digital-book
-  /classroom/etc/: routes/classroom/etc
-
-  /product/tag/start-up/: routes/product/tag/start-up
-  /product/tag/leadership/: routes/product/tag/leadership
-  /product/tag/branding/: routes/product/tag/branding
-  /product/tag/career/: routes/product/tag/career
-  /product/tag/marketing/: routes/product/tag/marketing
-  /product/tag/management/: routes/product/tag/management
+  /: products
 
 collections:
   /:

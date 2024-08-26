@@ -9,7 +9,7 @@ body {
   font-family: var(--type-sans-serif);
   line-height: var(--line-height-base);
   background-color: var(--background-primary);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 
   -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;

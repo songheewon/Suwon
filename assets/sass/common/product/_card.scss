@@ -1,0 +1,224 @@
+/**
+ * ====================
+ * Product Card
+ * ====================
+ */
+
+ /* Container */
+ .s-product-card {
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Util */
+.s-product-card {
+  &__link {
+    &--cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+
+/* Media Part */
+.s-product-card {
+  &__media {
+    position: relative;
+    background-color: #D9D9D9;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Main Part */
+.s-product-card {
+  &__main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    @include mq($until: desktop) {
+      margin-top: 10px;
+    }
+  }
+
+  &__tag {
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 700;
+  }
+
+  &__chip {
+    color: #fff;
+
+    @include mq($until: landscape) {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      border-radius: 4px;
+      padding: 4px 8px;
+
+      background-color: var(--accent-color);
+    }
+
+    @include mq($from: landscape) {
+      color: var(--accent-color);
+      margin-bottom: 4px;
+
+    }
+  }
+
+  &__date {
+    display: none;
+
+    @include mq($from: landscape) {
+      display: block;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+
+    &--label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: -0.02em;
+
+      border-radius: 100rem;
+      padding: 4px 12px;
+      color: #fff;
+      background-color: #333;
+      border: 1px solid rgba(185, 185, 185, 0.5);
+    }
+  }
+
+  &__title {
+    font-family: " Pretendard Variable",
+        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
+        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
+        , "Segoe UI Symbol" , sans-serif !important;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -1px;
+    color: #505050;
+    @include ellipsis(2);
+
+    @include mq($from: desktop) {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 25px;
+      letter-spacing: -1px;
+    }
+  }
+
+  &__date-info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 18px;
+    display: flex;
+    gap: 10px;
+    font-family: " Pretendard Variable",
+        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
+        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
+        , "Segoe UI Symbol" , sans-serif !important;
+    &--title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 21px;
+      letter-spacing: -1px;
+      color: #9E9E9E;
+    }
+    &--date {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      color: #9E9E9E;
+    }
+
+  }
+
+  &__prices {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    column-gap: 14px;
+
+    @include mq($from: landscape) {
+      column-gap: 20px;
+    }
+
+    &--label {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.4;
+      max-width: 65px;
+
+      @include ellipsis(1);
+
+      @include mq($from: landscape) {
+        font-size: 12px;
+        max-width: 78px;
+      }
+    }
+
+    &--number {
+      font-family: " Pretendard Variable",
+        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
+        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
+        , "Segoe UI Symbol" , sans-serif !important;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 21px;
+      color: #505050;
+    }
+  }
+}
+
+[data-user-color-scheme="dark"] {
+  .s-product-card {
+    &__media {
+      background-color: #999;
+    }
+
+    &__main {
+      background-color: #4a4a4a;
+    }
+
+    &__title {
+      color: #fff;
+    }
+
+    &__price {
+      &:last-child {
+        color: #fff;
+      }
+    }
+  }
+}

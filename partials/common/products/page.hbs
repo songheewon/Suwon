@@ -1,107 +1,116 @@
 {{#contentFor "custom_body_class"}} shop-template{{/contentFor}}
-        <div class="c-home-section c-home-section__class">
-          <div class="o-container">
-            <div class="c-shop-page">
-              <div class="c-shop-page__header">
-                <div class="o-container">
-                  <div class="c-shop-page__title">{{@site.shop_section_title}}</div>
-                </div>
-                <div class="c-shop-navigation">
-                  <div class="o-container">
-                    {{> templates/shop/home-navigation }}
-                  </div>
-                </div>
-              </div>
-              <div class="c-shop-page__main">
-                <div class="c-shop-section">
-                  <div class="o-container">
-                    {{> common/products/list static=static filter=filter }}
-                  </div>
-                </div>
-              </div>
+
+  <div class="s-products-hero">
+    <div class="o-grid" style="padding: 1%">
+      <div class="o-grid__col o-grid__col--full" style="padding: 0">
+        {{> common/products/slide }}
+      </div>
+    </div>
+  </div>
+  <div class="s-products-main">
+    <div class="o-grid">
+        {{> common/products/navigation }}
+        <div class="s-products-search">
+                <form id="c-search-form" type="submit">
+                    <div class="c-search-form">
+                        <input class="c-search-form__input c-search__stx" type="text" placeholder="검색어를 입력하세요.">
+                        <div class="c-search-form__button--container">
+                            <button type="submit" class="c-search-form__button">
+                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.56443 11.2052C9.16999 11.4137 8.8236 11.6306 8.45084 11.7875C6.80391 12.4864 5.15639 12.4774 3.52762 11.7245C2.32026 11.1665 1.39833 10.2847 0.754209 9.10985C0.219179 8.12769 -0.0399566 7.01557 0.0049952 5.89448C0.049947 4.7734 0.397265 3.68628 1.00916 2.7514C1.58098 1.8705 2.36861 1.15526 3.29494 0.67569C4.30665 0.149689 5.4441 -0.0765703 6.57683 0.0228593C7.70956 0.122289 8.79173 0.543383 9.69923 1.23785C10.8222 2.09594 11.5747 3.21669 11.9264 4.59594C12.3367 6.22359 12.1239 7.77576 11.2975 9.23464C11.2207 9.37013 11.2231 9.44203 11.3362 9.55494C12.4217 10.646 13.5001 11.7447 14.582 12.8393C14.9565 13.2179 15.0995 13.6576 14.9337 14.1788C14.6869 14.962 13.6777 15.2651 13.05 14.7457C12.9708 14.6797 12.8946 14.6096 12.822 14.5365C11.7646 13.4669 10.7081 12.3954 9.65234 11.3222C9.61998 11.2857 9.59058 11.2465 9.56443 11.2052ZM10.1611 6.14336C10.1499 3.84838 8.2967 1.9765 6.05429 1.99552C3.77964 2.01513 1.95161 3.8775 1.96391 6.15941C1.97857 8.45618 3.82419 10.3144 6.07715 10.2995C8.33011 10.2847 10.1716 8.41814 10.1611 6.14336Z"
+                                        fill="#858585" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-        </div>
+        {{> common/products/list static=static filter=filter }}
+        {{> common/products/pagination }}
+      </div>
+  </div>
 
-        {{#contentFor "scripts"}}
-        <script>
-          const hasNextPage = () => {
-            var nextElement = document.querySelector('link[rel=next]');
-            if (nextElement) {
-              return true;
-            }
-            return false;
-          }
 
-          const disableLoadMore = () => {
-            var loadMoreAction = document.querySelectorAll('.js-load-more');
-            if (loadMoreAction.length) {
-              [].map.call(loadMoreAction, function (obj, idx) {
-                obj.classList.remove('active');
-              });
-            }
-          }
+{{#contentFor "scripts"}}
+<script>
+const hasNextPage = () => {
+  var nextElement = document.querySelector('link[rel=next]');
+  if (nextElement) {
+    return true;
+  }
+  return false;
+}
 
-          const activeLoadMore = () => {
-            var loadMoreAction = document.querySelectorAll('.js-load-more');
-            if (loadMoreAction.length) {
-              [].map.call(loadMoreAction, function (obj, idx) {
-                obj.classList.add('active');
-              });
-            }
-          }
+const disableLoadMore = () => {
+  var loadMoreAction = document.querySelectorAll('.js-load-more');
+  if (loadMoreAction.length) {
+    [].map.call(loadMoreAction, function (obj, idx) {
+      obj.classList.remove('active');
+    });
+  }
+}
 
-          const updateContents = (item) => {
-            var feedElement = document.querySelector('.js-content-feed');
-            if (feedElement) {
-              feedElement.appendChild(item);
-            }
-          }
+const activeLoadMore = () => {
+  var loadMoreAction = document.querySelectorAll('.js-load-more');
+  if (loadMoreAction.length) {
+    [].map.call(loadMoreAction, function (obj, idx) {
+      obj.classList.add('active');
+    });
+  }
+}
 
-          //set load more event listener
-          document.addEventListener("DOMContentLoaded", function () {
-            if (hasNextPage()) {
-              activeLoadMore();
-            }
+const updateContents = (item) => {
+  var feedElement = document.querySelector('.js-content-feed');
+  if (feedElement) {
+    feedElement.appendChild(item);
+  }
+}
 
-            var nextElement = document.querySelector('link[rel=next]');
-            var loadMoreAction = document.querySelectorAll('.js-load-more');
-            if (loadMoreAction.length) {
-              [].map.call(loadMoreAction, function (obj) {
-                obj.addEventListener('click', function (e) {
-                  e.preventDefault();
+//set load more event listener
+document.addEventListener("DOMContentLoaded", function(){
+  if(hasNextPage()) {
+    activeLoadMore();
+  }
 
-                  if (hasNextPage() && nextElement) {
-                    var xhr = new window.XMLHttpRequest();
+  var nextElement = document.querySelector('link[rel=next]');
+  var loadMoreAction = document.querySelectorAll('.js-load-more');
+  if (loadMoreAction.length) {
+    [].map.call(loadMoreAction, function (obj) {
+      obj.addEventListener('click', function (e) {
+        e.preventDefault();
 
-                    xhr.open('GET', nextElement.href);
-                    xhr.responseType = 'document';
-                    xhr.onreadystatechange = () => {
-                      if (xhr.readyState === XMLHttpRequest.DONE) {
-                        const status = xhr.status;
-                        if (status === 0 || (status >= 200 && status < 400)) {
-                          var postElements = xhr.response.querySelectorAll('.js-content-card');
-                          postElements.forEach(function (item) {
-                            updateContents(item);
-                          });
-
-                          var resNextElement = xhr.response.querySelector('link[rel=next]');
-                          if (resNextElement) {
-                            nextElement.href = resNextElement.href;
-                          } else {
-                            nextElement = false;
-                            disableLoadMore();
-                          }
-                        } else {
-                          //False
-                        }
-                      }
-                    };
-                    xhr.send(null);
-                  }
+        if (hasNextPage() && nextElement) {
+          var xhr = new window.XMLHttpRequest();
+          xhr.open('GET', nextElement.href);
+          xhr.responseType = 'document';
+          xhr.onreadystatechange = () => {
+            if(xhr.readyState === XMLHttpRequest.DONE) {
+              const status = xhr.status;
+              if (status === 0 || (status >= 200 && status < 400)) {
+                var postElements = xhr.response.querySelectorAll('.js-content-card');
+                postElements.forEach(function (item) {
+                  updateContents(item);
                 });
-              });
+
+                var resNextElement = xhr.response.querySelector('link[rel=next]');
+                if (resNextElement) {
+                  nextElement.href = resNextElement.href;
+                } else {
+                  nextElement = false;
+                  disableLoadMore();
+                }
+              } else {
+                //False
+              }
             }
-          });
-        </script>
-        {{/contentFor}}
+          };
+          xhr.send(null);
+        }
+      });
+    });
+  }
+});
+</script>
+{{/contentFor}}
