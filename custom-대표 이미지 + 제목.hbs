@@ -21,6 +21,17 @@
                 <a href="{{primary_tag.url}}" class="c-post-image-header-template__tag" style="display: inline-block;">{{primary_tag.name}}</a>
             </div>
             <div class="c-post-image-header-template__title">{{title}}</div>
+            <div class="c-post-header__info" style="margin-top: 0">
+    {{#primary_author}}
+    <div class="c-post-header__info--profile">
+      {{#if profile_image}}
+      <img class="c-post-header__info--image" src="{{img_url profile_image}}" alt="{{name}}의 프로필 사진">
+      {{/if}}
+    </div>
+    <a class="c-post-header__info--name" href="{{url}}" style="color: white;">{{name}}</a>
+    <div class="c-post-header__info--date">{{date format="YYYY.MM.DD"}}</div>
+    {{/primary_author}}
+  </div>
         </div>
     </div>
     </div>

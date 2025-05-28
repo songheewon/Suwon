@@ -362,7 +362,7 @@
   &__title_and_excerpt {
     width: 100%;
     position: absolute;
-    top: 75%;
+    top: 70%;
     left: 0;
     @include mq($until: desktop) {
       top: 60%;
