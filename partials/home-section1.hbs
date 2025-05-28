@@ -1,0 +1,27 @@
+<div>
+        <a href="{{url}}" class="s-products-feature2__main-item">
+          <div class="s-products-feature2__main-item--image">
+            {{#if feature_image}}
+            <img class="s-products-feature2__main-item--image-img" src="{{img_url feature_image}}" alt="{{title}}" loading="lazy">
+            {{/if}}
+          </div>
+          <div class="s-products-feature2__main-item--info">
+            <div class="s-product-card__tag" style="margin-bottom: -40px;">{{primary_tag.name}}</div>
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div class="s-products-feature2__main-item--title">{{title}}</div>
+            <div class="s-products-feature2__main-item--content">{{excerpt}}</div>
+            </div>
+            <div class="s-products-feature2__main-item--url">자세히 보기 <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_249_358)">
+<path d="M17.5376 12.8559L2.01839 12.8563L2.01839 10.3063L17.5364 10.3055L10.6982 3.46733L12.5015 1.66408L22.4187 11.5813L12.5015 21.4985L10.6982 19.6953L17.5376 12.8559Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_249_358">
+<rect width="15.3268" height="15.3268" fill="white" transform="translate(11.5811 0.743652) rotate(45)"/>
+</clipPath>
+</defs>
+</svg>
+</div>
+          </div>
+        </a>
+        </div>

@@ -3,18 +3,11 @@
 {{#product}}
 <div class="s-product">
   {{> common/product/header }}
-
   <div class="s-product__main">
     <div class="o-grid">
       <div class="o-grid__col o-grid__col--full">
         <div class="s-product__main--inner">
-          <article class="s-product__article">
-            <header class="s-product__article--header">
-              {{#if payment.type}}
-              <div class="s-product__type">{{payment.type_text}}</div>
-              {{/if}}
-              <h1 class="s-product__title">{{title}}</h1>
-            </header>
+          <article class="s-product__article {{#match primary_tag.slug "=" "book"}}s-product__article--book{{/match}}" >
             <div class="s-product__article--main">
               <div class="s-product__article--info">
               {{#if payment.have_require_message}}
@@ -45,15 +38,23 @@
                 {{/unless}}
               {{/if}}
               </div>
-              <div class="s-product__content c-content">{{content}}</div>
+              <div class="s-product__content c-content" {{#match primary_tag.slug "=" "book"}}style="text-align: center"{{/match}}>{{content}}</div>
             </div>
           </article>
-          <aside class="s-product__aside">{{> common/product/sell }}</aside>
+          <aside class="s-product__aside" {{#match primary_tag.slug "=" "book"}}style="display: none"{{/match}}>{{> common/product/sell }}</aside>
         </div>{{!-- inner --}}
       </div>
     </div>
   </div>
-
+  <div class="c-post__division"></div>
+{{#unless @member}}
+    <div class="c-home-subscribe__box" style="background-color: #F4F4F4; box-shadow: none">
+      <div class="c-home-subscribe__title">두잉레터를 구독하고 자기답게 성장하세요!</div>
+      <div class="c-home-subscribe__desc">자기다운 방식으로 성장하는 사람들의 이야기와</div>
+      <div class="c-home-subscribe__desc">일과 삶을 바라보는 새로운 관점이 도착합니다.</div>
+      <a href="https://page.stibee.com/subscriptions/292124" target="_blank" class="c-home-subscribe__btn">두잉레터 구독하기</a>
+    </div>
+    {{/unless}}
   {{> common/product/footer }}
 </div>
 
@@ -199,15 +200,3 @@ function downloadURI(uri, name) {
 }
 </script>
 {{/contentFor}}
-
-<style>
-  .c-vod .bluedot-product-chapters .bluedot-product-chapter-header {
-    color: white;
-  }
-  .s-product__header {
-    padding: 32px 0;
-  }
-  header.s-product__header.c-vod {
-    background-color: #1a1a1a;
-  }
-</style>

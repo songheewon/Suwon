@@ -1,3 +1,8 @@
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .s-common-default-footer {
 
   @include mq($from: landscape) {
@@ -6,7 +11,7 @@
   }
 
   &__outer {
-    background-color: #f6f5f7;
+    background-color: #FAFAFA;
     padding: 40px 0 80px;
   }
 

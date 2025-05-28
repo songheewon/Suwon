@@ -1,48 +1,35 @@
 {{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} {{#post}} {{#if feature_image}} <div
     class="c-post-image-header-template">
-    <div class="c-post-image-header-template__wrap">
+    <div class="c-post-image-header-template__wrap" style="position: relative;">
         <img alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
             class='c-post-image-header-template__img lazyload' style="width: 100%; height: 100%; object-fit: cover;"
             data-srcset='
                 {{ img_url feature_image size=' ml' }} 320w, {{ img_url feature_image size='lg' }} 636w, {{ img_url
             feature_image size='xl' }} 1272w, {{ img_url feature_image size='xxl' }} 2640w'
             data-src='{{ img_url feature_image size=' xxl' }}' />
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.5) 40%,
+            rgba(0, 0, 0, 0.2) 65%,
+            rgba(0, 0, 0, 0) 100%
+        );"></div>
     </div>
-    <div class="c-post-header__title c-post-image-header-template__title_and_excerpt">
-        <div class="c-post-image-header-template__title">{{title}}</div>
-        <div class="c-post-image-header-template__excerpt">{{excerpt}}</div>
+    <div class="c-post-header__title c-post-image-header-template__title_and_excerpt" style="top: 60% !important;">
+        <div class="c-post-image-header-template__fixed_div" style="width: 80%; max-width: 730px; margin: 0 auto;">
+            <div class="c-post-image-header-template__tag-container" style="text-align: left; margin-bottom: 15px;">
+                <a href="{{primary_tag.url}}" class="c-post-image-header-template__tag" style="display: inline-block;">{{primary_tag.name}}</a>
+            </div>
+            <div class="c-post-image-header-template__title">{{title}}</div>
+            <div class="c-post-image-header-template__excerpt">{{excerpt}}</div>
+        </div>
     </div>
     </div>
     {{/if}}
     <div class='o-grid'>
         <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
-            <article class='c-{{ post_class }}'>
-                <header class='c-post-header'>
-
-                    {{#is 'post'}}
-                    <div class='c-post-header__meta'>
-                        {{#primary_author}}
-                        {{#if profile_image}}
-                        <div class='c-post-header__author_media'>
-                            <img class='c-post-header__author_image lazyload' data-src='{{ img_url profile_image size='
-                                profile-image-small' }}' alt='{{ name }}' width='32' height='32'>
-                        </div>
-                        {{/if}}
-                        <div class='c-post-header__author_info'>
-                            <div class='c-post-header__author_name'>{{ name }}</div>{{/primary_author}}
-                            <time class='c-post-header__date' datetime='{{ date format=' YYYY-MM-DD' }}'>{{ date
-                                format='YYYY-MM-DD' }}</time>
-                            -
-                            <span class='c-post-header__reading-time'>{{ reading_time minute=(t '1 min read') minutes=(t
-                                '% min read')
-                                }}</span>
-                        </div>
-                    </div>
-
-                    {{> post-community }}
-
-                    {{/is}}
-                </header>
+            <article class='c-{{ post_class }} c-article'>
+                {{> post-community }}
                 {{!-- Show the tags, share, author, subscribe box, and comments if visitor can access the post, this
                 means that:
                 1. The post is public for anyone
@@ -53,18 +40,6 @@
                     {{ content }}
                 </section>
 
-                {{bluedot_comment_button}}
-
-                {{#if tags}}
-                <section class='c-tags'>
-                    {{ tags separator='' }}
-                </section>
-                {{/if}}
-
-                {{> post-community }}
-
-                {{!-- {{> share }} --}}
-
                 {{#primary_author}}
                 {{> card-author }}
                 {{/primary_author}}
@@ -73,13 +48,7 @@
                 the
                 upgrade
                 box --}}
-                {{#unless @member}}
-                {{#if access}}
-
-                {{> subscribe-form-n inputLabel='subscribe-email-post'}}
-
-                {{/if}}
-                {{/unless}}
+                
 
                 {{!-- If the post is published for members and paid members and the visitor is not one of those, show
                 the
@@ -94,7 +63,6 @@
     </div>
 
     {{bluedot_paywall_popup}}
-
     {{/post}}
     {{#if @site.visible_related_post}}
     <div class="o-grid">
@@ -105,7 +73,7 @@
     <section class="c-home-shop-section">
         <div class="c-home-products-carousel">
             <div class="o-grid">
-                <div class="o-grid__col o-grid__col--full">
+                <div class="o-grid__col o-grid__col--full" style="padding: 0; margin-top: 50px;">
                     {{> common/products/carousel-section which="home" nav="true" title=@site.shop_section_title }}
                 </div>
             </div>

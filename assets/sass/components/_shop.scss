@@ -237,6 +237,23 @@
     align-items: center;
     justify-content: center;
     column-gap: 6px;
+
+    @include mq($from: landscape) {
+      display: none;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    background-color: #b9b9b9;
+    display: block;
+    cursor: pointer;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #717171;
   }
 
   .swiper-slide {

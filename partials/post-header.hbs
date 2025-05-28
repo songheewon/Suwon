@@ -1,27 +1,32 @@
-<header class='c-post-header'>
+<header class='c-post-header' style="max-width: 900px !important;">
+  {{#if primary_tag}}
+  <div class="c-post-header__tag">
+    <a href="{{primary_tag.url}}" class="c-post-header__tag--name">{{primary_tag.name}}</a>
+  </div>
+  {{/if}}
   <h1 class='c-post-header__title'>{{ title }}</h1>
   {{#if custom_excerpt}}
   <p class='c-post-header__excerpt'>{{ custom_excerpt }}</p>
   {{/if}}
-
-  {{#is 'post'}}
-  <div class='c-post-header__meta'>
+  <div class="c-post-header__info">
     {{#primary_author}}
-    {{#if profile_image}}
-    <div class='c-post-header__author_media'>
-      <img class='c-post-header__author_image lazyload' data-src='{{ img_url profile_image size=' profile-image-small'
-        }}' alt='{{ name }}' width='32' height='32'>
+    <div class="c-post-header__info--profile">
+      {{#if profile_image}}
+      <img class="c-post-header__info--image" src="{{img_url profile_image}}" alt="{{name}}의 프로필 사진">
+      {{/if}}
     </div>
-    {{/if}}
-    <div class='c-post-header__author_info'>
-      <div class='c-post-header__author_name'>{{ name }}</div>{{/primary_author}}
-      <time class='c-post-header__date' datetime='{{ date format=' YYYY-MM-DD' }}'>{{ date format='YYYY-MM-DD' }}</time>
-      -
-      <span class='c-post-header__reading-time'>{{ reading_time minute=(t '1 min read') minutes=(t '% min read')
-        }}</span>
-    </div>
+    <a class="c-post-header__info--name" href="{{url}}">{{name}}</a>
+    <div class="c-post-header__info--date">{{date format="YYYY.MM.DD"}}</div>
+    {{/primary_author}}
   </div>
-
+  {{#is 'post'}}
+  {{#if feature_image}}
+  {{!-- <section class="c-post-feature">
+    <div class="c-post-feature__container">
+        <img class="c-post-feature__image" src="{{feature_image}}" alt="{{title}}">
+    </div>
+  </section> --}}
+  {{/if}}
   {{> post-community }}
 
   {{/is}}

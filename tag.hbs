@@ -1,128 +1,21 @@
-{{!< default}}
-
-{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
-
-<div class="c-page__wrap">
-  {{#tag}}
-  <div class="c-page__wrap--header">
-    <div class='o-grid'>
-      <div class="o-grid__col--full">
-        <div class='c-archive'>
-          <h1 class='c-archive__title'>{{ name }}</h1>
-          {{#if description}}
-            <p class='c-archive__description'>{{ description }}</p>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
-  {{/tag}}
+{{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} <div class="c-page__wrap" style="background-color: #F3F3EF;">
 
   <div class="c-page__section">
     <div class="o-grid">
+      <div class="s-products-navigation__container">
+        <div class="s-products-navigation">
+          <ul class="s-products-navigation__list">
+        </div>
+      </div>
       <div class="c-page__section--container">
+        {{!-- <div class="c-page__section--tag">{{tag.label}}</div> --}}
         <div class="c-page__section--main">
           {{> loop position="tag"}}
-
           <div class="c-tag-pagination__wrap">
             {{ pagination }}
           </div>
         </div>
-        <div class="c-page__section--side">
-
-          <div class="c-home-top-side__wrap">
-            <div class="c-home-top-side__title">
-            {{#if @site.feature_content_section_title}}
-              {{@site.feature_content_section_title}}
-            {{else}}
-
-              {{#if @site.feature_content_section_sort_type}}
-                {{!-- 디자인 커스텀 --}}
-                {{#match @site.feature_content_section_sort_type "=" "poplularest"}}
-                인기 있는 콘텐츠
-                {{else}}
-                최신 콘텐츠
-                {{/match}}
-              {{else}}
-                {{#if @custom.posts_widget_title}}
-                  {{@custom.posts_widget_title}}
-                {{else}}
-                  {{!-- 테마 커스텀 --}}
-                  {{#match @custom.posts_widget_order "=" "인기순"}}
-                  최신 콘텐츠
-                  {{else}}
-                  인기 있는 콘텐츠
-                  {{/match}}
-                {{/if}}
-              {{/if}}
-            {{/if}}
-            </div>
-
-          {{#if @site.feature_content_section_sort_type}}
-          {{!--  --}}
-          {{#match @site.feature_content_section_sort_type "=" "poplularest"}}
-            {{#get "posts" filter="published_at:>=now-7d" include="tags,authors" limit="5" order="view_count desc"}}
-            {{#if posts}}
-            <div class="c-home-top-side__posts--wrap">
-              <div class="c-home-top-side__posts">
-                {{#foreach posts}}
-                  {{> post-card cardFormat="small" }}
-                {{/foreach}}
-              </div>
-            </div>
-            {{/if}}
-            {{/get}}
-          {{else}}
-            {{#get "posts" include="tags,authors" limit="5" order="published_at desc"}}
-            {{#if posts}}
-            <div class="c-home-top-side__posts--wrap">
-              <div class="c-home-top-side__posts">
-                {{#foreach posts}}
-                  {{> post-card cardFormat="small" }}
-                {{/foreach}}
-              </div>
-            </div>
-            {{/if}}
-            {{/get}}
-          {{/match}}
-          {{else}}
-          {{!--  --}}
-          {{#match @custom.posts_widget_order "=" "인기순"}}
-            {{#get "posts" filter="published_at:>=now-7d" include="tags,authors" limit="5" order="view_count desc"}}
-            {{#if posts}}
-            <div class="c-home-top-side__posts--wrap">
-              <div class="c-home-top-side__posts">
-                {{#foreach posts}}
-                  {{> post-card cardFormat="small" }}
-                {{/foreach}}
-              </div>
-            </div>
-            {{/if}}
-            {{/get}}
-          {{else}}
-            {{#get "posts" include="tags,authors" limit="5" order="published_at desc"}}
-            {{#if posts}}
-            <div class="c-home-top-side__posts--wrap">
-              <div class="c-home-top-side__posts">
-                {{#foreach posts}}
-                  {{> post-card cardFormat="small" }}
-                {{/foreach}}
-              </div>
-            </div>
-            {{/if}}
-            {{/get}}
-          {{/match}}
-          {{/if}}
-          </div>
-
-
-          <div class="c-home-subscribe-widget__wrap">
-            <div class="c-home-subscribe-widget">
-              {{> home/subscribe-box }}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-</div>
+  </div>

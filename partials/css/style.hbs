@@ -9,12 +9,16 @@
   --color-header-background: {{@site.header_background_color}};
   --color-home-hero-background: {{@site.header_background_color}};
   {{/if}}
+
+  {{#if @custom.banner_background_color}}
+  --banner-background-color: {{ @custom.banner_background_color }};
+  {{/if}}
 }
 
 * {
-  font-family: "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
 }
 
 .bg-accent {
@@ -30,16 +34,122 @@
   padding-top: 56.25%;
 }
 
-{{#if @site.brand_site_title_align}}
+.bluedot-pagination {
+  display: flex !important;
+  justify-content: center !important;
+}
+html {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+}
+.kg-embed-card {
+  border-radius: 32px !important;
+  overflow: hidden !important;
+}
+.kg-image-card {
+  border-radius: 32px !important;
+  overflow: hidden !important;
+}
+.kg-gallery-image img {
+  border-radius: 32px !important;
+  overflow: hidden !important;
+}
+.kg-width-wide {
+  width: 130% !important;
+}
+{{#if @site.title_align}}
 .post-template .c-post-header__title {
-  {{#match @site.brand_site_title_align '=' 'left'}}
+  {{#match @site.title_align '=' 'left'}}
   text-align: left;
-  {{else match @site.brand_site_title_align '=' 'right'}}
+  {{else match @site.title_align '=' 'right'}}
   text-align: right;
-  {{else match @site.brand_site_title_align '=' 'center'}}
+  {{else match @site.title_align '=' 'center'}}
   text-align: center;
-  {{else match @site.brand_site_title_align '=' 'side'}}
+  {{else match @site.title_align '=' 'side'}}
   text-align: justify;
+  {{/match}}
+}
+.c-post-image-header-template__tag-container {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left !important;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right !important;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center !important;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify !important;
+  {{/match}}
+}
+.c-post-image-header-template__tag {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left;
+  display: flex;
+  justify-content: start;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+.c-post-image-header-template__title {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+.c-post-image-header-template__excerpt {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+.c-post-header__excerpt {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+.c-post-header__info {
+  {{#match @site.title_align '=' 'left'}}
+  justify-content: start;
+  {{else match @site.title_align '=' 'right'}}
+  justify-content: end;
+  {{else match @site.title_align '=' 'center'}}
+  justify-content: center;
+  {{else match @site.title_align '=' 'side'}}
+  justify-content: center;
+  {{/match}}
+}
+.c-post-header__tag {
+  {{#match @site.title_align '=' 'left'}}
+  justify-content: start;
+  {{else match @site.title_align '=' 'right'}}
+  justify-content: end;
+  {{else match @site.title_align '=' 'center'}}
+  justify-content: center;
+  {{else match @site.title_align '=' 'side'}}
+  justify-content: center;
   {{/match}}
 }
 {{/if}}
@@ -58,12 +168,12 @@
 }
 {{/if}}
 
-{{#if @site.brand_site_title_font}}
+{{#if @site.title_font}}
 .post-template .c-post-header__title {
-  {{#match @site.brand_site_title_font '=' 'noto_sans_kr'}}
+  {{#match @site.title_font '=' 'noto_sans_kr'}}
   font-family: "Noto Sans KR", sans-serif;
-  {{else match @site.brand_site_title_font '=' 'nanum_gothic'}}
-  font-family: "Nanum Gothic", sans-serif;
+  {{else match @site.title_font '=' 'nanum_gothic'}}
+  font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
   {{/match}}
 }
 {{/if}}
@@ -77,7 +187,7 @@
   {{#match @site.main_font '=' 'noto_sans_kr'}}
   font-family: "Noto Sans KR", sans-serif;
   {{else match @site.main_font '=' 'nanum_gothic'}}
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
   {{/match}}
 }
 {{/if}}

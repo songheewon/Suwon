@@ -1,24 +1,580 @@
-<div class="c-archive-grid__post js-grid">
-{{#foreach posts}}
+{{#match position "=" "tag"}}
+<div class="s-products-main__header" style="border-bottom: 2px solid black; padding-bottom: 15px;">
+                <div class="s-products-main__header--title">{{tag.name}}</div>
+                <div class="s-products-main__header--buttons">
+                  <div class="s-products-main__header--tag"></div>
+                  <div class="s-products-main__header--date"></div>
+                    <button class="s-products-main__header--filter" onclick="toggleFilter()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0001 10.0002C18.2093 10.0002 20 8.20912 20 6.00035C20 3.79158 18.2093 2 16.0001 2C14.1363 2 12.5702 3.27501 12.1258 5.00003H0.999859C0.447663 5.00003 0 5.44769 0 5.99988C0 6.55208 0.447663 6.99974 0.999859 6.99974H12.1258C12.5697 8.72475 14.1358 9.99977 16.0001 9.99977V10.0002ZM14.0004 5.99988C14.0004 7.10427 14.8957 8.00006 16.0006 8.00006C17.1054 8.00006 18.0008 7.10474 18.0008 5.99988C18.0008 4.89503 17.1054 3.99971 16.0006 3.99971C14.8957 3.99971 14.0004 4.89503 14.0004 5.99988ZM0 14.0001C0 11.7909 1.79112 10.0002 3.99991 10.0002C5.86369 10.0002 7.4298 11.2752 7.87372 13.0003H19.0001C19.5523 13.0003 20 13.4479 20 14.0001C20 14.5523 19.5523 15 19.0001 15H7.87372C7.4298 16.725 5.86369 18 3.99991 18C1.79112 18 0 16.2094 0 14.0001ZM6.00009 14.0001C6.00009 12.8957 5.10477 11.9999 3.99991 11.9999C2.89505 11.9999 1.99972 12.8953 1.99972 14.0001C1.99972 15.105 2.89505 16.0003 3.99991 16.0003C5.10477 16.0003 6.00009 15.105 6.00009 14.0001Z" fill="black"/>
+                        </svg>
+                        필터
+                    </button>
+                    <div class="filter-dropdown" style="display: none;">
+                      <div class="filter-dropdown2">
+                        <div class="filter-section">
+                            <div>주제</div>
+                            <div class="tag-filters">
+                                {{bluedot_tag_filters}}
+                            </div>
+                        </div>
+                        <div class="filter-section">
+                            <div>기간</div>
+                            <div class="year-filters">
+                                <label><input type="checkbox" name="year" value="2025"> 2025년</label>
+                                <label><input type="checkbox" name="year" value="2024"> 2024년</label>
+                                <label><input type="checkbox" name="year" value="2023"> 2023년</label>
+                                <label><input type="checkbox" name="year" value="2022"> 2022년</label>
+                                <label><input type="checkbox" name="year" value="2021"> 2021년</label>
+                                <label><input type="checkbox" name="year" value="2020"> 2020년</label>
+                                <label><input type="checkbox" name="year" value="2019"> 2019년</label>
+                                <label><input type="checkbox" name="year" value="2018"> 2018년</label>
+                                <label><input type="checkbox" name="year" value="2017"> 2017년</label>
+                                <label><input type="checkbox" name="year" value="2016"> 2016년</label>
+                                <label><input type="checkbox" name="year" value="2015"> 2015년</label>
+                                <label><input type="checkbox" name="year" value="2014"> 2014년</label>
+                                <label><input type="checkbox" name="year" value="2013"> 2013년</label>
+                                <label><input type="checkbox" name="year" value="2012"> 2012년</label>
+                                <label><input type="checkbox" name="year" value="2011"> 2011년</label>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button onclick="applyFilters()">적용</button>
+                            <button onclick="resetFilters()">초기화</button>
+                        </div>
+                    </div>
+                    <div class="s-products__header--order" >
+            <button class="order-button" aria-expanded="false">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.545 14.1839L14.0289 17.7394C14.3691 18.0867 14.9205 18.0867 15.2607 17.7394L18.7446 14.1839C19.0848 13.8367 19.0848 13.2739 18.7446 12.9267C18.4043 12.5794 17.8529 12.5794 17.5127 12.9267L15.5155 14.9644V2.88889C15.5155 2.39778 15.1257 2 14.6445 2C14.1633 2 13.7736 2.39778 13.7736 2.88889V14.965L11.7763 12.9272C11.4361 12.58 10.8847 12.58 10.5445 12.9272C10.2043 13.2744 10.2043 13.8372 10.5445 14.1844L10.545 14.1839ZM5.97032 2.26056C5.6301 1.91333 5.07867 1.91333 4.73846 2.26056L1.25516 5.81611C0.914945 6.16333 0.914945 6.72611 1.25516 7.07333C1.59538 7.42056 2.14681 7.42056 2.48703 7.07333L4.48424 5.035V17.1111C4.48424 17.6022 4.874 18 5.3552 18C5.83641 18 6.22616 17.6022 6.22616 17.1111V5.035L8.22338 7.07333C8.5636 7.42056 9.11502 7.42056 9.45524 7.07333C9.79546 6.72611 9.79546 6.16333 9.45524 5.81611L5.97032 2.26056Z" fill="black"/>
+</svg>
 
-  {{> post-card }}
-
-  {{#match ../position "=" "tag"}}
-    {{#match pagination.total "<" 5}}
-      {{#if @last}}
-  {{!-- [Home Category Section] Promotion --}}
-  <div class="c-home-category-promotion__wrap">
-    <div class="c-home-category-promotion c-home-category-promotion--skeleton">프로모션 영역</div>
-  </div>
-      {{/if}}
-    {{else}}
-      {{#match @number "=" 5}}
-  {{!-- [Home Category Section] Promotion --}}
-  <div class="c-home-category-promotion__wrap">
-    <div class="c-home-category-promotion c-home-category-promotion--skeleton">프로모션 영역</div>
-  </div>
-      {{/match}}
-    {{/match}}
-  {{/match}}
-{{/foreach}}
+                <span id="currentOrder" style="font-size: 14px;">최신순</span>
+            </button>
+            <div class="order-dropdown">
+                <button class="order-option" data-order="latest">
+                    <a href="/tag/{{tag.slug}}?order=latest" onclick="updateOrder('latest')" id="latest">최신순</a>
+                </button>
+                <button class="order-option" data-order="oldest">
+                    <a href="/tag/{{tag.slug}}/?order=oldest" onclick="updateOrder('oldest')" id="oldest">오래된순</a>
+                </button>
+                <button class="order-option" data-order="popular">
+                    <a href="/tag/{{tag.slug}}/?order=popular" onclick="updateOrder('popular')" id="popular">인기순</a>
+                </button>
+            </div>
+        </div>
+                </div>
+            </div>
+<div class="c-archive-grid js-grid">
+  {{#foreach posts}}
+  {{> post-card}}
+  {{/foreach}}
 </div>
+{{else}}
+<div class="c-archive-grid js-grid">
+{{!-- {{#get 'products' as |products|}}
+  {{#foreach products}}
+  {{> common/product/card }}
+  {{/foreach}}
+  {{/get}} --}}
+  {{#foreach posts}}
+  {{> post-card}}
+  {{/foreach}}
+</div>
+{{/match}}
+
+<script>
+       document.addEventListener('DOMContentLoaded', function() {
+        const orderButton = document.querySelector('.order-button');
+        const orderDropdown = document.querySelector('.order-dropdown');
+        const orderOptions = document.querySelectorAll('.order-option');
+        const orderText = orderButton.querySelector('span');
+        const tag = document.querySelector('.s-products-main__header--tag');
+        const date = document.querySelector('.s-products-main__header--date');
+        const currentTag = getUrlParameter('tag');
+        const currentDate = getUrlParameter('date');
+        const currentLatest = document.getElementById('latest');
+        const currentOldest = document.getElementById('oldest');
+        const currentPopular = document.getElementById('popular');
+        const currentUrl = window.location.href;
+        if(currentUrl.includes('&order=')) {
+            currentLatest.href = `${currentUrl.split("&order=")[0]}&order=latest`;
+            currentOldest.href = `${currentUrl.split("&order=")[0]}&order=oldest`;
+            currentPopular.href = `${currentUrl.split("&order=")[0]}&order=popular`;
+        }
+        else if(currentUrl.includes('?order=')) {
+            currentLatest.href = `${currentUrl.split("?order=")[0]}?order=latest`;
+            currentOldest.href = `${currentUrl.split("?order=")[0]}?order=oldest`;
+            currentPopular.href = `${currentUrl.split("?order=")[0]}?order=popular`;
+        }
+        else if(currentUrl.includes('tag=') || currentUrl.includes('date=')) {
+          currentLatest.href = `${currentUrl}&order=latest`;
+          currentOldest.href = `${currentUrl}&order=oldest`;
+          currentPopular.href = `${currentUrl}&order=popular`;
+        }
+        else {
+          currentLatest.href = `${currentUrl}?order=latest`;
+          currentOldest.href = `${currentUrl}?order=oldest`;
+          currentPopular.href = `${currentUrl}?order=popular`;
+        }
+        tag.textContent = currentTag;
+        date.textContent = currentDate + "년";
+        if (!currentTag) {
+          tag.style.display = 'none';
+        }
+        if (!currentDate) {
+          date.style.display = 'none';
+        }
+
+        // 드롭다운 토글
+        orderButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            orderDropdown.style.display = isExpanded ? 'none' : 'block';
+        });
+
+        // 옵션 선택
+        orderOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const order = this.getAttribute('data-order');
+                const text = this.querySelector('span').textContent;
+                
+                // 버튼의 텍스트 업데이트
+                orderText.textContent = text;
+                
+                // 드롭다운 닫기
+                orderButton.setAttribute('aria-expanded', 'false');
+                orderDropdown.style.display = 'none';
+
+                // 여기에 정렬 로직 추가
+                console.log('Selected order:', order);
+                localStorage.setItem('sortOrder', order);
+                window.orderValue = order;
+            });
+        });
+
+        // 문서 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function() {
+            orderButton.setAttribute('aria-expanded', 'false');
+            orderDropdown.style.display = 'none';
+        });
+    });
+        
+        const hasNextPage = () => {
+            var nextElement = document.querySelector('link[rel=next]');
+            if (nextElement) {
+                return true;
+            }
+            return false;
+        }
+
+        const disableLoadMore = () => {
+            var loadMoreAction = document.querySelectorAll('.js-load-more');
+            if (loadMoreAction.length) {
+                [].map.call(loadMoreAction, function (obj, idx) {
+                    obj.classList.remove('active');
+                });
+            }
+        }
+
+        const activeLoadMore = () => {
+            var loadMoreAction = document.querySelectorAll('.js-load-more');
+            if (loadMoreAction.length) {
+                [].map.call(loadMoreAction, function (obj, idx) {
+                    obj.classList.add('active');
+                });
+            }
+        }
+
+        const updateContents = (item) => {
+            var feedElement = document.querySelector('.js-content-feed');
+            if (feedElement) {
+                feedElement.appendChild(item);
+            }
+        }
+
+        //set load more event listener
+        document.addEventListener("DOMContentLoaded", function () {
+            if (hasNextPage()) {
+                activeLoadMore();
+            }
+
+            var nextElement = document.querySelector('link[rel=next]');
+            var loadMoreAction = document.querySelectorAll('.js-load-more');
+            if (loadMoreAction.length) {
+                [].map.call(loadMoreAction, function (obj) {
+                    obj.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        if (hasNextPage() && nextElement) {
+                            var xhr = new window.XMLHttpRequest();
+                                xhr.open('GET', "/shop/page/" + nextElement.href.split("/page/")[1]);
+                            xhr.responseType = 'document';
+                            xhr.onreadystatechange = () => {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    const status = xhr.status;
+                                    if (status === 0 || (status >= 200 && status < 400)) {
+                                        var postElements = xhr.response.querySelectorAll('.js-content-card');
+                                        postElements.forEach(function (item) {
+                                            updateContents(item);
+                                        });
+
+                                        var resNextElement = xhr.response.querySelector('link[rel=next]');
+                                        if (resNextElement) {
+                                            nextElement.href = resNextElement.href;
+                                        } else {
+                                            nextElement = false;
+                                            disableLoadMore();
+                                        }
+                                    } else {
+                                        //False
+                                    }
+                                }
+                            };
+                            xhr.send(null);
+                        }
+                    });
+                });
+            }
+        });
+
+        const notReady = async () => {
+            // alert("준비중인 기능입니다");
+            const url = "/tag/ai/?order=popular&date=2024";
+            const options = {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // URL 파라미터에서 order 값을 가져오는 함수
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// 정렬 순서를 업데이트하는 함수
+function updateOrder(order) {
+    const orderText = {
+        'latest': '최신순',
+        'oldest': '오래된순',
+        'popular': '인기순'
+    };
+    document.getElementById('currentOrder').textContent = orderText[order] || '최신순';
+    localStorage.setItem('scrollPosition', 600);
+}
+
+// 페이지 로드 시 현재 정렬 순서 설정
+document.addEventListener('DOMContentLoaded', function() {
+    const currentOrder = getUrlParameter('order');
+    if (currentOrder) {
+        updateOrder(currentOrder);
+    }
+});
+
+function toggleFilter() {
+        const filterDropdown = document.querySelector('.filter-dropdown');
+        const filterDropdown2 = document.querySelector('.filter-dropdown2');
+        if (filterDropdown.style.display === 'none' || filterDropdown.style.display === '') {
+            filterDropdown.style.display = 'block';
+            filterDropdown2.style.display = 'flex';
+        } else {
+            filterDropdown.style.display = 'none';
+            filterDropdown2.style.display = 'none';
+        }
+    }
+
+    // 태그 필터 변환 함수
+    function convertTagFilters() {
+        const tagFiltersContainer = document.querySelector('.bluedot-tag-filters');
+        if (!tagFiltersContainer) return;
+
+        const newTagFilters = document.createElement('div');
+        newTagFilters.className = 'tag-filters';
+
+        // 기존 ul/li/a 구조의 태그들을 label/input으로 변환
+        const tagLinks = tagFiltersContainer.querySelectorAll('a');
+        tagLinks.forEach(link => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = 'tag';
+            input.value = link.getAttribute('href').split('/').pop(); // URL에서 태그 값 추출
+
+            const span = document.createElement('span');
+            span.textContent = link.textContent;
+
+            label.appendChild(input);
+            label.appendChild(span);
+            newTagFilters.appendChild(label);
+        });
+
+        // 기존 컨테이너를 새로운 구조로 교체
+        tagFiltersContainer.parentNode.replaceChild(newTagFilters, tagFiltersContainer);
+    }
+
+    // 체크박스 하나만 선택되도록 하는 함수
+    function handleCheckboxSelection(event) {
+        const checkbox = event.target;
+        const section = checkbox.closest('.filter-section');
+        
+        // 같은 섹션의 다른 체크박스들
+        const otherCheckboxes = section.querySelectorAll('input[type="checkbox"]');
+        
+        // 현재 체크박스가 체크된 경우
+        if (checkbox.checked) {
+            // 같은 섹션의 다른 체크박스들 해제
+            otherCheckboxes.forEach(otherCheckbox => {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        }
+    }
+
+    // 페이지 로드 시 이벤트 리스너 설정
+    document.addEventListener('DOMContentLoaded', function() {
+        convertTagFilters();
+        setInitialCheckboxStates();
+        
+        // 모든 체크박스에 이벤트 리스너 추가
+        document.querySelectorAll('.filter-section input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxSelection);
+        });
+    });
+
+    // URL 파라미터에 따라 체크박스 상태 설정
+    function setInitialCheckboxStates() {
+        // URL에서 파라미터 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // date 파라미터 처리
+        const dateParam = urlParams.get('date');
+        if (dateParam) {
+            const dates = dateParam.split(',');
+            dates.forEach(date => {
+                const checkbox = document.querySelector(`input[name="year"][value="${date}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        // tag 파라미터 처리
+        const tagParam = urlParams.get('tag');
+        if (tagParam) {
+            const tags = tagParam.split(',');
+            
+            // 모든 체크박스에 대해 검사
+            document.querySelectorAll('input[name="tag"]').forEach(checkbox => {
+                const checkboxValue = checkbox.value.split('=')[1];
+                // 태그 값이 정확히 일치하는지 확인
+                if (tags[0] === checkboxValue) {
+                    console.log(tags[0], checkboxValue);
+                    checkbox.checked = true;
+                }
+            });
+        }
+    }
+
+    function applyFilters() {
+        const selectedTags = Array.from(document.querySelectorAll('input[name="tag"]:checked')).map(input => input.value);
+        const selectedYears = Array.from(document.querySelectorAll('input[name="year"]:checked')).map(input => input.value);
+        // API 호출 URL 구성
+        const tagParam = selectedTags.length > 0 ? `${selectedTags.join(',')}` : '';
+        const yearParam = selectedYears.length > 0 ? `date=${selectedYears.join(',')}` : '';
+        let url = window.location.href.split('?')[0];
+        if(tagParam && yearParam) {
+          url = url + tagParam + '&' + yearParam;
+        }
+        else if(tagParam) {
+          url = url  + tagParam;
+        }
+        else if(yearParam) {
+          url = url + '?' + yearParam;
+        }
+        else {
+          url = url;
+        }
+        // 현재 스크롤 위치 저장
+        localStorage.setItem('scrollPosition', 600);
+        window.location.href = url;
+    }
+    
+    // 페이지 로드 시 스크롤 위치 복원
+    window.addEventListener('load', function() {
+        const scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            // 부드러운 스크롤을 위한 스타일 추가
+            document.documentElement.style.scrollBehavior = 'smooth';
+            window.scrollTo({
+                top: parseInt(scrollPosition),
+                behavior: 'smooth'
+            });
+            // 스크롤 위치 초기화
+            localStorage.removeItem('scrollPosition');
+            
+            // 스크롤 애니메이션이 끝난 후 기본 스크롤 동작으로 복원
+            setTimeout(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+            }, 1000);
+        }
+    });
+
+    function resetFilters() {
+        // 모든 체크박스 초기화
+        document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+        localStorage.setItem('scrollPosition', 600);
+        window.location.href = window.location.href.split('?')[0];
+    }
+    </script>
+
+<style>
+.filter-dropdown {
+    position: absolute;
+    top: 150%;
+    right: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    min-width: 500px;
+    max-height: 310px;
+    padding: 20px;
+    display: none;
+}
+
+.s-products-main__header--buttons {
+    position: relative;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    width: 50%;
+    height: 220px;
+    overflow-y: auto;
+    padding: 0 10px;
+}
+
+.filter-section > div {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #9DA4AC;
+}
+
+.tag-filters, .year-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: black !important;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24.5px;
+    letter-spacing: -2%;
+}
+
+.tag-filters label, .year-filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 체크박스 커스터마이징 */
+.tag-filters input[type="checkbox"],
+.year-filters input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border: 0.5px solid #C4C4C4;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    vertical-align: middle;
+}
+
+/* 체크박스 체크 상태 */
+.tag-filters input[type="checkbox"]:checked,
+.year-filters input[type="checkbox"]:checked {
+    background-color: #000;
+    border-color: #000;
+}
+
+/* 체크박스 체크 표시 */
+.tag-filters input[type="checkbox"]:checked::after,
+.year-filters input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: none; /* 체크 표시 숨김 */
+}
+
+/* 호버 효과 */
+.tag-filters input[type="checkbox"]:hover,
+.year-filters input[type="checkbox"]:hover {
+    border-color: #999;
+}
+
+/* 포커스 효과 */
+.tag-filters input[type="checkbox"]:focus,
+.year-filters input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.filter-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-actions button:first-child {
+    background: #000;
+    border: 1px solid #000;
+    color: white;
+}
+
+.filter-actions button:last-child {
+    background: white;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.filter-actions button:hover {
+    opacity: 0.9;
+}
+</style>

@@ -1,11 +1,23 @@
 .s-products {
+  &-hero {
+    background-color: #efefef;
+  }
+
   &-main {
     background-color: #fff;
+    padding: 0 20px;
+    @include mq($from: desktop) {
+      padding: 0;
+    }
   }
 }
 
 [data-user-color-scheme="dark"] {
   .s-products {
+    &-hero {
+      background-color: #4a4a4a;
+    }
+
     &-main {
       background-color: #333;
     }

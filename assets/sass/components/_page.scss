@@ -9,6 +9,12 @@
 
   &__section {
     padding-bottom: 60px;
+    &--main {
+      width: 92%;
+      @include mq($until: desktop) {
+        width: 100%;
+      }
+    }
   }
 }
 
@@ -51,7 +57,6 @@
 
 .tag-template .c-post-card {
   padding: 20px 0;
-  border-top: 1px solid #E9E9EE;
 
   @include mq($from: landscape) {
     padding: 40px 0;
@@ -61,12 +66,12 @@
 .c-page__section--container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   width: 100%;
 
   @include mq($from: desktop) {
     display: flex;
-    flex-direction: row;
     gap: 56px;
   }
 }
@@ -91,7 +96,7 @@
   padding-top: 60px;
 }
 
-.c-pagination .c-btn {
+.c-btn {
   border-radius: 8px;
   border: 1px solid #B3B3C3;
   background: #FFF;
@@ -116,5 +121,4 @@
 
 .c-tag-pagination__wrap {
   padding: 40px 0;
-  border-top: 1px solid #e9e9ee;
 }

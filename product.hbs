@@ -1,8 +1,16 @@
+
 {{!< default}} {{#contentFor 'body_custom_class' }} shop-template{{/contentFor}} 
-        <div class="y-product-content__wrap" style="margin-top: -40px">
-            {{#product}}
-            <div class="y-product-content {{payment.type}} paid-{{payment_status.is_paid}}">
-                {{/product}}
-                <div class="y-product-content__main">{{bluedot_product}}</div>
-            </div>
-        </div>
+        {{> common/product/page}}
+{{!-- 
+        <style>
+                .bluedot-product-wrap {
+                        margin-top: -60px !important;
+                }
+                .bluedot-product-wrap .bluedot-product-header {
+                        background-color: #f4f4f4 !important;
+                        width: 100% !important;
+                        height: 320px !important;
+                        justify-content: space-between !important;
+                        display: flex !important;
+                }
+        </style> --}}

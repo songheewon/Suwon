@@ -1,4 +1,4 @@
-{{#get "products" filter=filter include="tags" limit=@config.posts_per_page order="published_at desc" as |items|}}
+{{#get "products" filter=filter include="tags" limit="9" order="published_at desc" as |items|}}
 {{#if items}}
 <div class="s-products-carousel__container">
   <div class="s-products-carousel__navigation">
@@ -18,7 +18,7 @@
     <div class="swiper">
       <div class="swiper-wrapper">
       {{#foreach items}}
-        <div class="swiper-slide">{{> common/product/card no-js="true" }}</div>
+        <div class="swiper-slide">{{> common/product/card no-js="true" type="carousel"}}</div>
       {{/foreach}}
       </div>
     </div>

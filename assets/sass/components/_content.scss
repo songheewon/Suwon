@@ -1,7 +1,11 @@
 /*------------------------------------*\
   Components > Content
 \*------------------------------------*/
-
+.s-product__content {
+  > * {
+    text-align: justify;
+  }
+}
 .c-content {
   width: 100%;
   display: flex;
@@ -12,27 +16,15 @@
   > * {
     min-width: 100%;
   }
-
-  > * + * {
-    margin-top: $space-24;
-  }
-
-  a {
-    text-decoration: underline;
-    text-underline-offset: $space-4;
-    color: var(--color-text-primary);
-
-    @include attention() {
-      color: var(--color-brand);
-    }
-  }
+  
 
   p, blockquote,
   dl, ol, ul,
   form,
   fieldset {
-    font-size: $type-lg;
-    line-height: $type-lg-lh;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 10px 0;
   }
 
   table {
@@ -68,8 +60,11 @@
   }
 
   h1 {
-    font-size: $type--h-sm;
+    font-size: 32px;
     line-height: $type--h-sm-lh;
+    @include mq($until: desktop) {
+      font-size: 28px;
+    }
 
     + h2, + h3, + h4, + h5, + h6 {
       margin-top: $space-16;
@@ -77,17 +72,23 @@
   }
 
   h2 {
-    font-size: $type--h-xs;
+    font-size: 24px;
     line-height: $type--h-xs-lh;
-
+    @include mq($until: desktop) {
+      font-size: 22px;
+    }
     + h3, + h4, + h5, + h6 {
       margin-top: $space-16;
     }
   }
 
   h3 {
-    font-size: $type--h-xxs;
+    font-size: 20px;
     line-height: $type--h-xxs-lh;
+    @include mq($until: desktop) {
+      font-size: 18px;
+    }
+
 
     + h4, + h5, + h6 {
       margin-top: $space-16;

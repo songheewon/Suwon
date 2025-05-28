@@ -1,9 +1,165 @@
-{{#if payment_status.is_paid}}
-  {{#if payment.is_online_class}}
+{{!-- {{#if payment_status.is_paid}}
+{{#if payment.is_online_class}}
 {{> common/product/header-vod }}
-  {{else}}
-{{> common/product/header-feature-image }}
-  {{/if}}
 {{else}}
 {{> common/product/header-feature-image }}
 {{/if}}
+{{else}}
+{{> common/product/header-feature-image }}
+{{/if}} --}}
+{{#match primary_tag.slug "=" "book"}}
+<div style="background-color: #F4F4F4">
+<div class="book-product__header">
+  <div class="book-product__header--container">
+    <div class="book-product__header--image-box">
+      <img class="book-product__header--image" src="{{img_url feature_image}}">
+    </div>
+  </div>
+  <div class="book-product__header--info">
+    <div class="book-product__header--tag">{{primary_tag.name}}</div>
+    <div class="book-product__header--title">{{title}}</div>
+    <div class="book-product__header--excerpt">{{custom_excerpt}}</div>
+    <div class="book-product__header--author">{{primary_author.name}}</div>
+    <div class="book-product__header--sell">
+      <div class="book-product__header--item">교보문고</div>
+      <div class="book-product__header--item">YES24</div>
+      <div class="book-product__header--item">알라딘</div>
+    </div>
+  </div>
+</div>
+</div>
+{{/match}}
+{{#match primary_tag.slug "=" "tool-kit"}}
+<div class="toolkit-product__header">
+  <div class="toolkit-product__header--container">
+    <div class="toolkit-product__header--image-box">
+      <img class="toolkit-product__header--image" src="{{img_url feature_image}}">
+    </div>
+  </div>
+  <div class="toolkit-product__header--info">
+    <div class="toolkit-product__header--tag">{{primary_tag.name}}</div>
+    <div class="toolkit-product__header--title">{{title}}</div>
+    <div class="toolkit-product__header--excerpt">{{custom_excerpt}}</div>
+  </div>
+</div>
+{{/match}}
+{{#match primary_tag.slug "=" "workshop"}}
+<div class="workshop-product__header">
+  <div class="workshop-product__header--container">
+    <div class="workshop-product__header--image-box">
+      <img class="workshop-product__header--image" src="{{img_url feature_image}}">
+    </div>
+  </div>
+  <div class="workshop-product__header--info">
+    <div class="workshop-product__header--tag">{{primary_tag.name}}</div>
+    <div class="workshop-product__header--title">{{title}}</div>
+    <div class="workshop-product__header--excerpt">{{custom_excerpt}}</div>
+  </div>
+</div>
+{{/match}}
+{{#match primary_tag.slug "=" "event"}}
+<div class="event-product__header">
+  <div class="event-product__header--container">
+    <div class="event-product__header--image-box">
+      <img class="event-product__header--image" src="{{img_url feature_image}}">
+    </div>
+  </div>
+  <div class="event-product__header--info">
+    <div class="event-product__header--tag">{{primary_tag.name}}</div>
+    <div class="event-product__header--title">{{title}}</div>
+    <div class="event-product__header--excerpt">{{custom_excerpt}}</div>
+  </div>
+</div>
+{{/match}}
+
+{{#if payment.is_online_class}}
+{{#if payment_status.is_paid}}
+<div class="bluedot-product-chapters">
+    <div class="bluedot-product-chapter-main">
+        <div class="bluedot-product-chapter-main-content">
+            <video-js id="video-for-chapter" class="vjs-default-skin vjs-big-play-centered" controls
+                preload="auto"></video-js>
+        </div>
+        <div class="bluedot-product-online">온라인 강좌</div>
+        <div class="bluedot-product-title">{{title}}</div>
+        <div class="bluedot-product-excerpt">{{excerpt}}</div>
+        <div class="bluedot-product-date-info">
+            {{#if payment.used_period_days}}
+            <div class="bluedot-product-field">{{payment.period_days_title}}</div>
+            <div class="bluedot-product-date">{{payment.period_days}}일
+                (오늘 구매시 {{payment.period_date_from_now}}까지 이용가능)</div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="bluedot-product-chapter-sidebar">
+        <div class="bluedot-product-chapter-sidebar-content">
+            <div class="bluedot-product-chapter-sidebar-top">
+                <div class="bluedot-product-chapter-length">총 <span
+                        class="bluedot-product-chapter-length-num">{{payment.purchase.chapters.length}}개</span>의 수업
+                </div>
+                {{#if payment.purchase.file.name}}
+                <a href="#" onclick="downloadURI('/file/{{uuid}}', '{{escape payment.purchase.file.name}}'); return false;">
+                    <div class="bluedot-product-zip-download">
+                        <svg width="12" height="12" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18 16.875C18 17.4962 17.4962 18 16.875 18H1.125C0.503789 18 0 17.4962 0 16.875C0 16.2538 0.503789 15.75 1.125 15.75H16.875C17.4962 15.75 18 16.2538 18 16.875ZM8.20441 13.3112C8.42414 13.5309 8.71207 13.6406 9 13.6406C9.28793 13.6406 9.57586 13.5309 9.79559 13.3112L13.7816 9.3252C14.2211 8.88574 14.2211 8.17348 13.7816 7.73402C13.3421 7.29457 12.6299 7.29457 12.1904 7.73402L10.125 9.79945V1.125C10.125 0.503789 9.62121 0 9 0C8.37879 0 7.875 0.503789 7.875 1.125V9.7998L5.80957 7.73438C5.37012 7.29492 4.65785 7.29492 4.2184 7.73438C3.77895 8.17383 3.77895 8.88609 4.2184 9.32555L8.20441 13.3116V13.3112Z"
+                                fill="white" />
+                        </svg>
+                        강의자료 다운받기
+                    </div>
+                </a>
+                {{/if}}
+            </div>
+            <div style="border-radius: 10px; overflow:hidden;">
+                {{#each payment.purchase.chapters as |chapter|}}
+                <div class="bluedot-product-chapter-header">
+                    <h3 class="bluedot-product-chapter-lesson-title">{{chapter.title}}</h3>
+                    <span class="bluedot-product-chapter-lesson-length">{{chapter.lessons.length}}개</span>
+                </div>
+
+                <div class="bluedot-product-chapter-list chapter-index-{{chapter.index}}">
+                    <ul>
+                        {{#each lessons as |lesson|}}
+                        <li class="lesson-index-{{lesson.index}} no-have-cover">
+                            <a href="#" class="lesson-link" data-video-uuid="{{lesson.media_uuid}}"
+                                data-video="{{lesson.url}}" data-video-view-current="{{lesson.media_info.view_current}}"
+                                data-video-view-percent="{{lesson.media_info.view_percent}}">
+                                <span class="no">{{lesson.index}}</span>
+                                <span class="title"><span>{{lesson.title}}</span></span>
+
+                                {{#if lesson.media_info}}
+                                <div class="progress">
+                                    <div class="now" style="width:{{lesson.media_info.view_percent}}%"></div>
+                                </div>
+                                {{/if}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="event-product__header">
+  <div class="event-product__header--container">
+    <div class="event-product__header--image-box">
+      <img class="event-product__header--image" src="{{img_url feature_image}}">
+    </div>
+  </div>
+  <div class="event-product__header--info">
+    <div class="event-product__header--tag">{{primary_tag.name}}</div>
+    <div class="event-product__header--title">{{title}}</div>
+    <div class="event-product__header--excerpt">{{custom_excerpt}}</div>
+  </div>
+</div>
+{{/if}}
+{{/if}}
+
+<style>
+  .progress {
+    width: 90% !important;
+  }
+</style>

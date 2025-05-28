@@ -1,19 +1,36 @@
-.s-products-navigation::-webkit-scrollbar {
-	display: none;
-}
 .s-products-navigation {
   &__container {
-    padding: 20px 0;
+    background-color: #F3F3EF;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  &__item {
+    cursor: pointer;
+  }
+
+  &__item a {
+    text-decoration: none;
+  }
+
+  &__item a:hover {
+    color: #979797;
+  }
+
+  &__list--current:hover {
+    color: #fff;
   }
 
   &__list {
     margin: 0;
     padding: 0;
-    list-style: none;
-
+    list-style: none !important;
+    text-decoration: none !important;
+    background-color: #F3F3EF;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
 
     gap: 14px;
     flex-wrap: wrap;
@@ -31,8 +48,8 @@
     min-width: 96px;
     padding: 0 16px;
     border-radius: 100rem;
-    border: 1px solid #d9d9d9;
-    color: #d9d9d9;
+    color: #979797;
+    background-color: #E9E9E9;
     transition: all 0.3s ease;
 
     @include mq($from: desktop) {
@@ -41,13 +58,8 @@
     }
 
     &--current {
-      color: #000;
-      border-color: #000;
-    }
-
-    @include attention() {
-      color: #000;
-      border-color: #000;
+      color: #FFFFFF;
+      background-color: #C0C0C0;
     }
   }
 }

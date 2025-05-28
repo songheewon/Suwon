@@ -3,7 +3,46 @@
 \*------------------------------------*/
 
 .c-pagination {
-  margin-bottom: $space-32;
+  margin: 50px auto;
+  text-align: center;
+  min-width: 340px;
+  max-width: 340px;
+  color: #C0C0C0;
+  max-height: 54px;
+  min-height: 54px;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  background-color: transparent;
+  cursor: pointer;
+
+  &__btn {
+    font-family: Noto Sans KR;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 16px;
+    cursor: pointer;
+    min-width: 340px;
+    padding: 10px 50px;
+    color: black;
+    background-color: transparent;
+    border: 0;
+    max-height: 54px;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    @include mq($until: desktop) {
+      width: 100%;
+      font-size: 18px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
 
   @include mq($from: desktop) {
     margin-bottom: $space-40;

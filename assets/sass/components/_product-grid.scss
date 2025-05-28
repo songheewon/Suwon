@@ -5,7 +5,7 @@
 
   @include mq($from: landscape) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 60px 40px;
+    gap: 52px 46px;
   }
 
   @include mq($from: desktop) {

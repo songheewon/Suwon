@@ -1,7 +1,13 @@
-{{#if next}}
-  <div class='o-grid__col o-grid__col--center o-grid__col--2-4-m o-grid__col--1-6-l'>
-    <div class='c-pagination'>
-      <button class='c-btn c-btn--outline c-btn--rounded c-btn--full js-load-posts'>{{t 'More Contents' }}({{plural pagination.total empty='No posts' singular='%개' plural='%개'}})</button>
-    </div>
-  </div>
-{{/if}}
+<div class='c-pagination'>
+  <button class='js-load-posts c-pagination__btn'>{{t 'More Contents' }} <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_249_141)">
+<path d="M13.7488 24.1448L13.7481 1.83293L17.4142 1.83293L17.4154 24.1429L27.2466 14.3118L29.8391 16.9043L15.5812 31.1622L1.32332 16.9043L3.91582 14.3118L13.7488 24.1448Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_249_141">
+<rect width="22.0351" height="22.0351" fill="white" transform="translate(31.1624 15.5811) rotate(135)"/>
+</clipPath>
+</defs>
+</svg>
+</button>
+</div>

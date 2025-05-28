@@ -1,7 +1,7 @@
 {
   "name": "suwon",
-  "description": "블루닷 수원(Suwon) 테마",
-  "version": "0.0.1",
+  "description": "블루닷 Suwon 테마",
+  "version": "0.1.0",
   "engines": {
     "ghost": ">=4.0.0"
   },

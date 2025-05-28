@@ -1,43 +1,35 @@
 {{#get "products" filter="featured:true" include="tags" limit=@config.posts_per_page order="published_at desc"}}
 {{#if products}}
 <div class="s-products-slide__container">
+
   <div class="s-products-slide__swiper-button s-products-slide__swiper-button--left">
-    <div class="swiper-button swiper-button-prev"
-      style="background-color: white; border: 1px solid #B9B9B9; width: 40px; height: 40px">
-      <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M0.712405 9.67974L8.72261 17.284C8.90773 17.4601 9.15504 17.557 9.41881 17.557C9.68259 17.557 9.9299 17.4601 10.115 17.284L10.7051 16.7241C11.0889 16.3594 11.0889 15.7662 10.7051 15.4022L3.97868 9.01635L10.7124 2.62354C10.8976 2.44744 11 2.213 11 1.96258C11 1.71216 10.8976 1.47737 10.7124 1.30128L10.1227 0.741396C9.93722 0.565304 9.69027 0.468399 9.4265 0.468399C9.16272 0.468399 8.91541 0.565304 8.73029 0.741396L0.712771 8.35262C0.526921 8.52906 0.425216 8.76489 0.425582 9.01566C0.42485 9.26712 0.526921 9.50295 0.712771 9.67939L0.712405 9.67974Z"
-          fill="#B9B9B9" />
+    <div class="swiper-button swiper-button-prev">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
       </svg>
     </div>
   </div>
 
-
   <div class="s-products-slide__main">
     <div class="s-products-slide__swiper">
-      <div class="swiper mobile-swiper" style="">
-        <div class="swiper-wrapper" style="">
+      <div class="swiper">
+        <div class="swiper-wrapper">
           {{#foreach products}}
-          <div class="swiper-slide" style="aspect-ratio: 16 / 9 !important;">
+          <div class="swiper-slide">
             {{> common/products/slide-item }}
           </div>
           {{/foreach}}
         </div>
       </div>
     </div>
-    <div class="s-products-slide__pagination swiper-pagination"
-      style="position: relative !important; padding-top: 40px;"></div>
+    <div class="s-products-slide__pagination swiper-pagination"></div>
   </div>
 
   <div class="s-products-slide__swiper-button s-products-slide__swiper-button--right">
-    <div class="swiper-button swiper-button-next"
-      style="background-color: white; border: 1px solid #B9B9B9; width: 40px; height: 40px">
-      <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M10.2876 8.32026L2.27739 0.715989C2.09227 0.539896 1.84496 0.442993 1.58119 0.442993C1.31741 0.442993 1.0701 0.539896 0.884982 0.715989L0.294872 1.27587C-0.0889006 1.64056 -0.0889006 2.23379 0.294872 2.59778L7.02132 8.98365L0.287555 15.3765C0.102437 15.5526 0 15.787 0 16.0374C0 16.2878 0.102437 16.5226 0.287555 16.6987L0.877299 17.2586C1.06278 17.4347 1.30973 17.5316 1.5735 17.5316C1.83728 17.5316 2.08459 17.4347 2.26971 17.2586L10.2872 9.64738C10.4731 9.47094 10.5748 9.23511 10.5744 8.98434C10.5752 8.73288 10.4731 8.49705 10.2872 8.32061L10.2876 8.32026Z"
-          fill="#B9B9B9" />
+    <div class="swiper-button swiper-button-next">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
       </svg>
-
     </div>
   </div>
 
@@ -47,28 +39,16 @@
 
 {{#contentFor "scripts"}}
 <script>
-  const featuredProductSlide = new Swiper(".s-products-slide__swiper .swiper", {
-    observer: true,
-    observeParents: true,
-    breakpoints: {
-      0: {
-        slidesPerView: "1",
-        spaceBetween: 5,
-      },
-      1024: {
-        slidesPerView: "2",
-        spaceBetween: 20,
-      },
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.s-products-slide__container .swiper-button-next',
-      prevEl: '.s-products-slide__container .swiper-button-prev',
-    },
-    watchSlidesProgress: true,
-  });
+const featuredProductSlide = new Swiper(".s-products-slide__swiper .swiper", {
+  spaceBetween: 20,
+  pagination: {
+    el: '.s-products-slide__container .swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.s-products-slide__container .swiper-button-next',
+    prevEl: '.s-products-slide__container .swiper-button-prev',
+  },
+});
 </script>
 {{/contentFor}}

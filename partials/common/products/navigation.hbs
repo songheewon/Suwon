@@ -1,13 +1,18 @@
 <div class="s-products-navigation__container">
   <div class="s-products-navigation">
-    <div style="display:none !important;">{{product_categories}}</div>
-    <ul class="s-products-navigation__list">
-      <li class="s-products-navigation__item s-products-navigation__item--all">
-        <a href="{{@site.url}}" class="s-products-navigation__link{{#match which "home"}} s-products-navigation__link--current{{/match}} {{link_class for="/" activeClass="s-products-navigation__link--current"}}">{{t '전체보기'}}</a>
-      </li>
-      {{#foreach product_categories}}
-      <li class="s-products-navigation__item s-products-navigation__item--{{slug}}">{{#link href=(url) class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}{{label}}{{/link}}</li>
-      {{/foreach}}
-    </ul>
+   <ul class="s-products-navigation__list">
+          <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}ALL{{/link}}</li>
+            <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/tag/doingletter"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}LETTER{{/link}}</li>
+            <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/shop/category/book"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}BOOK{{/link}}</li>
+            <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/shop/category/tool-kit"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}TOOL KIT{{/link}}</li>
+            <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/tag/article"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}ARTICLE{{/link}}</li>
+            <li class="s-products-navigation__item s-products-navigation__item--all">{{#link href="/shop"
+            class="s-products-navigation__link" activeClass="s-products-navigation__link--current"}}PROGRAM{{/link}}</li>
+        </ul>
   </div>
 </div>

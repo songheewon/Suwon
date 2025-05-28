@@ -176,6 +176,8 @@
     &--inner {
       display: flex;
       flex-direction: column;
+      margin: 0 auto;
+      justify-content: space-between;
 
       @include mq($from: desktop) {
         flex-direction: row;
@@ -272,7 +274,9 @@
 /* Article */
 .s-product {
   &__article {
+    margin: 0 auto;
     margin-bottom: 60px;
+    max-width: 690px;
 
     @include mq($from: desktop) {
       flex-grow: 1;
@@ -281,6 +285,13 @@
 
     &--header {
       margin-bottom: 20px;
+    }
+
+    &--book {
+      width: 55vw;
+      @include mq($until: desktop) {
+        width: 90vw;
+      }
     }
   }
 
@@ -341,9 +352,9 @@
 
   &__type {
     font-size: 12px;
-    line-height: 1.6;
-    letter-spacing: -0.02em;
-    color: var(--accent-color);
+    line-height: 17px;
+    letter-spacing: -2%;
+    font-weight: 700;
     margin-bottom: 6px;
   }
 
@@ -528,20 +539,56 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: white;
+    border: 1px solid #979797;
+    color: #979797;
+    font-weight: 700;
+    &:hover {
+      background-color: #979797;
+      color: white;
+    }
 
-    color: #fff;
-    background-color: var(--accent-color);
+    color: black;
+    background-color: white;
     border-radius: 11px;
     height: 56px;
     width: 100%;
 
-    @include attention() {
-      background-color: #717171;
-    }
-
     &.disabled {
       background-color: #d9d9d9;
       color: #535353;
+    }
+
+    &--toolkit {
+      background-color: white;
+      border: 1px solid #979797;
+      color: #979797;
+      font-weight: 700;
+      &:hover {
+        background-color: #979797;
+        color: white;
+      }
+    }
+
+    &--workshop {
+      background-color: white;
+      border: 1px solid #979797;
+      color: #979797;
+      font-weight: 700;
+      &:hover {
+        background-color: #979797;
+        color: white;
+      }
+    }
+    &--event {
+      background-color: white;
+      border: 1px solid #979797;
+      color: #979797;
+      font-weight: 700;
+      &:hover {
+        background-color: #979797;
+        color: white;
+      }
     }
   }
 }
@@ -599,7 +646,6 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
     @include mq($from: landscape) {
@@ -612,4 +658,458 @@
       column-gap: 20px;
     }
   }
+}
+
+.book-product {
+  &__header {
+    @include mq($until: desktop) {
+      display: block;
+      height: auto;
+    }
+    display: flex;
+    width: 70%;
+    max-width: 880px;
+    margin: 0 auto;
+    height: 520px;
+    background-color: #F4F4F4;
+    justify-content: space-between;
+    &--tag {
+      width: fit-content;
+      background-color: #e9e9e9;
+      color: #979797;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16.37px;
+    }
+    &--container {
+      width: 50%;
+      justify-content: start;
+      display: flex;
+      margin: auto 0;
+      @include mq($until: desktop) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &--image-box {
+      width: 280px;
+      height: 410px;
+      border: 1px solid #D0D0D0;
+      overflow: hidden;
+      @include mq($until: desktop) {
+        margin: 30px auto;
+        width: 180px;
+        height: 265px;
+      }
+    }
+    &--image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &--info {
+      height: 410px;
+      margin: auto;
+      justify-content: end;
+      width: 50%;
+      @include mq($until: desktop) {
+        height: fit-content;
+        width: fit-content;
+        padding: 0 5%;
+        padding-bottom: 30px;
+        display: unset;
+      }
+    }
+    &--title {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 35px;
+      letter-spacing: -2%;
+      margin-top: 10px;
+      @include mq($until: desktop) {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 28px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--excerpt {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: -2%;
+      margin-top: 20px;
+      @include ellipsis(5);
+      @include mq($until: desktop) {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--author {
+      margin-top: 60px;
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: -0.02em;
+      @include mq($until: desktop) {
+        margin-top: 30px;
+      }
+    }
+    &--sell {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      @include mq($until: desktop) {
+        margin-top: 10px;
+      }
+    }
+    &--item {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid #979797;
+      color: #979797;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 17.73px;
+      font-weight: 700;
+      
+    }
+  }
+}
+
+.toolkit-product {
+  &__header {
+    @include mq($until: desktop) {
+      display: block;
+      height: auto;
+    }
+    display: flex;
+    width: 100%;
+    height: 320px;
+    background-color: #F4F4F4;
+    justify-content: space-between;
+    &--tag {
+      width: fit-content;
+      background-color: #e9e9e9;
+      color: #979797;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16.37px;
+    }
+    &--container {
+      width: 35%;
+      justify-content: end;
+      display: flex;
+      margin: auto;
+      @include mq($until: desktop) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &--image-box {
+      width: 386px;
+      height: 240px;
+      border: 1px solid #D0D0D0;
+      overflow: hidden;
+      @include mq($until: desktop) {
+        margin: 30px auto;
+        width: 330px;
+        height: 200px;
+      }
+    }
+    &--image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &--info {
+      height: 240px;
+      margin: auto;
+      justify-content: start;
+      width: 45%;
+      @include mq($until: desktop) {
+        height: fit-content;
+        width: 100%;
+        padding: 0 5%;
+        padding-bottom: 30px;
+      }
+    }
+    &--title {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 35px;
+      letter-spacing: -2%;
+      margin-top: 10px;
+      @include mq($until: desktop) {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 28px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--excerpt {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 25px;
+      letter-spacing: -2%;
+      margin-top: 20px;
+      width: 60%;
+      @include ellipsis(5);
+      @include mq($until: desktop) {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--sell {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    &--item {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid #979797;
+      color: #979797;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 17.73px;
+      font-weight: 700;
+      font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    }
+  }
+}
+
+.workshop-product {
+  &__header {
+    @include mq($until: desktop) {
+      display: block;
+      height: auto;
+    }
+    display: flex;
+    width: 100%;
+    height: 320px;
+    background-color: #F4F4F4;
+    justify-content: space-between;
+    &--tag {
+      width: fit-content;
+      background-color: #e9e9e9;
+      color: #979797;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16.37px;
+    }
+    &--container {
+      width: 35%;
+      justify-content: end;
+      display: flex;
+      margin: auto;
+      @include mq($until: desktop) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &--image-box {
+      width: 386px;
+      height: 240px;
+      border: 1px solid #D0D0D0;
+      overflow: hidden;
+      @include mq($until: desktop) {
+        margin: 30px auto;
+        width: 330px;
+        height: 200px;
+      }
+    }
+    &--image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &--info {
+      height: 240px;
+      margin: auto;
+      justify-content: start;
+      width: 45%;
+      @include mq($until: desktop) {
+        height: fit-content;
+        width: 100%;
+        padding: 0 5%;
+        padding-bottom: 30px;
+      }
+    }
+    &--title {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 35px;
+      letter-spacing: -2%;
+      margin-top: 10px;
+      @include mq($until: desktop) {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 28px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--excerpt {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 25px;
+      letter-spacing: -2%;
+      margin-top: 20px;
+      width: 60%;
+      @include ellipsis(5);
+      @include mq($until: desktop) {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--sell {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    &--item {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid #FFA91A;
+      color: #FFA91A;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 17.73px;
+      font-weight: 700;
+      font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    }
+  }
+}
+
+.event-product {
+  &__header {
+    @include mq($until: desktop) {
+      display: block;
+      height: auto;
+    }
+    display: flex;
+    width: 100%;
+    height: 320px;
+    background-color: #F4F4F4;
+    justify-content: space-between;
+    &--tag {
+      width: fit-content;
+      background-color: #E9E9E9;
+      color: #979797;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16.37px;
+    }
+    &--container {
+      width: 35%;
+      justify-content: end;
+      display: flex;
+      margin: auto;
+      @include mq($until: desktop) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &--image-box {
+      width: 386px;
+      height: 240px;
+      border: 1px solid #D0D0D0;
+      overflow: hidden;
+      @include mq($until: desktop) {
+        margin: 30px auto;
+        width: 330px;
+        height: 200px;
+      }
+    }
+    &--image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &--info {
+      height: 240px;
+      margin: auto;
+      justify-content: start;
+      width: 45%;
+      @include mq($until: desktop) {
+        height: fit-content;
+        width: 100%;
+        padding: 0 5%;
+        padding-bottom: 30px;
+      }
+    }
+    &--title {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 35px;
+      letter-spacing: -2%;
+      margin-top: 10px;
+      @include mq($until: desktop) {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 28px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--excerpt {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 25px;
+      letter-spacing: -2%;
+      margin-top: 20px;
+      width: 60%;
+      @include ellipsis(5);
+      @include mq($until: desktop) {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.02em;
+      }
+    }
+    &--sell {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    &--item {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid #979797;
+      color: #979797;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 17.73px;
+      font-weight: 700;
+      font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    }
+  }
+}
+
+.s-product-sell__download--button {
+  background-color: white !important;
+  border: 1px solid #979797 !important;
+  color: #979797 !important;
+  font-weight: 700 !important;
+  height: 56px !important;
+  border-radius: 16px !important;
+  &:hover {
+    background-color: #979797 !important;
+    color: white !important;
+  } 
 }

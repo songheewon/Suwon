@@ -1,16 +1,11 @@
 <div class="s-product-sell__container">
   <div class="s-product-sell">
     <header class="s-product-sell__header">
-      {{#if payment.type}}
-      <div class="s-product-sell__type">{{payment.type_text}}</div>
-      {{/if}}
+      <div class="s-product-sell__type" style="color: #979797">{{primary_tag.name}}</div>
       <h2 class="s-product-sell__title">{{title}}</h2>
     </header>
 
-
-
     <div class="s-product-sell__data">
-
     {{#if payment.is_webinar}}
       <div class="s-product-sell__event">
         {{#if payment.event.type}}
@@ -132,7 +127,6 @@
 
     </div>{{!-- Data --}}
 
-
     {{#unless payment_status.is_paid}}
     {{!-- 가격 정보 --}}
     <div class="s-product-sell__prices">
@@ -175,7 +169,7 @@
       <div class="s-product-sell__price">
         <div class="s-product-sell__price--label">무료회원 할인가</div>
         <div class="s-product-sell__price--value">
-          <span class="s-product-sell__price--percent">{{payment.price_original_sale_percent}}<span class="symbol">%</span></span>
+          <span class="s-product-sell__price--percent" style="color: #979797 !important;">{{payment.price_original_sale_percent}}<span class="symbol">%</span></span>
           {{price payment.price currency="KRW"}}
         </div>
       </div>
@@ -195,7 +189,6 @@
     {{/unless}}
 
 
-
     <footer class="s-product-sell__footer">
 
 
@@ -213,20 +206,20 @@
 
                     {{#if payment.purchase.file}}
                       {{#if payment.purchase.file.is_mp4}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                       {{else}}
                         {{#if payment.purchase.file.name}}
                           {{#if payment.purchase.file.downloadable}}
-                <a class="s-product-sell__payment--button s-product-sell__download--button" {{#if payment.purchase.file.is_pdf}}href="/file/{{uuid}}"{{else}}href="#" onclick="downloadURI('/file/{{uuid}}', '{{payment.purchase.file.name}}'); return false;"{{/if}}>{{payment.purchase.file.ext}} 다운로드</a>
+                <a class="s-product-sell__payment--button s-product-sell__download--button" {{#if payment.purchase.file.is_pdf}}href="/file/{{uuid}}"{{else}}href="#" onclick="downloadURI('/file/{{uuid}}', '{{escape payment.purchase.file.name}}'); return false;"{{/if}}>다운로드</a>
                           {{else}}
                 <a class="s-product-sell__payment--button" href="/file/{{uuid}}">첨부파일 보기</a>
                           {{/if}}
                         {{else}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                         {{/if}}
                       {{/if}}
                     {{else}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                     {{/if}}
 
                   {{/if}}
@@ -234,39 +227,66 @@
 
                   {{#if payment.purchase.file}}
                     {{#if payment.purchase.file.is_mp4}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                     {{else}}
                       {{#if payment.purchase.file.name}}
                         {{#if payment.purchase.file.downloadable}}
-                <a class="s-product-sell__payment--button s-product-sell__download--button" {{#if payment.purchase.file.is_pdf}}href="/file/{{uuid}}"{{else}}href="#" onclick="downloadURI('/file/{{uuid}}', '{{payment.purchase.file.name}}'); return false;"{{/if}}>{{payment.purchase.file.ext}} 다운로드</a>
+                <a class="s-product-sell__payment--button s-product-sell__download--button" {{#if payment.purchase.file.is_pdf}}href="/file/{{uuid}}"{{else}}href="#" onclick="downloadURI('/file/{{uuid}}', '{{escape payment.purchase.file.name}}'); return false;"{{/if}}>다운로드</a>
                         {{else}}
                 <a class="s-product-sell__payment--button" href="/file/{{uuid}}">첨부파일 보기</a>
                         {{/if}}
                       {{else}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                       {{/if}}
                     {{/if}}
                   {{else}}
-                <div class="s-product-sell__payment--button disabled">구매완료</div>
+                <div class="s-product-sell__payment--button disabled" style="border: 0">구매완료</div>
                   {{/if}}
 
                 {{/if}}
               {{else}}
                 {{#if payment.is_selling}}
-                <a class="s-product-sell__payment--button" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
+              {{#match primary_tag.slug "=" "tool-kit"}}
+                <a class="s-product-sell__payment--button s-product-sell__payment--button--toolkit" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
                 {{#if (eq payment.type "webinar")}}
-                  {{#if payment.price_final}}결제하기{{else}}등록하기{{/if}}
+                  {{#if payment.price_final}}다운받기{{else}}등록하기{{/if}}
                 {{else}}
-                  결제하기
+                  다운받기
                 {{/if}}
                 </a>
+              {{/match}}
+              {{#match primary_tag.slug "=" "workshop"}}
+                <a class="s-product-sell__payment--button s-product-sell__payment--button--workshop" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
+                {{#if (eq payment.type "webinar")}}
+                  참여하기
                 {{else}}
-                <div class="s-product-sell__payment--button disabled">{{#if payment.is_stop_selling}}판매 종료{{else}}{{#if payment.is_soldout}}품절{{/if}}{{/if}}</div>
+                  참여하기
+                {{/if}}
+                </a>
+              {{/match}}
+               {{#match primary_tag.slug "=" "event"}}
+                <a class="s-product-sell__payment--button s-product-sell__payment--button--event" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
+                {{#if (eq payment.type "webinar")}}
+                 참여하기
+                {{else}}
+                  참여하기
+                {{/if}}
+                </a>
+              {{/match}}
+              {{#match primary_tag.slug "=" "class"}}
+                <a class="s-product-sell__payment--button s-product-sell__payment--button--event" href="#" data-portal="product" data-product-uuid="{{ uuid }}">
+                {{#if (eq payment.type "webinar")}}
+                  {{#if payment.price_final}}참여하기{{else}}등록하기{{/if}}
+                {{else}}
+                  수강하기 
+                {{/if}}
+                </a>
+              {{/match}}
+                {{else}}
+                <div class="s-product-sell__payment--button disabled" style="border: 0">{{#if payment.is_stop_selling}}판매 종료{{else}}{{#if payment.is_soldout}}품절{{/if}}{{/if}}</div>
                 {{/if}}
               {{/if}}
               </div>
-
-
     </footer>
   </div>
 </div>

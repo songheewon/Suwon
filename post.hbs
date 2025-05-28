@@ -1,6 +1,4 @@
 {{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} {{#post}}
-  <div class='o-grid'>
-    <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
       <article class='c-{{ post_class }}'>
         {{> post-header }}
         {{!-- Show the tags, share, author, subscribe box, and comments if visitor can access the post, this means that:
@@ -12,16 +10,6 @@
           {{ content }}
         </section>
 
-        {{bluedot_comment_button}}
-
-        {{#if tags}}
-        <section class='c-tags'>
-          {{ tags separator='' }}
-        </section>
-        {{/if}}
-
-        {{> post-community }}
-
         {{!-- {{> share }} --}}
 
         {{#primary_author}}
@@ -31,13 +19,6 @@
         {{!-- If the post is published for members and paid members and the visitor is not one of those, show the
         upgrade
         box --}}
-        {{#unless @member}}
-        {{#if access}}
-
-        {{> subscribe-form-n inputLabel='subscribe-email-post'}}
-
-        {{/if}}
-        {{/unless}}
 
         {{!-- If the post is published for members and paid members and the visitor is not one of those, show the
         upgrade
@@ -47,8 +28,6 @@
         {{bluedot_paywall}}
         {{/if}}
       </article>
-    </div>
-  </div>
 
   {{bluedot_paywall_popup}}
 
@@ -57,15 +36,4 @@
   <div class="o-grid">
     {{> related-posts}}
   </div>
-  {{/if}}
-  {{#if @site.post_visible_shop_section}}
-  <section class="c-home-shop-section">
-    <div class="c-home-products-carousel">
-      <div class="o-grid">
-        <div class="o-grid__col o-grid__col--full">
-          {{> common/products/carousel-section which="home" nav="true" title=@site.shop_section_title }}
-        </div>
-      </div>
-    </div>
-  </section>
   {{/if}}

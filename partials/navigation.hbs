@@ -1,13 +1,13 @@
-{{#match isDrawer "=" "drawer"}}
+{{#match loc "=" "footer"}}
 {{#foreach navigation}}
-<li class="c-nav__item c-nav__item--{{slug}} c-header-mobile__nav--item--container">
-  <a href="{{ url absolute="true" }}" class="c-nav__link c-header-mobile__nav--item" style="font-weight: 700 !important;">{{ label }}</a>
+<li class="c-nav__item c-nav__item--{{slug}}">
+  <a href="{{ url absolute=" true" }}" class="c-nav__link {{#if current}} c-nav__link--current {{/if}}">{{ label }}</a>
 </li>
 {{/foreach}}
 {{else}}
 {{#foreach navigation}}
 <li class="c-nav__item c-nav__item--{{slug}}">
-  <a href="{{ url absolute="true" }}" class="c-nav__link {{#if current}} c-nav__link--current {{/if}}">{{ label }}</a>
+  <a href="{{ url absolute=" true" }}" class="c-nav__link {{#if current}} c-nav__link--current {{/if}}">{{ label }}</a>
 </li>
 {{/foreach}}
 {{/match}}

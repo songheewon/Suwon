@@ -6,7 +6,6 @@
 
  /* Container */
  .s-product-card {
-  background-color: #fff;
   overflow: hidden;
   position: relative;
 }
@@ -28,17 +27,18 @@
 .s-product-card {
   &__media {
     position: relative;
-    background-color: #D9D9D9;
     aspect-ratio: 16 / 9;
     width: 100%;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 20px;
+    background-color: var(--accent-color);
   }
 
   &__image {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    object-position: center;
   }
 }
 
@@ -55,9 +55,18 @@
   }
 
   &__tag {
-    font-size: 10px;
-    line-height: 12px;
-    font-weight: 700;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: -2%;
+    color: black;
+    background-color: white;
+    border-radius: 14.5px;
+    border: 1px solid black;
+    padding: 4px 12px;
+    width: fit-content;
+    margin-bottom: 5px;
   }
 
   &__chip {
@@ -86,50 +95,28 @@
   }
 
   &__date {
-    display: none;
-
-    @include mq($from: landscape) {
-      display: block;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-    }
-
-    &--label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 15px;
-      letter-spacing: -0.02em;
-
-      border-radius: 100rem;
-      padding: 4px 12px;
-      color: #fff;
-      background-color: #333;
-      border: 1px solid rgba(185, 185, 185, 0.5);
-    }
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -2%;
+    margin-top: 5px;
   }
 
   &__title {
-    font-family: " Pretendard Variable",
-        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
-        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
-        , "Segoe UI Symbol" , sans-serif !important;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 28px;
-    letter-spacing: -1px;
-    color: #505050;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -2%;
     @include ellipsis(2);
 
-    @include mq($from: desktop) {
+    @include mq($until: desktop) {
+      font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+      font-weight: 800;
       font-size: 18px;
-      font-weight: 600;
-      line-height: 25px;
-      letter-spacing: -1px;
+      line-height: 36px;
+      letter-spacing: -2%;
     }
   }
 
@@ -139,10 +126,11 @@
     height: 18px;
     display: flex;
     gap: 10px;
-    font-family: " Pretendard Variable",
-        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
-        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
-        , "Segoe UI Symbol" , sans-serif !important;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    @include mq($until: desktop) {
+      font-size: 12px;
+      line-height: 12px;
+    }
     &--title {
       font-size: 14px;
       font-weight: 700;
@@ -189,10 +177,7 @@
     }
 
     &--number {
-      font-family: " Pretendard Variable",
-        Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue" , "Segoe UI"
-        , "Apple SD Gothic Neo" , "Noto Sans KR" , "Malgun Gothic" , "Apple Color Emoji" , "Segoe UI Emoji"
-        , "Segoe UI Symbol" , sans-serif !important;
+      font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
       font-size: 18px;
       font-weight: 800;
       line-height: 21px;

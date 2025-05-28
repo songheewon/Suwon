@@ -42,12 +42,6 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-
-    a {
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
   &__excerpt {

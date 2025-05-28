@@ -40,6 +40,9 @@
 
   &__outer {
     background-color: var(--color-header-background);
+    @include mq($until: desktop) {
+      border-bottom: 1px solid #000;
+    }
   }
 
   &__main {
@@ -60,11 +63,16 @@
   &__member {
     flex-grow: 0;
     flex-shrink: 0;
-    color: black !important;
+    color: black;
     &--signin {
+      background-color: var(--accent-color);
       padding: 3px 15px;
       border: 1px solid black;
       border-radius: 14.5px;
+    }
+    &--signin:hover {
+      background-color: black;
+      color: white;
     }
   }
 
@@ -143,6 +151,12 @@
 
     li.c-nav__item {
       margin: 0;
+    }
+
+    li.c-nav__item:hover {
+      border-bottom: 3px solid currentColor;
+      padding-bottom: 2px;
+      margin-bottom: -5px;
     }
 
     &--outer {
@@ -367,8 +381,8 @@
   }
 
   .c-header__search {
-    max-width: none;
-    display: flex;
+  max-width: none;
+  display: flex;
   align-items: center;
   background-color: #fff;
   padding: 20px 0;
@@ -390,11 +404,11 @@
       font-weight: 700;
     }
   }
-
+  
   .c-header__nav {
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-column-gap: 20px;
+    grid-template-columns: repeat(1, 1fr); 
+    grid-row-gap: 40px;
     list-style: none;
 
     .c-nav__link {

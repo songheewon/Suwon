@@ -1,14 +1,21 @@
 .s-products-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 20px;
-
+  grid-template-columns: repeat(1, 1fr);
+  gap: 36px 10px;
+  width: 92%;
+  &__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
   @include mq($from: desktop) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 52px 46px;
   }
 
-  @include mq($from: desktop) {
+  @include mq($until: desktop) {
+    width: 100%;
     // grid-template-columns: repeat(4, 1fr);
   }
 

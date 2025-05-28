@@ -1,68 +1,396 @@
-{{!< default}} {{#contentFor "custom_body_class" }} shop-template{{/contentFor}} <div class="s-products__container">
-    <div class="s-products-hero">
-        <div class="o-grid" style="padding: 1%;">
-            <div class="o-grid__col o-grid__col--full" style="padding: 0">
-                {{> common/products/slide }}
+{{!< default}} {{#contentFor 'title' }}{{ meta_title }}{{/contentFor}} {{!-- [Home Hero Section] --}} 
+<div class="o-grid" >
+<div class="s-products__header">
+    <div class="s-products__header--name">{{@site.feature_content_section_title}}</div>
+    <div class="s-products__header--container">
+        <div class="s-products__header--slide">
+            {{> carousel }}
+        </div>
+        <div class="s-products__header--popular--container" style="">
+        <div class="s-products__header--popular">
+            <div class="s-products__header--popular--title">
+                <svg width="17" height="24" viewBox="0 0 17 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_49_2)">
+<path d="M16.9822 15.0258C16.9822 15.0258 16.9822 15.0211 16.9817 15.0187C16.9097 14.0175 16.7254 13.1672 16.4021 12.3459C16.3979 12.3337 16.3933 12.3211 16.3881 12.3089C16.3699 12.2644 14.554 7.82529 15.4039 5.38545C15.4806 5.16513 15.4432 4.92138 15.3047 4.73435C15.1663 4.54732 14.9441 4.44138 14.7111 4.45123C14.6489 4.45404 13.3789 4.52435 12.0317 5.71216C10.8529 3.27466 10.6667 0.684821 10.6644 0.656227C10.6485 0.411071 10.5063 0.192634 10.2892 0.0787274C10.0722 -0.0347101 9.81162 -0.0267414 9.60206 0.10029C7.74123 1.2267 6.30422 2.60107 5.32984 4.18545C4.5435 5.46466 4.05842 6.87794 3.88814 8.38591C3.78617 9.29154 3.81049 10.1198 3.88581 10.8154C3.92089 11.1379 3.59953 11.3803 3.30015 11.2575L1.49452 10.5173C1.3715 10.4667 1.23678 10.4461 1.10533 10.4672C0.828874 10.5117 0.613696 10.7104 0.539787 10.9678C0.376065 11.5392 0.253039 12.067 0.164629 12.5817C-0.143637 14.3747 -0.0178043 16.2108 0.529496 17.8922C1.0796 19.5825 2.02873 21.0379 3.27442 22.1015C4.74652 23.3583 6.52922 23.9981 8.47331 23.9981C9.54592 23.9981 10.6677 23.8031 11.8137 23.4098C13.631 22.7854 15.0704 21.5494 15.976 19.8342C16.7287 18.4087 17.086 16.7011 16.9822 15.0253V15.0258Z" fill="#8BA8FF"/>
+<path d="M10.3987 12.1875C10.2214 11.9222 9.88834 11.8102 9.58709 11.9142C9.28584 12.0183 9.09265 12.3126 9.11651 12.6309C9.20024 13.7545 9.08797 17.0578 7.52887 17.4862C6.20131 17.8509 5.49356 17.235 5.42433 17.1712C5.25219 16.9833 4.99959 16.912 4.7512 16.9716C4.50141 17.0316 4.31242 17.2327 4.246 17.4816C4.2329 17.5308 4.11549 17.9719 4.06591 18.2587C3.74875 20.1028 4.35031 21.9305 5.63624 23.0283C6.3903 23.6723 7.30012 24 8.28901 24C8.82836 24 9.39156 23.9025 9.96553 23.7051C10.8903 23.3873 11.6813 22.7156 12.2525 21.7617C12.7306 20.9639 13.0084 20.033 13.015 19.208C13.0323 17.0845 12.2254 14.9194 10.3987 12.1875Z" fill="#CDDAFF"/>
+</g>
+<defs>
+<clipPath id="clip0_49_2">
+<rect width="17" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+                인기 콘텐츠</div>
+                {{#match @site.feature_content_section_due_date "=" "seven_days"}}
+                {{#get "posts" filter="published_at:>=now-7d" limit="3" order="view_count desc" as |posts|}}
+                {{#if posts}}
+                {{#foreach posts}}
+                {{#match @index 0}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">1</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 1}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">2</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 2}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">3</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{/foreach}}
+                {{/if}}
+                {{/get}}
+                {{else match @site.feature_content_section_due_date "=" "fourteen_days"}}
+                {{#get "posts" filter="published_at:>=now-14d" limit="3" order="view_count desc" as |posts|}}
+                {{#if posts}}
+                {{#foreach posts}}
+                {{#match @index 0}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">1</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 1}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">2</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 2}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">3</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{/foreach}}
+                {{/if}}
+                {{/get}}
+                {{else}}
+                {{#get "posts" filter="published_at:>=now-30d" limit="3" order="view_count desc" as |posts|}}
+                {{#if posts}}
+                {{#foreach posts}}
+                {{#match @index 0}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">1</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 1}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">2</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{#match @index 2}}
+                <a href="{{url}}" class="s-products__header--popular--item">
+                    <div class="s-products__header--popular--item--number">3</div>
+                    <div class="s-products__header--popular--item--title">{{title}}</div>
+                </a>
+                {{/match}}
+                {{/foreach}}
+                {{/if}}
+                {{/get}}
+                {{/match}}
+                
+
+        </div>
+        <div class="s-products__header--subscriber">
+            <div class="s-products__header--subscriber--title">
+                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_49_43)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.6539 15C0.74433 15 0 14.2486 0 13.3304V1.66963C0 0.751411 0.74433 0 1.6539 0H21.3461C22.2557 0 23 0.751411 23 1.66963V13.3309C23 14.2491 22.2557 15.0005 21.3461 15.0005L1.6539 15Z" fill="#7799FF"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 10.0666L0.595871 0.38855C0.232349 0.695479 0 1.15639 0 1.66964V13.3309C0 14.2491 0.74433 15 1.6539 15H21.3461C22.2557 15 23 14.2486 23 13.3304V1.66964C23 1.1569 22.7677 0.695479 22.4041 0.38855L11.5 10.0661V10.0666Z" fill="#B4C7FF"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 10.0665L8.72148 7.60187L0.483521 14.5073C0.78349 14.8111 1.19785 15 1.65391 15H21.3461C21.8022 15 22.2165 14.8111 22.5165 14.5073L14.278 7.60187L11.4995 10.0665H11.5Z" fill="#8BA8FF"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_49_43">
+            <rect width="23" height="15" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>
+            {{@site.subscription_form_title}}
+            </div>
+            <div class="s-products__header--subscriber--input">
+                <form data-members-form='subscribe' class='c-subscribe-form is-membership {{ formClass }}'>
+  <div class='c-form-group s-products__header--subscriber--input--form' style="">
+    <label for='{{ inputLabel }}' class='u-hidden-visually'>{{t 'Your email address' }}</label>
+    <input type='email' name='email' class='c-form-group__input' id='{{ inputLabel }}' placeholder='Email Address' style="background-color: white; border-radius: 10px; color: #D9D9D9; border: 1px solid #D9D9D9" required data-members-email>
+    <button type='submit' value='{{t 'Subscribe' }}' class="s-products__header--subscribe--button" style="cursor: pointer">{{t 'Subscribe' }}</button>
+  </div>
+
+  <div class='c-alert c-alert--success'>{{t 'Please check your inbox and click the link to confirm your subscription.' }}</div>
+  <div class='c-alert c-alert--invalid'>{{t 'Please enter a valid email address!' }}</div>
+  <div class='c-alert c-alert--error'>{{t 'An error occurred, please try again later.' }}</div>
+</form>
             </div>
         </div>
+        {{!-- <div class="s-products__header--subscribe">
+            <form data-members-form='subscribe' class='c-subscribe-form is-membership {{ formClass }}'>
+  <div class='c-form-group' style="display: flex;">
+    <label for='{{ inputLabel }}' class='u-hidden-visually'>{{t 'Your email address' }}</label>
+    <input type='email' name='email' class='c-form-group__input' id='{{ inputLabel }}' placeholder='Email Address' style="background-color: white; border-radius: 5px; color: #ADB5BF; border: 1px solid #DCE9F8" required data-members-email>
+    <button type='submit' value='{{t 'Subscribe' }}' class="s-products__header--subscribe--button" style="cursor: pointer">{{t 'Subscribe' }}</button>
+  </div>
+
+  <div class='c-alert c-alert--success'>{{t 'Please check your inbox and click the link to confirm your subscription.' }}</div>
+  <div class='c-alert c-alert--invalid'>{{t 'Please enter a valid email address!' }}</div>
+  <div class='c-alert c-alert--error'>{{t 'An error occurred, please try again later.' }}</div>
+</form>
+        </div> --}}
     </div>
-    <div class="s-products-main">
-        <div class="o-grid" >
-            <div class="s-products-navigation__container" style="width: 100%;">
-                <div class="s-products-navigation" style="width: 100%; overflow-x: scroll; white-space: nowrap;">
-                    <div style="display:none !important;">{{product_categories}}</div>
-                    <ul class="s-products-navigation__list" style="display: inline-block">
-                        <li class="s-products-navigation__item s-products-navigation__item--all" style="display: inline-block;">
-                            <a href="{{@site.url}}"
-                                class="s-products-navigation__link s-products-navigation__link--current {{link_class for="
-                                /shop/" activeClass="s-products-navigation__link--current" }}">{{t '전체보기'}}</a>
-                        </li>
-                        {{#foreach product_categories}}
-                        <li class="s-products-navigation__item s-products-navigation__item--{{slug}}" style="display: inline-block; margin-left: 10px;">{{#link
-                            href=(url) class="s-products-navigation__link"
-                            activeClass="s-products-navigation__link--current"}}{{label}}{{/link}}</li>
-                        {{/foreach}}
-                    </ul>
-                </div>
-            </div>
-            <div class="s-products-search">
-                <form id="c-search-form" type="submit">
-                    <div class="c-search-form">
-                        <input class="c-search-form__input c-search__stx" type="text" placeholder="검색어를 입력하세요.">
-                        <div class="c-search-form__button--container">
-                            <button type="submit" class="c-search-form__button">
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.56443 11.2052C9.16999 11.4137 8.8236 11.6306 8.45084 11.7875C6.80391 12.4864 5.15639 12.4774 3.52762 11.7245C2.32026 11.1665 1.39833 10.2847 0.754209 9.10985C0.219179 8.12769 -0.0399566 7.01557 0.0049952 5.89448C0.049947 4.7734 0.397265 3.68628 1.00916 2.7514C1.58098 1.8705 2.36861 1.15526 3.29494 0.67569C4.30665 0.149689 5.4441 -0.0765703 6.57683 0.0228593C7.70956 0.122289 8.79173 0.543383 9.69923 1.23785C10.8222 2.09594 11.5747 3.21669 11.9264 4.59594C12.3367 6.22359 12.1239 7.77576 11.2975 9.23464C11.2207 9.37013 11.2231 9.44203 11.3362 9.55494C12.4217 10.646 13.5001 11.7447 14.582 12.8393C14.9565 13.2179 15.0995 13.6576 14.9337 14.1788C14.6869 14.962 13.6777 15.2651 13.05 14.7457C12.9708 14.6797 12.8946 14.6096 12.822 14.5365C11.7646 13.4669 10.7081 12.3954 9.65234 11.3222C9.61998 11.2857 9.59058 11.2465 9.56443 11.2052ZM10.1611 6.14336C10.1499 3.84838 8.2967 1.9765 6.05429 1.99552C3.77964 2.01513 1.95161 3.8775 1.96391 6.15941C1.97857 8.45618 3.82419 10.3144 6.07715 10.2995C8.33011 10.2847 10.1716 8.41814 10.1611 6.14336Z"
-                                        fill="#858585" />
-                                </svg>
-                            </button>
+    </div>
+    <div class="s-products__header--feature2">
+        {{> carousel2 }}
+    </div>
+</div>
+</div>
+
+
+<div>
+
+  {{!-- [Home Subscribe Section] --}}
+  <div class="o-grid">
+    <div class="s-products-main__header">
+                <div class="s-products-main__header--title">전체보기</div>
+                <div class="s-products-main__header--buttons">
+                    <div class="s-products-main__header--tag"></div>
+                  <div class="s-products-main__header--date"></div>
+                    <button class="s-products-main__header--filter" onclick="toggleFilter()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0001 10.0002C18.2093 10.0002 20 8.20912 20 6.00035C20 3.79158 18.2093 2 16.0001 2C14.1363 2 12.5702 3.27501 12.1258 5.00003H0.999859C0.447663 5.00003 0 5.44769 0 5.99988C0 6.55208 0.447663 6.99974 0.999859 6.99974H12.1258C12.5697 8.72475 14.1358 9.99977 16.0001 9.99977V10.0002ZM14.0004 5.99988C14.0004 7.10427 14.8957 8.00006 16.0006 8.00006C17.1054 8.00006 18.0008 7.10474 18.0008 5.99988C18.0008 4.89503 17.1054 3.99971 16.0006 3.99971C14.8957 3.99971 14.0004 4.89503 14.0004 5.99988ZM0 14.0001C0 11.7909 1.79112 10.0002 3.99991 10.0002C5.86369 10.0002 7.4298 11.2752 7.87372 13.0003H19.0001C19.5523 13.0003 20 13.4479 20 14.0001C20 14.5523 19.5523 15 19.0001 15H7.87372C7.4298 16.725 5.86369 18 3.99991 18C1.79112 18 0 16.2094 0 14.0001ZM6.00009 14.0001C6.00009 12.8957 5.10477 11.9999 3.99991 11.9999C2.89505 11.9999 1.99972 12.8953 1.99972 14.0001C1.99972 15.105 2.89505 16.0003 3.99991 16.0003C5.10477 16.0003 6.00009 15.105 6.00009 14.0001Z" fill="black"/>
+                        </svg>
+                        필터
+                    </button>
+                    <div class="filter-dropdown" style="display: none;">
+                      <div class="filter-dropdown2">
+                        <div class="filter-section">
+                            <div>주제</div>
+                            <div class="tag-filters">
+                                {{bluedot_tag_filters}}
+                            </div>
+                        </div>
+                        <div class="filter-section">
+                            <div>기간</div>
+                            <div class="year-filters">
+                                <label><input type="checkbox" name="year" value="2025"> 2025년</label>
+                                <label><input type="checkbox" name="year" value="2024"> 2024년</label>
+                                <label><input type="checkbox" name="year" value="2023"> 2023년</label>
+                                <label><input type="checkbox" name="year" value="2022"> 2022년</label>
+                                <label><input type="checkbox" name="year" value="2021"> 2021년</label>
+                                <label><input type="checkbox" name="year" value="2020"> 2020년</label>
+                                <label><input type="checkbox" name="year" value="2019"> 2019년</label>
+                                <label><input type="checkbox" name="year" value="2018"> 2018년</label>
+                                <label><input type="checkbox" name="year" value="2017"> 2017년</label>
+                                <label><input type="checkbox" name="year" value="2016"> 2016년</label>
+                                <label><input type="checkbox" name="year" value="2015"> 2015년</label>
+                                <label><input type="checkbox" name="year" value="2014"> 2014년</label>
+                                <label><input type="checkbox" name="year" value="2013"> 2013년</label>
+                                <label><input type="checkbox" name="year" value="2012"> 2012년</label>
+                                <label><input type="checkbox" name="year" value="2011"> 2011년</label>
+                                
+                            </div>
+                        </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button onclick="applyFilters()">적용</button>
+                            <button onclick="resetFilters()">초기화</button>
                         </div>
                     </div>
-                </form>
+                    <div class="s-products__header--order" >
+            <button class="order-button" aria-expanded="false">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.545 14.1839L14.0289 17.7394C14.3691 18.0867 14.9205 18.0867 15.2607 17.7394L18.7446 14.1839C19.0848 13.8367 19.0848 13.2739 18.7446 12.9267C18.4043 12.5794 17.8529 12.5794 17.5127 12.9267L15.5155 14.9644V2.88889C15.5155 2.39778 15.1257 2 14.6445 2C14.1633 2 13.7736 2.39778 13.7736 2.88889V14.965L11.7763 12.9272C11.4361 12.58 10.8847 12.58 10.5445 12.9272C10.2043 13.2744 10.2043 13.8372 10.5445 14.1844L10.545 14.1839ZM5.97032 2.26056C5.6301 1.91333 5.07867 1.91333 4.73846 2.26056L1.25516 5.81611C0.914945 6.16333 0.914945 6.72611 1.25516 7.07333C1.59538 7.42056 2.14681 7.42056 2.48703 7.07333L4.48424 5.035V17.1111C4.48424 17.6022 4.874 18 5.3552 18C5.83641 18 6.22616 17.6022 6.22616 17.1111V5.035L8.22338 7.07333C8.5636 7.42056 9.11502 7.42056 9.45524 7.07333C9.79546 6.72611 9.79546 6.16333 9.45524 5.81611L5.97032 2.26056Z" fill="black"/>
+</svg>
+
+                <span id="currentOrder" style="font-size: 14px;">최신순</span>
+            </button>
+            <div class="order-dropdown">
+                <button class="order-option" data-order="latest">
+                    <a href="/?order=latest" onclick="updateOrder('latest')" id="latest">최신순</a>
+                </button>
+                <button class="order-option" data-order="oldest">
+                    <a href="/?order=oldest" onclick="updateOrder('oldest')" id="oldest">오래된순</a>
+                </button>
+                <button class="order-option" data-order="popular">
+                    <a href="/?order=popular" onclick="updateOrder('popular')" id="popular">인기순</a>
+                </button>
             </div>
-            {{#get "products" limit="all" include="tags,authors" order="published_at desc"}}
-            {{#if products}}
-            <div class="s-products-list__container">
-                <div class="s-products-list js-content-feed">
-                    {{#foreach products from="0" to="12"}}
-                    {{> common/product/card }}
-                    {{/foreach}}
+        </div>
                 </div>
             </div>
-            {{else}}
-            <div class="s-products-list__empty">아직 상품이 없습니다.</div>
-            {{/if}}
-            {{/get}}
+    <div class="c-page__section--container">
+        {{> loop}}
+        <div class="c-tag-pagination__wrap">
+          {{ pagination }}
         </div>
-        {{> common/products/pagination }}
     </div>
+  </div>
+
+    <div class="s-products-feature">
+  <div class="o-grid">
+    {{#get 'tags' limit='all' filter="slug:{{@custom.tag_slugs_for_home_sections}}" as |tags|}}
+        {{#if tags}}
+        {{#foreach tags}}
+        <div class="s-products-feature__title">{{name}}</div>
+        {{/foreach}}
+        {{else}}
+        <div class="s-products-feature__title">Headline</div>
+        {{/if}}
+        {{/get}}
+      <div class="s-products-feature__content">
+        {{#if @custom.tag_slugs_for_home_sections}}
+        {{#get "posts" filter="tag:{{@custom.tag_slugs_for_home_sections}}" include="tags" limit="6" order="published_at desc" as |posts|}}
+        {{#if posts}}
+        {{#foreach posts}}
+        <a href="{{url}}" class="s-products-feature__item">
+          <div class="s-products-feature__item--image">
+            {{#if feature_image}}
+            <img class="s-products-feature__item--image-img" src="{{img_url feature_image}}" alt="{{title}}" loading="lazy">
+            {{/if}}
+          </div>
+          <div class="s-products-feature__item--info">
+          <div class="s-products-feature__item--title">{{title}}</div>
+           <time class="s-products-feature__item--date" datetime="{{ date format="YYYY.MM.DD." }}" title="{{ date format="YYYY.MM.DD." }}">{{ date format="YYYY.MM.DD." }}</time>
+        </div>
+        </a>
+        {{/foreach}}
+        {{/if}}
+        {{/get}}
+        {{/if}}
+      </div>
     </div>
+  </div>
 
+  <div class="s-products-feature2">
+  <div class="o-grid" style="display: block; contain: content;">
+        {{#get 'tags' limit='all' filter="slug:{{@custom.tag_slugs_for_home_sections_2}}" as |tags|}}
+        {{#if tags}}
+        {{#foreach tags}}
+        <div class="s-products-feature2__title">{{name}}</div>
+        {{/foreach}}
+        {{else}}
+        <div class="s-products-feature2__title">Headline</div>
+        {{/if}}
+        {{/get}}
+        {{#if @custom.tag_slugs_for_home_sections}}
+        {{#get "posts" filter="tag:{{@custom.tag_slugs_for_home_sections_2}}" include="tags" limit="4" order="view_count desc" as |posts|}}
+        {{#if posts}}
+        {{#foreach posts from="1" to="1"}}
+        {{> home-section1}}
+        
+        {{/foreach}}
+        <div class="s-products-feature2__content">
+        {{#foreach posts from="2" to="4" as |post|}}
+        {{> home-section2 }}
+        {{/foreach}}
+        </div>
+        {{/if}}
+        {{/get}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
 
-    {{#contentFor "scripts"}}
+  {{!-- [Home Shop Section] --}}
+  {{#if @site.home_visible_shop_section}}
+  <section class="c-home-shop-section">
+    <div class="c-home-products-carousel">
+      <div class="o-grid">
+        <div class="o-grid__col o-grid__col--full">
+          {{> common/products/carousel-section which="home" nav="true" title=@site.shop_section_title }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{/if}}
+  </div>
+
     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+        const orderButton = document.querySelector('.order-button');
+        const orderDropdown = document.querySelector('.order-dropdown');
+        const orderOptions = document.querySelectorAll('.order-option');
+        const orderText = orderButton.querySelector('span');
+        const tag = document.querySelector('.s-products-main__header--tag');
+        const date = document.querySelector('.s-products-main__header--date');
+        const currentTag = getUrlParameter('tag');
+        const currentDate = getUrlParameter('date');
+        const currentLatest = document.getElementById('latest');
+        const currentOldest = document.getElementById('oldest');
+        const currentPopular = document.getElementById('popular');
+        const currentUrl = window.location.href;
+        if(currentUrl.includes('&order=')) {
+            currentLatest.href = `${currentUrl.split("&order=")[0]}&order=latest`;
+            currentOldest.href = `${currentUrl.split("&order=")[0]}&order=oldest`;
+            currentPopular.href = `${currentUrl.split("&order=")[0]}&order=popular`;
+        }
+        else if(currentUrl.includes('?order=')) {
+            currentLatest.href = `${currentUrl.split("?order=")[0]}?order=latest`;
+            currentOldest.href = `${currentUrl.split("?order=")[0]}?order=oldest`;
+            currentPopular.href = `${currentUrl.split("?order=")[0]}?order=popular`;
+        }
+        else if(currentUrl.includes('tag=') || currentUrl.includes('date=')) {
+          currentLatest.href = `${currentUrl}&order=latest`;
+          currentOldest.href = `${currentUrl}&order=oldest`;
+          currentPopular.href = `${currentUrl}&order=popular`;
+        }
+        else {
+          currentLatest.href = `${currentUrl}?order=latest`;
+          currentOldest.href = `${currentUrl}?order=oldest`;
+          currentPopular.href = `${currentUrl}?order=popular`;
+        }
+        tag.textContent = currentTag;
+        date.textContent = currentDate + "년";
+        if (!currentTag) {
+          tag.style.display = 'none';
+        }
+        if (!currentDate) {
+          date.style.display = 'none';
+        }
+
+        // 드롭다운 토글
+        orderButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            orderDropdown.style.display = isExpanded ? 'none' : 'block';
+        });
+
+        // 옵션 선택
+        orderOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const order = this.getAttribute('data-order');
+                const text = this.querySelector('span').textContent;
+                
+                // 버튼의 텍스트 업데이트
+                orderText.textContent = text;
+                
+                // 드롭다운 닫기
+                orderButton.setAttribute('aria-expanded', 'false');
+                orderDropdown.style.display = 'none';
+
+                // 여기에 정렬 로직 추가
+                console.log('Selected order:', order);
+                localStorage.setItem('sortOrder', order);
+                window.orderValue = order;
+            });
+        });
+
+        // 문서 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function() {
+            orderButton.setAttribute('aria-expanded', 'false');
+            orderDropdown.style.display = 'none';
+        });
+    });
+        
         const hasNextPage = () => {
             var nextElement = document.querySelector('link[rel=next]');
             if (nextElement) {
@@ -140,5 +468,333 @@
                 });
             }
         });
+
+        const notReady = async () => {
+            // alert("준비중인 기능입니다");
+            const url = "/tag/ai/?order=popular&date=2024";
+            const options = {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // URL 파라미터에서 order 값을 가져오는 함수
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// 정렬 순서를 업데이트하는 함수
+function updateOrder(order) {
+    const orderText = {
+        'latest': '최신순',
+        'oldest': '오래된순',
+        'popular': '인기순'
+    };
+    document.getElementById('currentOrder').textContent = orderText[order] || '최신순';
+    localStorage.setItem('scrollPosition', 600);
+}
+
+// 페이지 로드 시 현재 정렬 순서 설정
+document.addEventListener('DOMContentLoaded', function() {
+    const currentOrder = getUrlParameter('order');
+    if (currentOrder) {
+        updateOrder(currentOrder);
+    }
+    const scrollPosition = localStorage.getItem('scrollPosition');
+    console.log(scrollPosition);
+        if (scrollPosition) {
+            // 부드러운 스크롤을 위한 스타일 추가
+            document.documentElement.style.scrollBehavior = 'smooth';
+            window.scrollTo({
+                top: parseInt(scrollPosition),
+                behavior: 'smooth'
+            });
+            
+            // 스크롤 애니메이션이 끝난 후 기본 스크롤 동작으로 복원
+            setTimeout(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+            }, 1000);
+        }
+});
+
+function toggleFilter() {
+    const filterDropdown = document.querySelector('.filter-dropdown');
+    const filterDropdown2 = document.querySelector('.filter-dropdown2');
+    if (filterDropdown.style.display === 'none' || filterDropdown.style.display === '') {
+        filterDropdown.style.display = 'block';
+        filterDropdown2.style.display = 'flex';
+    } else {
+        filterDropdown.style.display = 'none';
+        filterDropdown2.style.display = 'none';
+    }
+}
+
+    // 태그 필터 변환 함수
+    function convertTagFilters() {
+        const tagFiltersContainer = document.querySelector('.bluedot-tag-filters');
+        if (!tagFiltersContainer) return;
+
+        const newTagFilters = document.createElement('div');
+        newTagFilters.className = 'tag-filters';
+
+        // 기존 ul/li/a 구조의 태그들을 label/input으로 변환
+        const tagLinks = tagFiltersContainer.querySelectorAll('a');
+        tagLinks.forEach(link => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = 'tag';
+            input.value = link.getAttribute('href').split('/').pop(); // URL에서 태그 값 추출
+
+            const span = document.createElement('span');
+            span.textContent = link.textContent;
+
+            label.appendChild(input);
+            label.appendChild(span);
+            newTagFilters.appendChild(label);
+        });
+
+        // 기존 컨테이너를 새로운 구조로 교체
+        tagFiltersContainer.parentNode.replaceChild(newTagFilters, tagFiltersContainer);
+    }
+
+    // 체크박스 하나만 선택되도록 하는 함수
+    function handleCheckboxSelection(event) {
+        const checkbox = event.target;
+        const section = checkbox.closest('.filter-section');
+        
+        // 같은 섹션의 다른 체크박스들
+        const otherCheckboxes = section.querySelectorAll('input[type="checkbox"]');
+        
+        // 현재 체크박스가 체크된 경우
+        if (checkbox.checked) {
+            // 같은 섹션의 다른 체크박스들 해제
+            otherCheckboxes.forEach(otherCheckbox => {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        }
+    }
+
+    // 페이지 로드 시 이벤트 리스너 설정
+    document.addEventListener('DOMContentLoaded', function() {
+        convertTagFilters();
+        setInitialCheckboxStates();
+        
+        // 모든 체크박스에 이벤트 리스너 추가
+        document.querySelectorAll('.filter-section input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxSelection);
+        });
+    });
+
+    // URL 파라미터에 따라 체크박스 상태 설정
+    function setInitialCheckboxStates() {
+        // URL에서 파라미터 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // date 파라미터 처리
+        const dateParam = urlParams.get('date');
+        if (dateParam) {
+            const dates = dateParam.split(',');
+            dates.forEach(date => {
+                const checkbox = document.querySelector(`input[name="year"][value="${date}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        // tag 파라미터 처리
+        const tagParam = urlParams.get('tag');
+        if (tagParam) {
+            const tags = tagParam.split(',');
+            
+            // 모든 체크박스에 대해 검사
+            document.querySelectorAll('input[name="tag"]').forEach(checkbox => {
+                const checkboxValue = checkbox.value.split('=')[1];
+                // 태그 값이 정확히 일치하는지 확인
+                if (tags[0] === checkboxValue) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+    }
+
+    function applyFilters() {
+        const selectedTags = Array.from(document.querySelectorAll('input[name="tag"]:checked')).map(input => input.value);
+        const selectedYears = Array.from(document.querySelectorAll('input[name="year"]:checked')).map(input => input.value);
+        // API 호출 URL 구성
+        const tagParam = selectedTags.length > 0 ? `${selectedTags.join(',')}` : '';
+        const yearParam = selectedYears.length > 0 ? `date=${selectedYears.join(',')}` : '';
+        let url = window.location.href.split('?')[0];
+        if(tagParam && yearParam) {
+            url = url + tagParam + '&' + yearParam;
+        }
+        else if(tagParam) {
+            url = url  + tagParam;
+        }
+        else if(yearParam) {
+            url = url + '?' + yearParam;
+        }
+        else {
+            url = url;
+        }
+        // 현재 스크롤 위치 저장
+        localStorage.setItem('scrollPosition', 600);
+        window.location.href = url;
+    }
+
+    function resetFilters() {
+        // 모든 체크박스 초기화
+        document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+        localStorage.setItem('scrollPosition', 600);
+        window.location.href = window.location.href.split('?')[0];
+    }
+
+    // 페이지 로드 시 스크롤 위치 복원
+    window.addEventListener('load', function() {
+        const scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            // 부드러운 스크롤을 위한 스타일 추가
+            document.documentElement.style.scrollBehavior = 'smooth';
+            window.scrollTo({
+                top: parseInt(scrollPosition),
+                behavior: 'smooth'
+            });
+            // 스크롤 위치 초기화
+            
+            // 스크롤 애니메이션이 끝난 후 기본 스크롤 동작으로 복원
+            setTimeout(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+            }, 1000);
+        }
+    });
     </script>
-    {{/contentFor}}
+
+<style>
+.filter-dropdown {
+    position: absolute;
+    top: 150%;
+    right: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    min-width: 500px;
+    max-height: 310px;
+    padding: 20px;
+    display: none;
+}
+
+.s-products-main__header--buttons {
+    position: relative;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    width: 50%;
+    height: 220px;
+    overflow-y: auto;
+    padding: 0 10px;
+}
+
+.filter-section > div {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #9DA4AC;
+}
+
+.tag-filters, .year-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: black !important;
+    font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24.5px;
+    letter-spacing: -2%;
+}
+
+.tag-filters label, .year-filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 체크박스 커스터마이징 */
+.tag-filters input[type="checkbox"],
+.year-filters input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    width: 10px;
+    height: 10px;
+    border: 0.5px solid #C4C4C4;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    vertical-align: middle;
+}
+
+
+
+/* 호버 효과 */
+.tag-filters input[type="checkbox"]:hover,
+.year-filters input[type="checkbox"]:hover {
+    border-color: #999;
+}
+
+/* 포커스 효과 */
+.tag-filters input[type="checkbox"]:focus,
+.year-filters input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.filter-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-actions button:first-child {
+    background: #000;
+    border: 1px solid #000;
+    color: white;
+}
+
+.filter-actions button:last-child {
+    background: white;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.filter-actions button:hover {
+    opacity: 0.9;
+}
+</style>

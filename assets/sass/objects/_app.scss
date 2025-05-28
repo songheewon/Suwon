@@ -3,7 +3,8 @@
   flex-direction: column;
   // min-height: 100vh;
   width: 100%;
-
+  overflow-x: hidden;
+  background-color: #F4F3EE;
   &__function {
     display: none;
     position: absolute;
@@ -28,6 +29,7 @@
 
 .o-footer {
   flex-shrink: 0;
+  margin-top: -40px;
 }
 
 .home-template {
