@@ -280,7 +280,7 @@
         {{/if}}
         {{/get}}
         {{#if @custom.tag_slugs_for_home_sections}}
-        {{#get "posts" filter="tag:{{@custom.tag_slugs_for_home_sections_2}}" include="tags" limit="4" order="view_count desc" as |posts|}}
+        {{#get "posts" filter="tag:{{@custom.tag_slugs_for_home_sections_2}}" include="tags" limit="4" order="published_at desc" as |posts|}}
         {{#if posts}}
         {{#foreach posts from="1" to="1"}}
         {{> home-section1}}
