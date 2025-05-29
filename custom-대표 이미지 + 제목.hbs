@@ -29,8 +29,8 @@
       {{/if}}
     </div>
     <a class="c-post-header__info--name" href="{{url}}" style="color: white;">{{name}}</a>
-    <div class="c-post-header__info--date">{{date format="YYYY.MM.DD"}}</div>
     {{/primary_author}}
+    <div class="c-post-header__info--date">{{date format="YYYY.MM.DD"}}</div>
   </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                 {{#primary_author}}
                 {{> card-author }}
                 {{/primary_author}}
-
+                {{bluedot_comment_button}}
                 {{!-- If the post is published for members and paid members and the visitor is not one of those, show
                 the
                 upgrade
