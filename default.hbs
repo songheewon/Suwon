@@ -7,6 +7,10 @@
 
   <title>{{ meta_title }}</title>
 
+  {{#if @site.icon}}
+  <link rel="icon" href="{{@site.icon}}">
+  <link rel="apple-touch-icon" href="{{@site.icon}}">
+  {{/if}}
   {{> common/vendor }}
   {{> fonts }}
   {{> compiled/inline-css }}
